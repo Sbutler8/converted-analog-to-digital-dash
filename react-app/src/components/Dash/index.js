@@ -21,10 +21,10 @@ export default function ClientComponent() {
   useEffect(() => {
       getMessages();
 
-      socket.on("connected", () => {
-          console.log('Connected to Front End YAY')
-          socket.emit('get_speed')
-      }, [socket]);
+    //   socket.on("connected", () => {
+    //       console.log('Connected to Front End YAY')
+    //       socket.emit('get_speed')
+    //   }, [socket]);
 
 
     socket.on("FromSpeed", (data) => {
@@ -36,7 +36,7 @@ export default function ClientComponent() {
             setMessages([...messages, msg]);
         });
     }
-    
+
 
     const onClick = () => {
         if (message !== "") {

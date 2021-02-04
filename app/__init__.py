@@ -93,7 +93,7 @@ def connected():
 
 
 @socketio.on('get_speed')
-def on_active_user(data):
+def get_speed(data):
     print('Backend Here')
     readData(Arduino(serial_port='COM4'))
     emit('getting_speed', {'speed': data}, broadcast=True)

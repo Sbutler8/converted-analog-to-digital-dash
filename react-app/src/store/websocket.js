@@ -1,5 +1,5 @@
 export const GET_SPEED= "GET_SPEED"
-export const GET_MESSAGE= "GET_MESSAGE"
+export const SET_MESSAGE= "SET_MESSAGE"
 
 export function getSpeed(speed){
     return {
@@ -8,21 +8,27 @@ export function getSpeed(speed){
     }
 }
 
-export function getMessage(message){
+export function storeMessage(message){
   return {
-      type: GET_MESSAGE,
+      type: SET_MESSAGE,
       message
   }
 }
 
-const initialState = { speed: null, temp: null, button: true, message: ""};
+export const setMessage = (data) => async (dispatch) => {
+    dispatch(storeMessage(data));
+    return data;
+
+};
+
+const initialState = { speed: null, temp: null, button: true};
 
 const wsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPEED:
       state.speed = action.speed;
       return state;
-    case GET_MESSAGE:
+    case SET_MESSAGE:
       state.message = action.message;
       return state;
     default:
