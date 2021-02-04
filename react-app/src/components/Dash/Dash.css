@@ -1,0 +1,23 @@
+.track {
+    stroke-width: 1;
+    stroke: lightgrey;
+    fill: none;
+}
+
+.progress {
+    stroke-width: 30;
+    stroke: rgb(7, 175, 204);
+    background-image: linear-gradient(to right, #e1ff16, #caff00, #b1ff00, #94ff00, #70ff00, #54ff4a, #35ff6e, #00fe8b, #00faba, #00f3df, #00eaf6, #0bdfff);
+    stroke-linecap: round;
+    fill: none;
+    transform: rotate(0deg);
+    transform-origin: center;
+}
+
+#svg {
+    position: relative;
+}
+
+#speedometer-button {
+    margin-left: 5px;
+}

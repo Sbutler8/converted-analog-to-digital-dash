@@ -1,0 +1,102 @@
+  #modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image:url(https://media.giphy.com/media/rXwWqww8JOR9PC2fTC/giphy.gif);
+    background-size: 400px 384px;
+    height: 380px;
+    width: 260px;
+    border-radius: 10px;
+  }
+
+  .signUp-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    background-image: url(https://i.pinimg.com/originals/c6/da/92/c6da928816295b2b99e0a5f44ab9bd91.gif);
+    background-size: 342px 615px;
+    height: 510px;
+    width: 340px;
+    border-radius: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    margin: 10px;
+  }
+
+  form input {
+    margin:5px;
+    border-radius: 5px;
+    border-style:solid;
+    height: auto;
+  }
+
+  #username, #password {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .eyebox {
+    display: flex;
+    flex-direction: row;
+    width:30px;
+    top: 8px;
+  }
+
+  .eyebox .eye {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    margin-top: 8px;
+    box-shadow: 0 5px 45px rgba(0,0,0,0.2),
+                inset 0 0 5px #DBA74F,
+                inset 0 0 5px #DBA74F;
+  }
+
+  .eyebox .eye::before {
+    content:'';
+    position: absolute;
+    top: 45%;
+    left: 3.5px;
+    transform: translate(-50%, 50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+  }
+
+  #righteye {
+    margin-left: 10px;
+  }
