@@ -12,7 +12,7 @@ from .config import Config
 from flask_socketio import SocketIO, emit
 import time
 from .pyduino import *
-# from .readData import readData
+from .readData import readData
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -91,18 +91,19 @@ def connected():
     emit('connected')
     # readData(Arduino(serial_port='COM4'))
 
-a = Arduino()
-PIN = 12
-POTENTIOMETER = 'A0'
-a.set_pin_mode(PIN, 'O')
-a.set_pin_mode(POTENTIOMETER, 'O')
+# a = Arduino()
+# # PIN = 12
+# POTENTIOMETER = 'A0'
+# a.set_pin_mode(PIN, 'O')
+# a.set_pin_mode(POTENTIOMETER, 'O')
 
 @socketio.on('get_speed')
 def get_speed():
     print('Backend Here')
     # data = readData(Arduino())
     while True:
-        data = a.analog_read(POTENTIOMETER)
+        data = readData(Arduino())
+        # data = a.analog_read(POTENTIOMETER)
         emit('getting_speed', data)
 
 

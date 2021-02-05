@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import { useDispatch } from 'react-redux';
 import socketIOClient from "socket.io-client";
 import DashSVG from "../../Icons/DashSVG";
@@ -6,16 +6,30 @@ import * as sessionActions from '../../store/session'
 import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
-import SpeedometerLoadBar from "../../Icons/SpeedometerLoadBar";
+import ldBar from '@loadingio/loading-bar';
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
-export default function ClientComponent() {
+const Dash = ({...props}) => {
+  const ProgressBar = require('progressbar.js')
+  // const ldBar = require('react-loading-io');
+
   const dispatch = useDispatch();
 
   const [speed, setSpeed] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (document.querySelector('#progress_bar')) {
+      let bar = document.querySelector('#progress_bar');
+      props.dataValue=speed
+      console.log('MADE IT')
+      // let bar2 = new ldBar(bar1);
+      // bar1.set(60);
+
+    }
+  }, [speed])
 
 
   useEffect(() => {
@@ -39,27 +53,36 @@ export default function ClientComponent() {
   //   circle.style.strokeDashoffset = offset;
   // }
 
+//   var custom = new ProgressBar.Path('#custom', {
+//     strokeWidth: 2.0,
+//     easing: 'easeIn',
+//     attachment: document.querySelector(''),
+//     from: { color: '#e1ff16' },
+//     to: { color: '#0bdfff' },
+// });
+
+
   return (
     <>
     {/* <input value={message} onChange={e => onChange(e)}></input>
     <button onClick={() => onClick()}>Send Message</button> */}
-      <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
-      <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script>
+      {/* <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
+      <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script> */}
+      {/* <script src="./dist/progressbar.min.js">{}</script> */}
+      <script type="text/javascript" src="loading-bar.js"></script>
+      <div className="ldBar"></div>
+      <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
       <button id="speedometer-button" >Start Speedometer</button>
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>
-  
-      {/* <SpeedometerLoadBar id="overlay" /> */}
+
       {/* <svg viewBox="0 0 36 36" class="circular-chart">
       <path className="circle"
         fill="url(#linearColors)"
-        stroke-dasharray="130, 100"
-        d="M 352.65 177.65
-      Q 358.35 129.85 332.25 89 306.25 48.2 260.25 33 214.25 17.9 169.1 35.45 124 53 100.1 95.1 76.2 137.25 84.4 184.65 92.65 232.15 129.05 264
-      L 146 244.55
-      Q 116.45 218.75 109.8 180.3 103.15 141.9 122.5 107.75 141.9 73.65 178.45 59.45 215 45.2 252.2 57.45 289.5 69.75 310.6 102.85 331.7 135.95 327.1 174.6 322.5 213.35 294.3 240.65
-      L 312.2 259.2
-      Q 346.95 225.5 352.65 177.65 Z"
+        stroke-dasharray="80, 100"
+        d="M18 2.0845
+        a 15.9155 15.9155 0 0 1 0 31.831
+        a 15.9155 15.9155 0 0 1 0 -31.831"
       />
       <defs>
         <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
@@ -101,26 +124,16 @@ export default function ClientComponent() {
 
       </script> */}
 
-      {/* <div className="ldBar" id="progress_bar"
-            data-type="stroke"
+      <div className="ldBar" id="progress_bar"
+            data-type={props.dataType}
             data-path=" M -90.5 98.3
             Q -115.8 72.7 -120.15 26.85 -124.5 -19.05 -94.6 -56.65 -64.7 -94.3 -25.95 -102.7 12.75 -111.15 45.15 -97.4 77.55 -83.65 101.5 -48.55 125.45 -13.45 119.6 28.95 113.75 71.3 95.15 98.95"
-            data-stroke="data:ldbar/res,gradient(0,0,#FFFF33, #FF8B0A)"
+            data-stroke="data:ldbar/res,gradient(0,0,#e1ff16, #0bdfff)"
             data-stroke-width="20"
             data-max={98}
-            data-value={20}
+            data-value={props.dataValue}
             >
         </div>
-        <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
-        <script type="text/javascript" src="loading-bar.js"></script> */}
-
-        {/* <script type="text/javascript">
-          { document.addEventListener('DOMContentLoaded', () => {
-              let progressBar = document.getElementById("progress_bar").ldBar.set
-              // progressBar.set({speeds})
-          })
-          }
-        </script> */}
 
       {/* <div className="grid">
           <div id="">Speed Here:{speeds}</div>
@@ -131,3 +144,5 @@ export default function ClientComponent() {
     </>
   );
 }
+
+export default Dash;

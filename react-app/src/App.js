@@ -27,7 +27,7 @@ function App() {
       <Switch>
         <Route path="/dash" exact={true}>
             <div>DASH ROUTE HIT</div>
-            <Dash />
+            <Dash dataType="stroke" dataValue="set" />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm  />

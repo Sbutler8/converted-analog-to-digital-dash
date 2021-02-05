@@ -2,9 +2,11 @@ import React from "react";
 import './DashSVG.css';
 
 const DashSVG = ({...props}) => {
+  const SPEEDOMETERLENGTH = 1229.57;
+
     return (
    <>
-    <svg
+     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       preserveAspectRatio="none"
@@ -14,6 +16,20 @@ const DashSVG = ({...props}) => {
       {...props}
     >
       <defs>
+      <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="5%" stopColor="#e1ff16"></stop>
+          <stop offset="25%" stopColor="#caff00"></stop>
+          <stop offset="40%" stopColor="#b1ff00"></stop>
+          <stop offset="60%" stopColor="#94ff00"></stop>
+          <stop offset="80%" stopColor="#70ff00"></stop>
+          <stop offset="100%" stopColor="#54ff4a"></stop>
+          <stop offset="5%" stopColor="#35ff6e"></stop>
+          <stop offset="25%" stopColor="#00fe8b"></stop>
+          <stop offset="40%" stopColor="#00faba"></stop>
+          <stop offset="60%" stopColor="#00f3df"></stop>
+          <stop offset="80%" stopColor="#036c72"></stop>
+          <stop offset="100%" stopColor="#02869b"></stop>
+        </linearGradient>
         <path
           fill="url(#prefix__a)"
           d="M241.25 90.25q-18.2-18.2-44-18.2t-44.05 18.2Q135 108.5 135 134.3q0 25.8 18.2 44 18.25 18.25 44.05 18.25 25.8 0 44-18.25 18.25-18.2 18.25-44t-18.25-44.05m-44-8.85q21.9 0 37.4 15.5t15.5 37.4q0 21.9-15.5 37.4t-37.4 15.5q-21.9 0-37.4-15.5t-15.5-37.4q0-21.9 15.5-37.4t37.4-15.5z"
@@ -30,9 +46,9 @@ const DashSVG = ({...props}) => {
           id="prefix__u"
         />
         <path
-          id="speedometer-fill"
+          className="speedometer-fill"
           fill="#333"
-          d="M352.65 177.65q5.7-47.8-20.4-88.65-26-40.8-72-56-46-15.1-91.15 2.45Q124 53 100.1 95.1q-23.9 42.15-15.7 89.55 8.25 47.5 44.65 79.35L146 244.55q-29.55-25.8-36.2-64.25-6.65-38.4 12.7-72.55 19.4-34.1 55.95-48.3 36.55-14.25 73.75-2 37.3 12.3 58.4 45.4 21.1 33.1 16.5 71.75-4.6 38.75-32.8 66.05l17.9 18.55q34.75-33.7 40.45-81.55z"
+          d="M352.65 177.65q5.7-47.8-20.4-88.65-26-40.8-72-56-46-15.1-91.15 2.45Q124 53 100.1 95.1q-23.9 42.15-15.7 89.55 8.25 47.5 44.65 79.35L146 244.55l-1.65-1.5q-.11-.07-.25-.2-.311-.28-.65-.6l-7.65-7.7q-.063-.102-.15-.2l-.4-.5q-.208-.195-.4-.45-.309-.328-.65-.7-.04-.051-.1-.15-.065-.051-.15-.15-18.982-22.218-24.15-52.1-6.65-38.4 12.7-72.55 19.4-34.1 55.95-48.3 36.55-14.25 73.75-2 37.3 12.3 58.4 45.4 21.1 33.1 16.5 71.75-4.6 38.75-32.8 66.05l17.9 18.55q34.75-33.7 40.45-81.55z"
           id="prefix__v"
         />
         <path
@@ -982,15 +998,6 @@ const DashSVG = ({...props}) => {
           fill="none"
           d="M0 0h90.75q-35.1 102.7 21.9 224.25l12.1 24.15Q18.85 181.85 0 0z"
         />
-        <path
-          id="prefix__cY"
-          stroke="#333"
-          strokeWidth={1}
-          strokeLinejoin="round"
-          strokeLinecap="square"
-          fill="none"
-          d="M-81.6 103.85q-8.75-8.95-18.25-22.7-9.5-13.8-14.5-30.15-5.05-16.35-5.3-48.25-.25-31.95 30.4-68.9 30.65-37 80.55-40.25 21.05-2.85 48.1 5.4.15.05.35.1 20.05 7.35 37.5 22.7 17.6 15.5 27.55 33.15 9.95 17.6 13.8 47 3.85 29.35-6.1 59.75-.7 2.2-29.25 45.45"
-        />
         <linearGradient
           id="prefix__f"
           gradientUnits="userSpaceOnUse"
@@ -1450,10 +1457,6 @@ const DashSVG = ({...props}) => {
       <use xlinkHref="#prefix__cV" transform="translate(.3 -13.75)" />
       <use xlinkHref="#prefix__cW" transform="translate(.3 -13.75)" />
       <use xlinkHref="#prefix__cX" transform="translate(.3 -13.75)" />
-      <g>
-
- <use xlinkHref="#prefix__cY" transform="translate(400 221.05)" />
-      </g>
     </svg>
    </>
     )
