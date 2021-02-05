@@ -17,17 +17,16 @@ const Dash = ({...props}) => {
 
   const dispatch = useDispatch();
 
-  const [speed, setSpeed] = useState("");
+  const [speed, setSpeed] = useState(0);
   const [status, setStatus] = useState("");
 
   useEffect(() => {
-    if (document.querySelector('#progress_bar')) {
-      let bar = document.querySelector('#progress_bar');
-      props.dataValue=speed
-      console.log('MADE IT')
-      bar.setAttribute('data-value', `${speed}`)
-    }
-  }, [])
+      // props.dataValue=speed
+      console.log('SPEED IN effect',speed)
+      // bar.setAttribute('data-value', 40)
+
+  }, [dispatch, speed])
+  console.log('SPEED',speed)
 
   // const message = useSelector(state => state.ws.message);
   // useEffect(() => {
@@ -142,7 +141,7 @@ const Dash = ({...props}) => {
             data-stroke="data:ldbar/res,gradient(0,0,#e1ff16, #0bdfff)"
             data-stroke-width="20"
             data-max={98}
-            data-value={props.dataValue}
+            data-value={speed => speed}
             >
         </div>
 

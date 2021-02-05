@@ -9,7 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, disconnect
 import time
 from .pyduino import *
 from .readData import readData
@@ -107,7 +107,7 @@ def get_speed():
         data = a.analog_read('A0')
         # data = a.analog_read(POTENTIOMETER)
         emit('getting_speed', data)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 
 # @socketio.on('message')
@@ -116,6 +116,7 @@ def get_speed():
 #     send(msg, broadcast=True)
 #     return None
 
-@socketio.on('disconnect')
+@socketio.on('client-disconnecting')
 def test_disconnect():
     print('Client disconnected')
+    # socketio.disconnect()

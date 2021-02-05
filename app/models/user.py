@@ -43,7 +43,8 @@ class Car(db.Model):
     make = db.Column(db.BOOLEAN, nullable=False)
     model = db.Column(db.String, nullable=False)
     vin = db.Column(db.String, nullable=True, unique=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    pic = db.Column(db.String, nullable=True, unique=True)
+    userId = db.Column(db.String, nullable=True)
 
     car = db.relationship("OBD", back_populates="codes")
     users = db.relationship("User", secondary="users_cars", back_populates="cars")

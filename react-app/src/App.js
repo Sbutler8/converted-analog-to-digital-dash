@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NavBar from './components/NavBar'
 import * as sessionActions from './store/session'
 import Dash from './components/Dash/index'
+import Home from "./components/Home";
 
 function App() {
 
@@ -25,6 +26,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+      <Route path="/" exact={true}>
+          <Home  />
+        </Route>
         <Route path="/dash" exact={true}>
             <div>DASH ROUTE HIT</div>
             <Dash dataType="stroke" dataValue="set" />
