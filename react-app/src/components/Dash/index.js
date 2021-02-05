@@ -20,12 +20,6 @@ export default function ClientComponent() {
   useEffect(() => {
     dispatch(sessionActions.authenticate());
     dispatch(webSocketActions.setMessage(message));
-    // const interval = setInterval(() => {
-    //   socket.emit('get_speed')
-    // }, 2000)
-
-    // clearInterval(() => interval);
-
 }, [dispatch, speed]);
 
   socket.on("connected", () => {
