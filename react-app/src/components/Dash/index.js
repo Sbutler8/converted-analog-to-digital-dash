@@ -20,17 +20,17 @@ export default function ClientComponent() {
   useEffect(() => {
     dispatch(sessionActions.authenticate());
     dispatch(webSocketActions.setMessage(message));
-    const interval = setInterval(() => {
-      socket.emit('get_speed')
-    }, 2000)
+    // const interval = setInterval(() => {
+    //   socket.emit('get_speed')
+    // }, 2000)
 
-    clearInterval(() => interval);
+    // clearInterval(() => interval);
 
 }, [dispatch, speed]);
 
   socket.on("connected", () => {
     console.log('Connected to Front End YAY')
-    // socket.emit('get_speed')
+    socket.emit('get_speed')
   }, [socket]);
 
   socket.on("getting_speed", (data) => {

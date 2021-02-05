@@ -101,8 +101,9 @@ a.set_pin_mode(POTENTIOMETER, 'O')
 def get_speed():
     print('Backend Here')
     # data = readData(Arduino())
-    data = a.analog_read(POTENTIOMETER)
-    emit('getting_speed', data)
+    while True:
+        data = a.analog_read(POTENTIOMETER)
+        emit('getting_speed', data)
 
 
 # @socketio.on('message')
