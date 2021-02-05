@@ -14,10 +14,9 @@ def readData(a):
 
     time.sleep(1)
     # allow time to make connection
-    while True:
-        value = a.analog_read(POTENTIOMETER)
-        print(value)
-        return value
+    value = a.analog_read(POTENTIOMETER)
+    print(value)
+    return value
 
     # for i in range(0,1000):
     #     if i%2 == 0:
@@ -28,4 +27,4 @@ def readData(a):
     #     time.sleep(1)
 
 
-# readData(Arduino(serial_port='COM4'))
+# readData(Arduino(serial_port='/dev/ttyS4'))

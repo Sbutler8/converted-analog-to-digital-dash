@@ -29,7 +29,8 @@ Mako = "==1.1.3"
 PyJWT = "==1.7.1"
 psycopg2-binary = "*"
 boto3 = "*"
-flask-socketio = "*"
+Flask-SocketIO = "*"
+pyserial = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"

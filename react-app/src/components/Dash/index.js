@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
 import socketIOClient from "socket.io-client";
 import DashSVG from "../../Icons/DashSVG";
+import * as sessionActions from '../../store/session'
+import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
 
@@ -8,132 +11,44 @@ let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 export default function ClientComponent() {
-    const [speed, setSpeed] = useState("");
-  const [newLED, setNewLED] = useState("");
-  const [newTemp, setNewTemp] = useState("");
-  const [messages, setMessages] = useState(['Hello and Welcome']);
-  const [message, setMessage] = useState("");
-  // const [newButton, setNewButton] = useState("");
-  // const [ldBar, setNewBar] = useState({});
+  const dispatch = useDispatch();
 
-  const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+  const [speed, setSpeed] = useState("");
+  const [message, setMessage] = useState("");
+
 
   useEffect(() => {
-      getMessages();
+    dispatch(sessionActions.authenticate());
+    dispatch(webSocketActions.setMessage(message));
+    const interval = setInterval(() => {
+      socket.emit('get_speed')
+    }, 2000)
 
-    //   socket.on("connected", () => {
-    //       console.log('Connected to Front End YAY')
-    //       socket.emit('get_speed')
-    //   }, [socket]);
+    clearInterval(() => interval);
 
+}, [dispatch, speed]);
 
-    socket.on("FromSpeed", (data) => {
-      setSpeed(data);
-    }, [messages.length]);
+  socket.on("connected", () => {
+    console.log('Connected to Front End YAY')
+    // socket.emit('get_speed')
+  }, [socket]);
 
-    function getMessages() {
-        socket.on('message', msg => {
-            setMessages([...messages, msg]);
-        });
-    }
+  socket.on("getting_speed", (data) => {
+    console.log('Getting_Speed Front End YAY: ', data)
+    setSpeed(data)
+  });
 
-
-    const onClick = () => {
-        if (message !== "") {
-            socket.emit("message", message);
-            setMessage("");
-        } else {
-            alert('Please add a message');
-        }
-    }
-
-
-
-    function onChange (e) {
-          setMessage(e.target.value);
-      }
-
-    // socket.on("FromNewLED", (data) => {
-    //   setNewLED(data);
-    // });
-
-    // socket.on("FromNewTemp", (data) => {
-    //   setNewTemp(data);
-    // });
-
-    // socket.on("FromButton", (data) => {
-    //   setNewButton(data);
-    // });
-
-    // socket.emit("buttonChanged", newButton);
-
-  }, [ENDPOINT]);
-
-
-  let speeds;
-  let newTemps;
-  let newLEDs;
-  let buttonStatus = false;
-
-  if (speed.item === 'speed') {
-    speeds = speed.msg;
-  }
-
-  // if (newTemp.item === 'temp') {
-  //   newTemps = newTemp.msg;
-  // }
-
-  // if (newButton.item === 'press') {
-  //   buttonStatus = newButton.msg;
-  // }
-
-  // function buttonChanged() {
-  //   setNewButton(prevState => !prevState);
-  // }
-
-  // function setProgress() {
-  //   window.addEventListener('DOMContentLoaded', () => {
-  //     let progressBar1 = new ldBar("#progress_bar");
-  //     document.getElementById("progress_bar").ldBar
-  //     progressBar1.set(amt.toString())
-  //   })
-
-  // }
-
-
-  function setProgress() {
-    let progressCircle = document.querySelector(".progress");
-        let radius = progressCircle.r.baseVal.value;
-        //circumference of a circle = 2πr;
-        let circumference = radius * 2 * Math.PI;
-        progressCircle.style.strokeDasharray = circumference;
-
-        //0 to 100
-        setProgress(50);
-
-        function setProgress(percent) {
-            progressCircle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
-        }
-  }
-
-  function trialSpeed() {
-
-  }
 
   return (
     <>
-    {messages.length > 0 &&
-    messages.map(msg => (
-        <p>{msg}</p>
-    ))}
     {/* <input value={message} onChange={e => onChange(e)}></input>
     <button onClick={() => onClick()}>Send Message</button> */}
       <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
       <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script>
-      <button id="speedometer-button" onClick={trialSpeed}>Start Speedometer</button>
-      <DashSVG id="svg" speed={speeds}/>
+      <button id="speedometer-button" >Start Speedometer</button>
+      <DashSVG id="svg" speed={speed}/>
 
-      <div id="speed">{speeds}</div>
+      <div id="speed">{speed}</div>
       <svg id="loading-circle" width="250" height="250">
         <circle r="100" cx="125" cy="125" class="track"></circle>
         <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
@@ -152,10 +67,10 @@ export default function ClientComponent() {
         </linearGradient>
         <circle r="100" cx="125" cy="125" class="progress"></circle>
       </svg>
-      <script type="text/javascript">
+      {/* <script type="text/javascript">
         {document.addEventListener('DOMContentLoaded', () => setProgress())}
 
-      </script>
+      </script> */}
 
       {/* <div className="ldBar" id="progress_bar"
             data-type="stroke"

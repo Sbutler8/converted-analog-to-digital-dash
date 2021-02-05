@@ -12,7 +12,7 @@ from .config import Config
 from flask_socketio import SocketIO, emit
 import time
 from .pyduino import *
-from .readData import readData
+# from .readData import readData
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -88,19 +88,29 @@ def react_root(path):
 def connected():
     print('Connected')
     time.sleep(2)
-    emit('connected', broadcast=True)
+    emit('connected')
     # readData(Arduino(serial_port='COM4'))
 
+a = Arduino()
+PIN = 12
+POTENTIOMETER = 'A0'
+a.set_pin_mode(PIN, 'O')
+a.set_pin_mode(POTENTIOMETER, 'O')
 
 @socketio.on('get_speed')
-def get_speed(data):
+def get_speed():
     print('Backend Here')
-    readData(Arduino(serial_port='COM4'))
-    emit('getting_speed', {'speed': data}, broadcast=True)
+    # data = readData(Arduino())
+    data = a.analog_read(POTENTIOMETER)
+    emit('getting_speed', data)
 
 
-@socketio.on('message')
-def handleMessage(msg):
-    print(msg)
-    send(msg, broadcast=True)
-    return None
+# @socketio.on('message')
+# def handleMessage(msg):
+#     print(msg)
+#     send(msg, broadcast=True)
+#     return None
+
+@socketio.on('disconnect')
+def test_disconnect():
+    print('Client disconnected')
