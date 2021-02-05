@@ -6,6 +6,7 @@ import * as sessionActions from '../../store/session'
 import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
+import SpeedometerLoadBar from "../../Icons/SpeedometerLoadBar";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -32,6 +33,11 @@ export default function ClientComponent() {
     setSpeed(data)
   });
 
+  // function setProgress(percent) {
+  //   circumference = radius * 2 * PI
+  //   const offset = circumference - percent / 100 * circumference;
+  //   circle.style.strokeDashoffset = offset;
+  // }
 
   return (
     <>
@@ -41,10 +47,21 @@ export default function ClientComponent() {
       <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script>
       <button id="speedometer-button" >Start Speedometer</button>
       <DashSVG id="svg" speed={speed}/>
-
       <div id="speed">{speed}</div>
-      <svg id="loading-circle" width="250" height="250">
-        <circle r="100" cx="125" cy="125" class="track"></circle>
+  
+      {/* <SpeedometerLoadBar id="overlay" /> */}
+      {/* <svg viewBox="0 0 36 36" class="circular-chart">
+      <path className="circle"
+        fill="url(#linearColors)"
+        stroke-dasharray="130, 100"
+        d="M 352.65 177.65
+      Q 358.35 129.85 332.25 89 306.25 48.2 260.25 33 214.25 17.9 169.1 35.45 124 53 100.1 95.1 76.2 137.25 84.4 184.65 92.65 232.15 129.05 264
+      L 146 244.55
+      Q 116.45 218.75 109.8 180.3 103.15 141.9 122.5 107.75 141.9 73.65 178.45 59.45 215 45.2 252.2 57.45 289.5 69.75 310.6 102.85 331.7 135.95 327.1 174.6 322.5 213.35 294.3 240.65
+      L 312.2 259.2
+      Q 346.95 225.5 352.65 177.65 Z"
+      />
+      <defs>
         <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
           <stop offset="5%" stop-color="#e1ff16"></stop>
           <stop offset="25%" stop-color="#caff00"></stop>
@@ -59,8 +76,26 @@ export default function ClientComponent() {
           <stop offset="80%" stop-color="#00eaf6"></stop>
           <stop offset="100%" stop-color="#0bdfff"></stop>
         </linearGradient>
-        <circle r="100" cx="125" cy="125" class="progress"></circle>
-      </svg>
+      </defs>
+    </svg> */}
+      {/* <svg id="loading-circle" width="250" height="250">
+        <circle r="80" cx="125" cy="125" class="track"></circle>
+        <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="5%" stop-color="#e1ff16"></stop>
+          <stop offset="25%" stop-color="#caff00"></stop>
+          <stop offset="40%" stop-color="#b1ff00"></stop>
+          <stop offset="60%" stop-color="#94ff00"></stop>
+          <stop offset="80%" stop-color="#70ff00"></stop>
+          <stop offset="100%" stop-color="#54ff4a"></stop>
+          <stop offset="5%" stop-color="#35ff6e"></stop>
+          <stop offset="25%" stop-color="#00fe8b"></stop>
+          <stop offset="40%" stop-color="#00faba"></stop>
+          <stop offset="60%" stop-color="#00f3df"></stop>
+          <stop offset="80%" stop-color="#00eaf6"></stop>
+          <stop offset="100%" stop-color="#0bdfff"></stop>
+        </linearGradient>
+        <circle r="80" cx="125" cy="125" class="progress"></circle>
+      </svg> */}
       {/* <script type="text/javascript">
         {document.addEventListener('DOMContentLoaded', () => setProgress())}
 
@@ -73,7 +108,7 @@ export default function ClientComponent() {
             data-stroke="data:ldbar/res,gradient(0,0,#FFFF33, #FF8B0A)"
             data-stroke-width="20"
             data-max={98}
-            ref={t => speeds}
+            data-value={20}
             >
         </div>
         <link rel="stylesheet" type="text/css" href="loading-bar.css"/>

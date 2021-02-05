@@ -21,3 +21,46 @@
 #speedometer-button {
     margin-left: 5px;
 }
+
+.circular-chart {
+  display: block;
+  position:  absolute;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+  bottom: 117px;
+  left: 46px;
+}
+
+.circle {
+    stroke: url(#linearColors);
+    background-image: linear-gradient(to right, #e1ff16, #b1ff00, #94ff00, #70ff00, #54ff4a, #35ff6e, #00fe8b, #00faba, #00f3df, #00eaf6, #0bdfff);
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    /* rotate: 60; */
+    stroke-dashoffset: 47;
+    animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+
+#overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
