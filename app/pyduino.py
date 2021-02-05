@@ -55,9 +55,9 @@ class Arduino():
         Internally sends b'RA{pin_number}' over the serial connection
         """
         command = (''.join(('RA', str(pin_number)))).encode()
+        print('command:',command[0])
         self.conn.write(command)
         line_received = self.conn.readline().decode().strip()
-        print('received:',line_received)
         header, value = line_received.split(':') # e.g. A4:1
         speed = 0.1173 * int(value)
         return math.ceil(speed)

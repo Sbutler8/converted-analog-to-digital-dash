@@ -97,14 +97,17 @@ def connected():
 # a.set_pin_mode(PIN, 'O')
 # a.set_pin_mode(POTENTIOMETER, 'O')
 
+a = Arduino()
+a.set_pin_mode('A0', 'O')
 @socketio.on('get_speed')
 def get_speed():
     print('Backend Here')
     # data = readData(Arduino())
     while True:
-        data = readData(Arduino())
+        data = a.analog_read('A0')
         # data = a.analog_read(POTENTIOMETER)
         emit('getting_speed', data)
+        time.sleep(0.3)
 
 
 # @socketio.on('message')

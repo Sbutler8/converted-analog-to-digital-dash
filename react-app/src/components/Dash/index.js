@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import socketIOClient from "socket.io-client";
 import DashSVG from "../../Icons/DashSVG";
 import * as sessionActions from '../../store/session'
@@ -18,28 +18,39 @@ const Dash = ({...props}) => {
   const dispatch = useDispatch();
 
   const [speed, setSpeed] = useState("");
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     if (document.querySelector('#progress_bar')) {
       let bar = document.querySelector('#progress_bar');
       props.dataValue=speed
       console.log('MADE IT')
-      // let bar2 = new ldBar(bar1);
-      // bar1.set(60);
-
+      bar.setAttribute('data-value', `${speed}`)
     }
-  }, [speed])
+  }, [])
+
+  // const message = useSelector(state => state.ws.message);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+
+  //       socket.emit('get_speed')
+
+  //   }, 1000)
+
+  //   clearInterval(() => interval)
+  // }, [dispatch,speed])
 
 
-  useEffect(() => {
-    dispatch(sessionActions.authenticate());
-    dispatch(webSocketActions.setMessage(message));
-}, [dispatch, speed]);
+  //   useEffect(() => {
+    //     dispatch(sessionActions.authenticate());
+    //     dispatch(webSocketActions.setMessage(message));
+    // }, [dispatch, speed]);
 
-  socket.on("connected", () => {
-    console.log('Connected to Front End YAY')
-    socket.emit('get_speed')
+    socket.on("connected", () => {
+      console.log('Connected to Front End YAY')
+      setStatus('connected')
+      dispatch(webSocketActions.setMessage('connected'));
+      socket.emit('get_speed')
   }, [socket]);
 
   socket.on("getting_speed", (data) => {
