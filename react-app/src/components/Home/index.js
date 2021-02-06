@@ -45,7 +45,7 @@ const Home = () => {
         };
 
     return (
-
+        <>
         <Slider {...settings} className="carousel">
         {carImages.map(img => {
             return (
@@ -59,6 +59,7 @@ const Home = () => {
             )
         })}
     </Slider>
+    </>
 
     )
 }
