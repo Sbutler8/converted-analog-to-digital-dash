@@ -1,8 +1,8 @@
 """creating all tables
 
-Revision ID: 843b68be57ad
+Revision ID: fb540c87c0b9
 Revises: 
-Create Date: 2021-02-02 15:47:06.364886
+Create Date: 2021-02-06 16:12:51.631868
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '843b68be57ad'
+revision = 'fb540c87c0b9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,24 +21,25 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=40), nullable=False),
+    sa.Column('email', sa.String(length=100), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('gps_permission', sa.BOOLEAN(), nullable=True),
     sa.Column('pic', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
     sa.UniqueConstraint('name')
     )
     op.create_table('cars',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('year', sa.Integer(), nullable=False),
-    sa.Column('make', sa.BOOLEAN(), nullable=False),
+    sa.Column('make', sa.String(), nullable=False),
     sa.Column('model', sa.String(), nullable=False),
     sa.Column('vin', sa.String(), nullable=True),
-    sa.Column('userId', sa.Integer(), nullable=False),
+    sa.Column('pic', sa.String(), nullable=True),
+    sa.Column('userId', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('vin')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('map_bookmarks',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -49,8 +50,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('lat'),
-    sa.UniqueConstraint('lon'),
-    sa.UniqueConstraint('name')
+    sa.UniqueConstraint('lon')
     )
     op.create_table('OBDs',
     sa.Column('id', sa.Integer(), nullable=False),

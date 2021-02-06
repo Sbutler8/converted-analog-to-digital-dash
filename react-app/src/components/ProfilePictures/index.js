@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as sessionActions from '../../store/session'
 import './ProfilePictureModal.css';
 
 
@@ -7,8 +8,12 @@ const ProfilePictures = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch()
-    },[dispatch])
+        dispatch(sessionActions.getAllUsers())
+    }, [dispatch])
+
+    const users = useSelector(state => state.session.users);
+
+    console.log(users)
 
     // const users = useSelector((state) => state.session.users)
     const userPics = ['../../public/profileImages/1.png',
@@ -22,16 +27,19 @@ const ProfilePictures = () => {
     '../../public/profileImages/9.png',
     '../../public/profileImages/new_user.png'
         ]
+    const getClickedUser = (user) => {
+        console.log(user)
+    }
 
     return (
         <>
         <div id="header">Who's Driving'?</div>
         <div className="container">
-            {userPics &&
-            userPics.map(pic => {
+            {users &&
+            users.map((user) => {
                 return (
                     <div className="button-container">
-                    <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/1.png') + ')'}}></button>
+                    <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() => getClickedUser(user)}></button>
                     </div>
                 )
             })}

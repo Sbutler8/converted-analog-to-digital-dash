@@ -8,3 +8,5 @@ from app.helpers import *
 from werkzeug.utils import secure_filename
 
 sensor_routes = Blueprint('sensor', __name__)
+
+
