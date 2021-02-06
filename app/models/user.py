@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -39,16 +40,32 @@ class Car(db.Model):
     __tablename__ = 'cars'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=True, unique=True)
+    name = db.Column(db.String, nullable=True, unique=False)
     year = db.Column(db.Integer, nullable=False)
-    make = db.Column(db.BOOLEAN, nullable=False)
+    make = db.Column(db.String, nullable=False)
     model = db.Column(db.String, nullable=False)
-    vin = db.Column(db.String, nullable=True, unique=True)
-    pic = db.Column(db.String, nullable=True, unique=True)
-    userId = db.Column(db.String, db.ForeignKey('users.id'), nullable=True)
+    vin = db.Column(db.String, nullable=True, unique=False)
+    pic = db.Column(db.String, nullable=True, unique=False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
     car = db.relationship("OBD", back_populates="codes")
     users = db.relationship("User", secondary="users_cars", back_populates="cars")
+
+    users_cars = db.Table(
+        "users_cars",
+        db.Model.metadata,
+        db.Column(
+          'user_id',
+          db.Integer,
+          db.ForeignKey("users.id"),
+          primary_key=True),
+        db.Column(
+          'car_id',
+          db.Integer,
+          db.ForeignKey("cars.id"),
+          primary_key=True),
+    )
+
 
     def to_dict(self):
         return {
@@ -62,18 +79,11 @@ class Car(db.Model):
         }
 
 
-class Link(db.Model):
-    __tablename__ = 'users_cars'
-
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    car_id = db.Column(db.Integer, db.ForeignKey('cars.id'), primary_key=True)
-
-
 class MapBookmark(db.Model):
     __tablename__ = 'map_bookmarks'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, unique=True)
+    name = db.Column(db.String, nullable=False, unique=False)
     lat = db.Column(db.Float, nullable=False, unique=True)
     lon = db.Column(db.Float, nullable=False, unique=True)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
