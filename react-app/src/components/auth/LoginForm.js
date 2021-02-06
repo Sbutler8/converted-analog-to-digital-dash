@@ -11,6 +11,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const authenticate = useSelector((state) => state.session.authenticate);
+  const user = useSelector((state => state.session.user));
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ const LoginForm = () => {
 
   return (
     <>
-    <div id="header">Login To Your Account</div>
+    {/* <div id="header">Welcome back {user.name}</div> */}
       <form className="form" onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
@@ -45,7 +46,6 @@ const LoginForm = () => {
           ))}
         </div>
         <div>
-          <label htmlFor="email">Email</label>
           <input
             name="email"
             type="text"
@@ -55,7 +55,6 @@ const LoginForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
           <input
             name="password"
             type="password"

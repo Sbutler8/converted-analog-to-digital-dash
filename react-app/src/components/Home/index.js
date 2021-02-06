@@ -52,8 +52,8 @@ const Home = () => {
             <div key={img} className="img-container">
                 <img className="carouselImg" src={img} alt=''></img>
                 <hr id="picture-top"></hr>
-                <div id="pictureText">YOURS FOR THE MAKING</div>
-                <div id="pictureSmallText">Instructarobos is a community for people who like to make things. Come explore, share, and make your next project with us!</div>
+                <div id="pictureText">Let's go places</div>
+                <div id="pictureSmallText">Out with the old and in with the new</div>
                 <hr id="picture-bottom"></hr>
             </div>
             )

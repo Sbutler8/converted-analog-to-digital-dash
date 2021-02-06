@@ -4,8 +4,8 @@ from app.models import db, User
 
 def seed_users():
 
-    demo = User(name='demo', password='password',  gps_permission=True, pic='https://www.gannett-cdn.com/presto/2020/12/25/USAT/6ae9e013-9f3f-4a9a-bc90-c21f3fa9968d-BRIDGERTON_101_Unit_00193R.jpg')
-    test = User(name='test', password='password', gps_permission=True, pic='https://pyxis.nymag.com/v1/imgs/952/aa8/1d3eb6f6f01e89823147e94cb7663d5605-bridgerton-review.2x.rsocial.w600.jpg')
+    demo = User(name='demo', email='demo@demo.com', password='password',  gps_permission=True, pic='https://www.gannett-cdn.com/presto/2020/12/25/USAT/6ae9e013-9f3f-4a9a-bc90-c21f3fa9968d-BRIDGERTON_101_Unit_00193R.jpg')
+    test = User(name='test', email='test@test.com', password='password', gps_permission=True, pic='https://pyxis.nymag.com/v1/imgs/952/aa8/1d3eb6f6f01e89823147e94cb7663d5605-bridgerton-review.2x.rsocial.w600.jpg')
 
     db.session.add(demo)
     db.session.add(test)

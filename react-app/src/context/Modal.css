@@ -24,10 +24,11 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    background-image:url(https://media.giphy.com/media/rXwWqww8JOR9PC2fTC/giphy.gif);
-    background-size: 400px 384px;
-    height: 380px;
-    width: 260px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(116,193,235,1) 38%, rgba(62,242,220,1) 70%, rgba(59,241,81,1) 100%);
+    opacity: 0.89;
+    height: 245px;
+    width: 320px;
     border-radius: 10px;
   }
 
@@ -41,6 +42,20 @@
     background-size: 342px 615px;
     height: 510px;
     width: 340px;
+    border-radius: 10px;
+  }
+
+  .profile-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(116,193,235,1) 38%, rgba(62,242,220,1) 70%, rgba(59,241,81,1) 100%);
+    opacity: 0.89;
+    height: 423px;
+    width: 320px;
     border-radius: 10px;
   }
 
