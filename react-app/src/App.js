@@ -7,6 +7,8 @@ import NavBar from './components/NavBar'
 import * as sessionActions from './store/session'
 import Dash from './components/Dash/index'
 import Home from "./components/Home";
+import ChooseDash from "./components/ChooseDash";
+import ChooseCar from "./components/ChooseCar";
 
 function App() {
 
@@ -28,17 +30,19 @@ function App() {
       <Switch>
       <Route path="/" exact={true}>
           <Home  />
-        </Route>
-        <Route path="/dash" exact={true}>
-            <div>DASH ROUTE HIT</div>
-            <Dash />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm  />
-        </Route>
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+      </Route>
+      <Route path="/cars" exact={true}>
+          <ChooseCar />
+      </Route>
+      <Route path="/dashboards" exact={true}>
+          <ChooseDash />
+      </Route>
+      <Route path="/dash" exact={true}>
+          <Dash />
+      </Route>
+      <ProtectedRoute path="/" exact={true} >
+        <h1>My Home Page</h1>
+      </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

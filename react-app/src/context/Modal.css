@@ -30,6 +30,7 @@
     height: 245px;
     width: 320px;
     border-radius: 10px;
+    box-shadow: 0px 0px 70px 1px rgb(54 183 207)
   }
 
   .signUp-modal-content {
@@ -58,6 +59,7 @@
     width: 320px;
     margin-bottom:330px;
     border-radius: 10px;
+    box-shadow: 0px 0px 80px 1px rgb(54 183 207)
   }
 
   .profile-modal-no-content {

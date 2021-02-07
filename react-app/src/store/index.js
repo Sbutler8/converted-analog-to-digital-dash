@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
+import carReducer from './cars';
 import wsReducer from './websocket';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   ws: wsReducer,
+  cars: carReducer,
 });
 
 let enhancer;

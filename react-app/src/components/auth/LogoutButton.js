@@ -8,7 +8,7 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  return <Link onClick={() => {dispatch(sessionActions.logout()); history.push('/login')}}>Logout</Link>;
+  return <Link onClick={() => {dispatch(sessionActions.logout()); history.push('/')}}>Logout</Link>;
 };
 
 export default LogoutButton;

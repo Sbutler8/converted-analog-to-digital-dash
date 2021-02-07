@@ -63,7 +63,6 @@ export const logout = () => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   const response = await fetch('/api/users');
   let data = await response.json()
-  console.log('ALL USERS',data)
   dispatch(getUsers(data.users));
   return data.users;
 };

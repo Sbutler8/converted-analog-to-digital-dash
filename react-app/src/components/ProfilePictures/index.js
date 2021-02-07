@@ -5,7 +5,7 @@ import './ProfilePictureModal.css';
 
 
 
-const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUser}) => {
+const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUser, setShowSignupModal}) => {
     const dispatch = useDispatch();
     const [loginModal, setLoginModal] = useState(false);
 
@@ -44,7 +44,13 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
                 )
             })}
         </div>
-        <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}}></button>
+        <div className="signupPic">
+            <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}} onClick={()=> {setShowProfileModal(false); setShowSignupModal(true)}}></button>
+        </div>
+        <div id="signup-link">
+            <div>Don't Have An Account?</div>
+            <div>Sign-up Now</div>
+        </div>
         </>
     )
 }

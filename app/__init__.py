@@ -84,40 +84,40 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-@socketio.on('connect')
-def connected():
-    print('Connected')
-    time.sleep(2)
-    emit('connected')
-    # readData(Arduino(serial_port='COM4'))
+# @socketio.on('connect')
+# def connected():
+#     print('Connected')
+#     time.sleep(2)
+#     emit('connected')
+#     # readData(Arduino(serial_port='COM4'))
+
+# # a = Arduino()
+# # # PIN = 12
+# # POTENTIOMETER = 'A0'
+# # a.set_pin_mode(PIN, 'O')
+# # a.set_pin_mode(POTENTIOMETER, 'O')
 
 # a = Arduino()
-# # PIN = 12
-# POTENTIOMETER = 'A0'
-# a.set_pin_mode(PIN, 'O')
-# a.set_pin_mode(POTENTIOMETER, 'O')
-
-a = Arduino()
-a.set_pin_mode('A0', 'O')
-@socketio.on('get_speed')
-def get_speed():
-    print('Backend Here')
-    # data = readData(Arduino())
-    a.conn.flushOutput()
-    while True:
-        data = a.analog_read('A0')
-        # data = a.analog_read(POTENTIOMETER)
-        emit('getting_speed', data)
-        time.sleep(0.5)
+# a.set_pin_mode('A0', 'O')
+# @socketio.on('get_speed')
+# def get_speed():
+#     print('Backend Here')
+#     # data = readData(Arduino())
+#     a.conn.flushOutput()
+#     while True:
+#         data = a.analog_read('A0')
+#         # data = a.analog_read(POTENTIOMETER)
+#         emit('getting_speed', data)
+#         time.sleep(0.5)
 
 
-# @socketio.on('message')
-# def handleMessage(msg):
-#     print(msg)
-#     send(msg, broadcast=True)
-#     return None
+# # @socketio.on('message')
+# # def handleMessage(msg):
+# #     print(msg)
+# #     send(msg, broadcast=True)
+# #     return None
 
-@socketio.on('client-disconnecting')
-def test_disconnect():
-    print('Client disconnected')
-    # socketio.disconnect()
+# @socketio.on('client-disconnecting')
+# def test_disconnect():
+#     print('Client disconnected')
+#     # socketio.disconnect()
