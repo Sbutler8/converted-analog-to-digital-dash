@@ -5,18 +5,24 @@ import { Link } from 'react-router-dom';
 import ProfilePictures from '../ProfilePictures';
 
 function LoginFormModal() {
-    const [showModal, setShowModal] = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState({});
 
     return (
       <>
         <Link id="login" to="/" onClick={() => {
-          setShowModal(true)
+          setShowProfileModal(true)
           }}>Login
         </Link>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)} name="profile">
-            <ProfilePictures />
-            {/* <LoginForm /> */}
+        {showProfileModal && (
+          <Modal onClose={() => setShowProfileModal(false)} name="profile">
+            <ProfilePictures setShowModal={setShowProfileModal} setShowLoginModal={setShowLoginModal} setSelectedUser={setSelectedUser}/>
+          </Modal>
+        )}
+        {showLoginModal &&  (
+          <Modal onClose={() => setShowLoginModal(false)} name="login">
+            <LoginForm setShowLoginModal={setShowLoginModal} selectedUser={selectedUser}/>
           </Modal>
         )}
       </>
