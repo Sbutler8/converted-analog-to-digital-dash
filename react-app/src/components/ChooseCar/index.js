@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Component } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import * as carActions from "../../store/cars";
-import './ChooseDash.css'
+import './ChooseCar.css'
 
 const ChooseCar = () => {
   const dispatch = useDispatch();
@@ -16,8 +16,8 @@ const ChooseCar = () => {
     });
 
   useEffect(() => {
-      if (user) {
-          dispatch(getAllCars(userId));
+      if (userId) {
+          dispatch(carActions.getAllCars(userId));
         };
   }, [dispatch])
 

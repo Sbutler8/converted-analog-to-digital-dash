@@ -8,7 +8,7 @@ import ProfilePictures from '../ProfilePictures';
 function LoginFormModal() {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const [showSignupModal, setShowSignupModal] = useState({});
+    const [showSignupModal, setShowSignupModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState({});
 
     return (
@@ -29,7 +29,7 @@ function LoginFormModal() {
         )}
         {showSignupModal &&  (
         <Modal onClose={() => setShowLoginModal(false)} name="signup">
-          <SignUpForm setShowLoginModal={setShowLoginModal} selectedUser={selectedUser}/>
+          <SignUpForm setShowSignupModal={setShowSignupModal} selectedUser={selectedUser}/>
         </Modal>
       )}
       </>

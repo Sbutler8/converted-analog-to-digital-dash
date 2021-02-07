@@ -1,5 +1,6 @@
 
 const SET_USER = 'session/setUser';
+const ADD_USER = 'session/addUser';
 const GET_USERS = 'session/getUsers';
 const REMOVE_USER = 'session/removeUser';
 const SET_PROFILE_PIC = 'session/setProfilePic';
@@ -8,6 +9,13 @@ const setUser = (user) => {
   return {
     type: SET_USER,
     payload: user,
+  };
+};
+
+const addUser = (addedUser) => {
+  return {
+    type: ADD_USER,
+    payload: addedUser,
   };
 };
 
@@ -52,6 +60,26 @@ export const authenticate = () => async dispatch => {
     }
 };
 
+export const addNewUser = (newUser) => async (dispatch) => {
+
+  const {name, email, gpsPermission, profPic} = newUser;
+  const formData = {name, email, gpsPermission, profPic};
+
+  console.log(formData)
+
+  const res = await fetch(`/api/auth/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+    dispatch(addUser(res));
+    return res;
+  }
+
+
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/auth/logout', {
     method: 'DELETE'
@@ -72,7 +100,7 @@ export const setPic = (file) => async (dispatch) => {
   const formData = new FormData();
 
   // for single file
-  formData.append("image", file);
+  formData.append("name", file);
 
   const res = await fetch(`/api/auth/test`, {
     method: "POST",
@@ -115,6 +143,8 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       newState.authenticate = true;
       return newState;
+    case ADD_USER:
+      return {...state, [action.addedUser]: action.addedUser};
     case GET_USERS:
       // newState = Object.assign({}, state);
       // newState.users = action.payload;
@@ -122,7 +152,7 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state, { user: null, authenticate: false });
       return newState;
-      case SET_PROFILE_PIC:
+    case SET_PROFILE_PIC:
       return { ...state, file: [...action.payload] };
     default:
       return state;

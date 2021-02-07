@@ -8,9 +8,11 @@ const ChooseDash = () => {
   const [speed, setSpeed] = useState(0);
   const [status, setStatus] = useState("");
 
+
   return (
     <>
     <div id="header">Choose A Dashboard For Your Trip</div>
+    <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/dash.png') + ')'}}></button>
     </>
   );
 }

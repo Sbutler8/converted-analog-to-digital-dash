@@ -19,16 +19,6 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
         setSelectedUser(user);
         console.log(user)
         setShowLoginModal(true);
-        // return (
-        //     <>
-        //         {loginModal && (
-        //             <Modal onClose={() => setShowModal(true)} name="profile">
-        //             <LoginForm user={user}/>
-        //             </Modal>
-        //         )}
-
-        //     </>
-        //   );
     }
 
     return (

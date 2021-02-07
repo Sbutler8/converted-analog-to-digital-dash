@@ -33,7 +33,7 @@ input:hover {
     padding: 4px 4px;
 }
 
-#header, #submit-button {
+#signup-header {
     text-align: center;
     width: 29%;
     border: none;
@@ -42,7 +42,17 @@ input:hover {
     /* background: #8e2de2; */
     color: #fff;
     text-transform: uppercase;
-    padding: 9px 11px;
-    font-size: 10px;
+    font-size: 25px;
     margin: 5px;
+    text-shadow: 0 0 3px #fff;
+}
+
+.imgPreview {
+    width: auto;
+    height:60px;
+    border-radius: 50%;
+}
+
+input[type="file"] {
+    display: none;
 }
