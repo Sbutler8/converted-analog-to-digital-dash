@@ -30,9 +30,6 @@ function App() {
       <Route path="/" exact={true}>
           <Home  />
         </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm  />
-        </Route>
         <Route path="/dashboards" exact={true}>
             <ChooseDash />
         </Route>

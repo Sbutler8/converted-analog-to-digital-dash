@@ -6,11 +6,10 @@ import './LoginFormModal.css'
 
 
 const LoginForm = ({selectedUser, setShowLoginModal}) => {
-  console.log('User',selectedUser)
+
   const dispatch = useDispatch();
   const history = useHistory();
   const authenticate = useSelector((state) => state.session.authenticate);
-  const user = useSelector((state => state.session.user));
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
