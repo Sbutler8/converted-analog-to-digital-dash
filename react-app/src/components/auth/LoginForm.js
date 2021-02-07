@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
-
-
 
 
 const LoginForm = ({selectedUser, setShowLoginModal}) => {
@@ -18,10 +16,16 @@ const LoginForm = ({selectedUser, setShowLoginModal}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    setEmail(selectedUser.email)
+    console.log('EMAIL', email)
+  },[dispatch])
+
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-    // dispatch(sessionActions.login({email, password}))
+    dispatch(sessionActions.login({email, password}))
+    if (!authenticate) history.push('/dash');
 
   };
 
@@ -40,7 +44,7 @@ const LoginForm = ({selectedUser, setShowLoginModal}) => {
   return (
     <>
     {/* <div id="header">Welcome back {user.name}</div> */}
-    <div id="header">Welcome back {selectedUser.username}!</div>
+    <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="form" onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
@@ -52,7 +56,7 @@ const LoginForm = ({selectedUser, setShowLoginModal}) => {
             name="email"
             type="text"
             placeholder="Email"
-            value={selectedUser.email}
+            value={email}
             onChange={updateEmail}
           />
         </div>
@@ -64,7 +68,7 @@ const LoginForm = ({selectedUser, setShowLoginModal}) => {
             value={password}
             onChange={updatePassword}
           />
-          <button id="submit-button" type="submit" onClick={() => {setShowLoginModal(false); history.push("/dash")}}>Login</button>
+          <button id="submit-button" type="submit">Login</button>
         </div>
       </form>
     </>

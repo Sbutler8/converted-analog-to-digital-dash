@@ -22,10 +22,17 @@ input {
 }
 
 input:hover {
-    background: #dac4ee;
+    box-shadow: 0px 0px 70px 1px #fff
 }
 
-#header, #submit-button {
+#login-header {
+    font-family: system-ui;
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 0 3px #fff;
+}
+
+#submit-button {
     text-align: center;
     width: 30%;
     border: none;

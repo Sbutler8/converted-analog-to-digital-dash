@@ -44,7 +44,13 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
                 )
             })}
         </div>
-        <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}}></button>
+        <div className="signupPic">
+            <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}}></button>
+        </div>
+        <div id="signup-link">
+            <div>Don't Have An Account?</div>
+            <div>Sign-up Now</div>
+        </div>
         </>
     )
 }
