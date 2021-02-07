@@ -5,7 +5,7 @@ import './ProfilePictureModal.css';
 
 
 
-const ProfilePictures = ({setShowModal, setShowLoginModal, setSelectedUser}) => {
+const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUser}) => {
     const dispatch = useDispatch();
     const [loginModal, setLoginModal] = useState(false);
 
@@ -39,12 +39,12 @@ const ProfilePictures = ({setShowModal, setShowLoginModal, setSelectedUser}) => 
             users.map((user) => {
                 return (
                     <div className="button-container">
-                    <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() =>{ getClickedUser(user); setShowModal(false)}}></button>
+                    <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() =>{ getClickedUser(user); setShowProfileModal(false)}}></button>
                     </div>
                 )
             })}
         </div>
-
+        <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}}></button>
         </>
     )
 }

@@ -17,7 +17,7 @@ function LoginFormModal() {
         </Link>
         {showProfileModal && (
           <Modal onClose={() => setShowProfileModal(false)} name="profile">
-            <ProfilePictures setShowModal={setShowProfileModal} setShowLoginModal={setShowLoginModal} setSelectedUser={setSelectedUser}/>
+            <ProfilePictures setShowProfileModal={setShowProfileModal} setShowLoginModal={setShowLoginModal} setSelectedUser={setSelectedUser}/>
           </Modal>
         )}
         {showLoginModal &&  (
