@@ -1,5 +1,6 @@
 
 const SET_USER = 'session/setUser';
+const GET_USERS = 'session/getUsers';
 const REMOVE_USER = 'session/removeUser';
 const SET_PROFILE_PIC = 'session/setProfilePic';
 
@@ -7,6 +8,13 @@ const setUser = (user) => {
   return {
     type: SET_USER,
     payload: user,
+  };
+};
+
+const getUsers = (users) => {
+  return {
+    type: GET_USERS,
+    payload: users,
   };
 };
 
@@ -50,6 +58,14 @@ export const logout = () => async (dispatch) => {
   });
   dispatch(removeUser());
   return response;
+};
+
+export const getAllUsers = () => async (dispatch) => {
+  const response = await fetch('/api/users');
+  let data = await response.json()
+  console.log('ALL USERS',data)
+  dispatch(getUsers(data.users));
+  return data.users;
 };
 
 export const setPic = (file) => async (dispatch) => {
@@ -100,11 +116,15 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       newState.authenticate = true;
       return newState;
+    case GET_USERS:
+      // newState = Object.assign({}, state);
+      // newState.users = action.payload;
+      return { ...state, users: action.payload }
     case REMOVE_USER:
       newState = Object.assign({}, state, { user: null, authenticate: false });
       return newState;
       case SET_PROFILE_PIC:
-      return { ...state, file: action.payload };
+      return { ...state, file: [...action.payload] };
     default:
       return state;
   }

@@ -31,7 +31,7 @@ input:hover {
     border: none;
     outline: none;
     border-radius: 50px;
-    background: #8e2de2;
+    /* background: #8e2de2; */
     color: #fff;
     text-transform: uppercase;
     padding: 10px 0;

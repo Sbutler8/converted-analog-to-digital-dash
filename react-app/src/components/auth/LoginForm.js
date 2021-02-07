@@ -7,7 +7,8 @@ import './LoginFormModal.css'
 
 
 
-const LoginForm = () => {
+const LoginForm = ({selectedUser, setShowLoginModal}) => {
+  console.log('User',selectedUser)
   const dispatch = useDispatch();
   const history = useHistory();
   const authenticate = useSelector((state) => state.session.authenticate);
@@ -20,7 +21,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-    dispatch(sessionActions.login({email, password}))
+    // dispatch(sessionActions.login({email, password}))
 
   };
 
@@ -39,6 +40,7 @@ const LoginForm = () => {
   return (
     <>
     {/* <div id="header">Welcome back {user.name}</div> */}
+    <div id="header">Welcome back {selectedUser.username}!</div>
       <form className="form" onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
@@ -50,7 +52,7 @@ const LoginForm = () => {
             name="email"
             type="text"
             placeholder="Email"
-            value={email}
+            value={selectedUser.email}
             onChange={updateEmail}
           />
         </div>
@@ -62,7 +64,7 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button id="submit-button" type="submit" onClick={() => history.push("/dash")}>Login</button>
+          <button id="submit-button" type="submit" onClick={() => {setShowLoginModal(false); history.push("/dash")}}>Login</button>
         </div>
       </form>
     </>

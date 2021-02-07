@@ -25,7 +25,7 @@
     align-items: center;
     position: absolute;
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(116,193,235,1) 38%, rgba(62,242,220,1) 70%, rgba(59,241,81,1) 100%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
     opacity: 0.89;
     height: 245px;
     width: 320px;
@@ -52,11 +52,16 @@
     align-items: center;
     position: absolute;
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(116,193,235,1) 38%, rgba(62,242,220,1) 70%, rgba(59,241,81,1) 100%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
     opacity: 0.89;
     height: 423px;
     width: 320px;
+    margin-bottom:330px;
     border-radius: 10px;
+  }
+
+  .profile-modal-no-content {
+    display:none
   }
 
   form {
@@ -77,41 +82,4 @@
   #username, #password {
     text-align: center;
     font-weight: bold;
-  }
-
-  .eyebox {
-    display: flex;
-    flex-direction: row;
-    width:30px;
-    top: 8px;
-  }
-
-  .eyebox .eye {
-    position: absolute;
-    z-index: 0;
-    display: block;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    margin-top: 8px;
-    box-shadow: 0 5px 45px rgba(0,0,0,0.2),
-                inset 0 0 5px #DBA74F,
-                inset 0 0 5px #DBA74F;
-  }
-
-  .eyebox .eye::before {
-    content:'';
-    position: absolute;
-    top: 45%;
-    left: 3.5px;
-    transform: translate(-50%, 50%);
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: black;
-  }
-
-  #righteye {
-    margin-left: 10px;
   }

@@ -31,7 +31,7 @@ function App() {
         </Route>
         <Route path="/dash" exact={true}>
             <div>DASH ROUTE HIT</div>
-            <Dash dataType="stroke" dataValue="set" />
+            <Dash />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm  />

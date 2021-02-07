@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Slider from "react-slick";
 import io from "socket.io-client";
 import "slick-carousel/slick/slick.css";
@@ -9,17 +10,15 @@ let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const Home = () => {
-
+    const dispatch = useDispatch();
     socket.on("connected", () => {
         console.log('Connected to Front End YAY')
         socket.emit('lient-disconnecting');
     }, [socket]);
 
     // useEffect(() => {
-    //     window.onbeforeunload = function () {
-    //     socket.emit('client_disconnecting', {'username':localStorage.getItem('username')});
-    // }
-    // }, [])
+    //     dispatch(sessionActions.getAllUsers())
+    // }, [dispatch])
 
     const carImages = ['https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',

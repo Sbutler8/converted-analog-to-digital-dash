@@ -27,7 +27,7 @@ input:hover {
 }
 
 .fields {
-    background: #8e2de2;
+    /* background: #8e2de2; */
     color: #fff;
     border-radius: 50%;
     padding: 4px 4px;
@@ -39,7 +39,7 @@ input:hover {
     border: none;
     outline: none;
     border-radius: 50px;
-    background: #8e2de2;
+    /* background: #8e2de2; */
     color: #fff;
     text-transform: uppercase;
     padding: 9px 11px;
