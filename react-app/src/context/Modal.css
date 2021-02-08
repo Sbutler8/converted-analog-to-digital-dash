@@ -33,20 +33,37 @@
     box-shadow: 0px 0px 70px 1px rgb(54 183 207)
   }
 
-  .signUp-modal-content {
+  .signup-modal-content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     position: absolute;
-    background-image: url(https://i.pinimg.com/originals/c6/da/92/c6da928816295b2b99e0a5f44ab9bd91.gif);
-    background-size: 342px 615px;
-    height: 510px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);    background-size: 342px 615px;
+    height: 450px;
     width: 340px;
+    margin-bottom:300px;
     border-radius: 10px;
+    box-shadow: 0px 0px 80px 1px rgb(54 183 207)
   }
 
   .profile-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
+    opacity: 0.89;
+    height: 423px;
+    width: 320px;
+    margin-bottom:330px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 80px 1px rgb(54 183 207)
+  }
+
+  .car-modal-content {
     display: flex;
     flex-direction: column;
     justify-content: center;

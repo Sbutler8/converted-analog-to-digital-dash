@@ -3,6 +3,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+users_cars = db.Table(
+    "users_cars",
+    db.Model.metadata,
+    db.Column(
+      'user_id',
+      db.Integer,
+      db.ForeignKey("users.id"),
+      primary_key=True),
+    db.Column(
+      'car_id',
+      db.Integer,
+      db.ForeignKey("cars.id"),
+      primary_key=True),
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -15,7 +29,7 @@ class User(db.Model, UserMixin):
     pic = db.Column(db.String, nullable=True)
 
     user = db.relationship("MapBookmark", back_populates="bookmarks")
-    cars = db.relationship("Car", secondary="users_cars", back_populates="users")
+    cars = db.relationship("Car", secondary=users_cars, back_populates="users")
 
     @property
     def password(self):
@@ -51,22 +65,8 @@ class Car(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
     car = db.relationship("OBD", back_populates="codes")
-    users = db.relationship("User", secondary="users_cars", back_populates="cars")
+    users = db.relationship("User", secondary=users_cars, back_populates="cars")
 
-    users_cars = db.Table(
-        "users_cars",
-        db.Model.metadata,
-        db.Column(
-          'user_id',
-          db.Integer,
-          db.ForeignKey("users.id"),
-          primary_key=True),
-        db.Column(
-          'car_id',
-          db.Integer,
-          db.ForeignKey("cars.id"),
-          primary_key=True),
-    )
 
 
     def to_dict(self):

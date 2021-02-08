@@ -14,17 +14,19 @@ def seed_users():
     user8 = User(name='Karen', email='user10@user10.com', password='password',  gps_permission=True, pic='https://i.pinimg.com/236x/41/1b/6b/411b6b71ad8db160a341182e0e068804--game-info-avatar.jpg')
     user9 = User(name='Dylan', email='user11@user11.com', password='password', gps_permission=True, pic='https://sims-online.com/wp-content/uploads/2014/07/the-sims-4-avatar-7.jpg')
 
+    db.session.add_all([
+        user1,
+        user2,
+        user3,
+        user4,
+        user5,
+        user6,
+        user7,
+        user8,
+        user9,
+    ])
 
-    db.session.add(user1)
-    db.session.add(user2)
-    db.session.add(user3)
-    db.session.add(user4)
-    db.session.add(user5)
-    db.session.add(user6)
-    db.session.add(user7)
-    db.session.add(user8)
-    db.session.add(user9)
-    
+
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

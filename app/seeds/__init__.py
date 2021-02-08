@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .cars import seed_cars, undo_cars
+from .users_cars import seed_users_cars
 from .mapBookmarks import seed_map_bookmarks, undo_map_bookmarks
 from .OBD import seed_OBD, undo_OBD
 
@@ -13,6 +14,7 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_cars()
+    seed_users_cars()
     seed_map_bookmarks()
     seed_OBD()
 
