@@ -63,6 +63,22 @@
     box-shadow: 0px 0px 80px 1px rgb(54 183 207)
   }
 
+  .car-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
+    opacity: 0.89;
+    height: 423px;
+    width: 320px;
+    margin-bottom:330px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 80px 1px rgb(54 183 207)
+  }
+
   .profile-modal-no-content {
     display:none
   }

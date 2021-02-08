@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
 
 
-const LoginForm = ({selectedUser, setShowLoginModal}) => {
+const LoginForm = ({selectedUser, setShowLoginModal, showCarModal, setShowCarModal}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,8 +23,11 @@ const LoginForm = ({selectedUser, setShowLoginModal}) => {
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
+    setShowLoginModal(false)
+    setShowCarModal(true)
     dispatch(sessionActions.login({email, password}))
-    if (!authenticate) history.push('/dash');
+
+    if (!authenticate) history.push('/cars');
 
   };
 
