@@ -81,7 +81,7 @@ const Dash = ({...props}) => {
       {/* <script src="./dist/progressbar.min.js">{}</script> */}
       <script type="text/javascript" src="loading-bar.js"></script>
       <div className="ldBar"></div>
-      <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+      {/* <link rel="stylesheet" type="text/css" href="loading-bar.css"/> */}
       <button id="speedometer-button" >Start Speedometer</button>
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>

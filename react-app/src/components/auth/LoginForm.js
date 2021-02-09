@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
 
 
-const LoginForm = ({selectedUser, setShowLoginModal, showCarModal, setShowCarModal}) => {
+const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,25 +23,22 @@ const LoginForm = ({selectedUser, setShowLoginModal, showCarModal, setShowCarMod
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-    setShowLoginModal(false)
-    setShowCarModal(true)
     dispatch(sessionActions.login({email, password}))
+    setShowLoginModal(false)
 
-    if (!authenticate) history.push('/cars');
+
+    setShowCarModal(true)
+
+    // if (!authenticate) history.push('/cars');
 
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
 
   if (authenticate) {
-    return <Redirect to="/" />;
+    // return <Redirect to="/" />;
+    // setShowCarModal(true)
   }
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
 
   return (
     <>
@@ -59,7 +56,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, showCarModal, setShowCarMod
             type="text"
             placeholder="Email"
             value={email}
-            onChange={updateEmail}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div>
@@ -68,7 +65,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, showCarModal, setShowCarMod
             type="password"
             placeholder="Password"
             value={password}
-            onChange={updatePassword}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button id="submit-button" type="submit">Login</button>
         </div>

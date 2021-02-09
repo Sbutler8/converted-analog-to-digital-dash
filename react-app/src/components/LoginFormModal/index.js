@@ -19,6 +19,7 @@ function LoginFormModal() {
           setShowProfileModal(true)
           }}>Login
         </Link>
+
         {showProfileModal && (
           <Modal onClose={() => setShowProfileModal(false)} name="profile">
             <ProfilePictures setShowProfileModal={setShowProfileModal} setShowLoginModal={setShowLoginModal} setSelectedUser={setSelectedUser} setShowSignupModal={setShowSignupModal} />
@@ -27,6 +28,11 @@ function LoginFormModal() {
         {showLoginModal &&  (
           <Modal onClose={() => setShowLoginModal(false)} name="login">
             <LoginForm setShowLoginModal={setShowLoginModal} selectedUser={selectedUser} showCarModal={showCarModal} setShowCarModal={setShowCarModal}/>
+          </Modal>
+        )}
+        {showCarModal &&  (
+          <Modal onClose={() => setShowCarModal(false)} name="car">
+            <ChooseCar />
           </Modal>
         )}
         {showSignupModal &&  (

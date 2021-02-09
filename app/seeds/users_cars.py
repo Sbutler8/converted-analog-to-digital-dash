@@ -35,7 +35,6 @@ def seed_users_cars():
     car14 = Car.query.get(14)
     car15 = Car.query.get(15)
 
-
     car1.users.append(user1)
     car2.users.append(user2)
     car3.users.append(user3)

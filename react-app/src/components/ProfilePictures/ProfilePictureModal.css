@@ -7,7 +7,6 @@
 }
 
 .profilePic {
-    /* background-image: url('../../public/profileImages/1.png'); */
     background-size: 89px auto;
     background-position: center center;
     background-repeat: no-repeat;
@@ -16,7 +15,6 @@
     border-radius: 50%;
     margin: 5px;
     border: none;
-
 }
 
 .button-container:hover, .signupPic:hover {
