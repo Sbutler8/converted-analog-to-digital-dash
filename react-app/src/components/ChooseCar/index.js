@@ -28,7 +28,7 @@ const ChooseCar = () => {
           cars.map(car => {
           return (
             <div className="button-container">
-            <button className="profilePic" style={{backgroundImage: `url(${car.pic})`}}></button>
+            <button className="carPic" style={{backgroundImage: `url(${car.pic})`}} ></button>
             </div>
           )
         })}

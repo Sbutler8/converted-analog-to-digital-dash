@@ -34,11 +34,11 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(setPic( profPic ))
+    dispatch(setPic( profPic ))
         .then(file => {
 
-          console.log(name, email, gpsPermission, file.name)
-          dispatch(addNewUser({ name, email, gpsPermission, profPic: file.name }))
+          console.log('FILE: ',file)
+          dispatch(addNewUser({ name: name, email:email, gpsPermission:gpsPermission, profPic: file.output }))
         }).catch(error => {
           console.log('😱 Error: ', error)
         });
@@ -46,18 +46,18 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
         setProfPic(null);
         setShowSignupModal(false);
         await history.push("/dash");
-      };
+  };
 
-      const updateProfPic = (e) => {
-        const file = e.target.files[0];
-        console.log(file.name)
-    if (file) setProfPic(file.name);
+    const updateProfPic = (e) => {
+      const file = e.target.files[0];
+      console.log(file)
+      if (file) setProfPic(file);
 
-    const fileReader = new FileReader();
-    if (file) {
-        fileReader.readAsDataURL(file);
-    }
-    fileReader.onloadend = () => {
+      const fileReader = new FileReader();
+      if (file) {
+          fileReader.readAsDataURL(file);
+      }
+      fileReader.onloadend = () => {
         setImagePreview(fileReader.result);
     }
 };
@@ -72,15 +72,17 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
       </label>
       <div>
         <input
+          id="name"
           type="text"
           placeholder="Name"
-          name="username"
+          name="name"
           onChange={(e) => setName(e.target.value)}
           value={name}
         ></input>
       </div>
       <div>
         <input
+          id="email"
           type="text"
           placeholder="Email"
           name="email"
@@ -90,6 +92,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
       </div>
       <div>
         <input
+          id="password"
           type="password"
           placeholder="Password"
           name="password"
@@ -99,6 +102,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
       </div>
       <div>
         <input
+          id="repeatPassword"
           type="password"
           placeholder="Enter Your Password Again"
           name="repeat_password"
@@ -110,6 +114,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
       <div>
       <label>Would you like to enable GPS location services?</label>
       <input
+          id="gpsPermission"
           type="checkbox"
           name="gpsPermission"
           onChange={(e) => setGpsPermission(e.target.value)}

@@ -32,7 +32,6 @@ const AddCarForm = () => {
 
     return (
         <>
-        
           <div id="header" >Add Your Car</div>
         <form onSubmit={handleSubmit}>
 

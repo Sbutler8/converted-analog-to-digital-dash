@@ -31,9 +31,9 @@ function App() {
       <Route path="/" exact={true}>
           <Home  />
       </Route>
-      <Route path="/cars" exact={true}>
+      {/* <Route path="/cars" exact={true}>
           <ChooseCar />
-      </Route>
+      </Route> */}
       <Route path="/dashboards" exact={true}>
           <ChooseDash />
       </Route>

@@ -100,8 +100,8 @@ export const setPic = (file) => async (dispatch) => {
   const formData = new FormData();
 
   // for single file
-  formData.append("name", file);
-
+  formData.append("image", file);
+  console.log('STORE name---->', JSON.stringify(formData))
   const res = await fetch(`/api/auth/test`, {
     method: "POST",
     body: formData,
@@ -109,6 +109,7 @@ export const setPic = (file) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
+    console.log('data------>', data)
 
     dispatch(setProfilePic(data.file));
     return data;
@@ -153,7 +154,7 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state, { user: null, authenticate: false });
       return newState;
     case SET_PROFILE_PIC:
-      return { ...state, file: [...action.payload] };
+      return { ...state, file: action.payload };
     default:
       return state;
   }
