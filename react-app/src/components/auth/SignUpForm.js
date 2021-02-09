@@ -8,7 +8,7 @@ import { signUp } from '../../services/auth';
 
 import './SignUpForm.css'
 
-const SignUpForm = ({authenticated, setShowSignupModal}) => {
+const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
@@ -20,13 +20,6 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
   const [profPic, setProfPic] = useState({'name': null});
   const [imgPreview, setImagePreview] = useState(null);
 
-
-  // const onSignUp = async (e) => {
-  //   e.preventDefault();
-  //   if (password === repeatPassword) {
-  //     await signUp(name, email, password);
-  //   }
-  // };
 
   if (authenticated) {
     return <Redirect to="/" />;
@@ -45,7 +38,8 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
 
         setProfPic(null);
         setShowSignupModal(false);
-        await history.push("/dash");
+        setShowAddCarModal(true);
+        // await history.push("/dash");
   };
 
     const updateProfPic = (e) => {

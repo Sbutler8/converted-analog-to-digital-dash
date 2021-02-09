@@ -9,6 +9,8 @@ import Dash from './components/Dash/index'
 import Home from "./components/Home";
 import ChooseDash from "./components/ChooseDash";
 import ChooseCar from "./components/ChooseCar";
+import { addNewCar } from "./store/cars";
+import AddCarForm from "./components/AddCarForm";
 
 function App() {
 
@@ -36,6 +38,9 @@ function App() {
       </Route> */}
       <Route path="/dashboards" exact={true}>
           <ChooseDash />
+      </Route>
+      <Route path="/car" exact={true}>
+          <AddCarForm/>
       </Route>
       <Route path="/dash" exact={true}>
           <Dash />
