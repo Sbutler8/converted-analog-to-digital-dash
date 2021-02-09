@@ -1,5 +1,4 @@
-
-const GET_CARS = 'session/getCars';
+const GET_CARS = 'cars/getAllCars';
 
 const getCars = (cars) => {
   return {
@@ -12,6 +11,7 @@ const getCars = (cars) => {
 export const getAllCars = (userId) => async (dispatch) => {
   const response = await fetch(`/api/cars/${userId}`);
   let data = await response.json()
+  console.log(data)
   dispatch(getCars(data.cars));
   return data.users;
 };
@@ -22,7 +22,7 @@ const initialState = {};
 const carReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CARS:
-      return { ...state, users: action.payload }
+      return { ...state, cars: action.payload }
     default:
       return state;
   }
