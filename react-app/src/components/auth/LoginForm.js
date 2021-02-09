@@ -23,12 +23,10 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
+
     dispatch(sessionActions.login({email, password}))
     setShowLoginModal(false)
-
-
     setShowCarModal(true)
-
     // if (!authenticate) history.push('/cars');
 
   };

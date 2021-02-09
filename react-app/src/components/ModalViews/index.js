@@ -7,7 +7,7 @@ import ProfilePictures from '../ProfilePictures';
 import ChooseCar from '../ChooseCar';
 import AddCarForm from '../AddCarForm';
 
-function LoginFormModal() {
+function ModalViews() {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
@@ -51,4 +51,4 @@ function LoginFormModal() {
     );
   }
 
-  export default LoginFormModal;
+  export default ModalViews;

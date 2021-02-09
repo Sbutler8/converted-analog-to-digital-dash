@@ -1,7 +1,7 @@
 import React from "react"
-import './Maps.css';
+import './MapSVG.css';
 
-const Maps= (props) => {
+const MapSVG= (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -408,4 +408,4 @@ const Maps= (props) => {
   )
 }
 
-export default Maps;
+export default MapSVG;

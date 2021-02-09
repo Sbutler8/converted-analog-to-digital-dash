@@ -22,8 +22,7 @@ const ChooseCar = () => {
 
   return (
     <>
-      <div id="login-header">Which car will you be driving?</div>
-      <form className="form" >
+      <div id="car-header">Which car will you be driving?</div>
         {cars &&
           cars.map(car => {
           return (
@@ -32,7 +31,6 @@ const ChooseCar = () => {
             </div>
           )
         })}
-      </form>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import LoginFormModal from '../LoginFormModal'
+import ModalViews from '../ModalViews'
 import SignUpFormModal from '../SignUpFormModal';
 import LogoutButton from '../auth/LogoutButton';
 import ProtectedRoute from '../auth/ProtectedRoute';
@@ -12,7 +12,7 @@ const NavBar = () => {
     <>
         <>
         {!authenticate && (
-          <LoginFormModal />
+          <ModalViews />
         )}
         {authenticate && (
           <ProtectedRoute>
