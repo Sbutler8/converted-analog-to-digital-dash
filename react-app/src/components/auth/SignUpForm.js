@@ -16,7 +16,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [gpsPermission, setGpsPermission] = useState("");
+  const [gpsPermission, setGpsPermission] = useState(false);
   const [profPic, setProfPic] = useState({'name': null});
   const [imgPreview, setImagePreview] = useState(null);
 
@@ -38,7 +38,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
         .then(file => {
 
           console.log('FILE: ',file)
-          dispatch(addNewUser({ name: name, email:email, gpsPermission:gpsPermission, profPic: file.output }))
+          dispatch(addNewUser({ name, email, password, gpsPermission, profPic: file.output }))
         }).catch(error => {
           console.log('😱 Error: ', error)
         });
@@ -117,7 +117,7 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
           id="gpsPermission"
           type="checkbox"
           name="gpsPermission"
-          onChange={(e) => setGpsPermission(e.target.value)}
+          onChange={(e) => {gpsPermission ? setGpsPermission(false):setGpsPermission(true)}}
           value={gpsPermission}
         ></input>
       </div>

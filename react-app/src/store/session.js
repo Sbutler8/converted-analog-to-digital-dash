@@ -62,8 +62,8 @@ export const authenticate = () => async dispatch => {
 
 export const addNewUser = (newUser) => async (dispatch) => {
 
-  const {name, email, gpsPermission, profPic} = newUser;
-  const formData = {name, email, gpsPermission, profPic};
+  const {name, email, password, gpsPermission, profPic} = newUser;
+  const formData = {name, email, password, gpsPermission, profPic};
 
   console.log(formData)
 

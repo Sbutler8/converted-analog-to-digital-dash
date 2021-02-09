@@ -66,24 +66,26 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User(
-            # profile_pic=form.data['profile_pic'],
-            name=form.data['name'],
-            # hometown=form.data['hometown'],
-            email=form.data['email'],
-            password=form.data['password'],
-            gps_permission=form.data['gpsPermission'],
-            pic=form.data['profPic']
+    # form = SignUpForm()
+    form = request.get_json(force=True)
+    # print('NAME------>',data)
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    user = User(
+        # profile_pic=form.data['profile_pic'],
+        name=form['name'],
+        # hometown=form.data['hometown'],
+        email=form['email'],
+        password=form['password'],
+        gps_permission=form['gpsPermission'],
+        pic=form['profPic']
         )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        print('NEW USER-------------->', user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    db.session.add(user)
+    db.session.commit()
+    login_user(user)
+    print('NEW USER-------------->', user)
+    return user.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @auth_routes.route('/test', methods=['POST'])
