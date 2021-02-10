@@ -26,8 +26,8 @@ const Map = () => {
   if (!authenticate) {
     return null;
   }
-  const { GOOGLE_MAP_API_KEY } = process.env;
-
+  const GOOGLE_MAP_API_KEY  = process.env.GOOGLE_MAP_API_KEY;
+  console.log('KEY--->', GOOGLE_MAP_API_KEY)
   const getMapOptions = (maps) => {
     return {
       disableDefaultUI: true,
@@ -52,6 +52,7 @@ const Map = () => {
 
   return (
     <>
+     <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}></script>
     <div className='wrapper'>
         <main className="main">
      <div style={{ height: '500px', width: '100%' }}>

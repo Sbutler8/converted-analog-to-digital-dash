@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCar } from "../../store/cars";
+import { setPic } from "../../store/session";
 import './AddCarForm.css'
 
 // if (authenticated) {
 //     return <Redirect to="/" />;
 //   }
 
-const AddCarForm = () => {
+const AddCarForm = ({setShowAddCarModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -17,28 +18,34 @@ const AddCarForm = () => {
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
   const [vin, setVin] = useState("");
-  const [pic, setPic] = useState("");
+  const [pic, setCarPic] = useState("");
   const [imgPreview, setImagePreview] = useState(null);
 
-  const user = useSelector(state => state.session.user);
+  const userId = useSelector(state => {
+    if (state.session.user) {
+      return state.session.user.id
+    }
+  });
 
   const handleSubmit = (e) => {
       e.preventDefault();
       dispatch(setPic(pic))
           .then(file => {
-              dispatch(addNewCar({userId: user.id, name, year, make, model, vin, profPic: file.output }))
+            console.log('FILE------>', file)
+              dispatch(addNewCar({userId, name, year, make, model, vin, pic: file.output }))
           }).catch(error => {
               console.log('😱 Error: ', error)
           });
 
       setPic(null);
+      setShowAddCarModal(false);
       history.push("/dash");
   };
 
   const updateProfPic = (e) => {
     const file = e.target.files[0];
     console.log(file)
-    if (file) setPic(file);
+    if (file) setCarPic(file);
 
     const fileReader = new FileReader();
     if (file) {
@@ -52,7 +59,7 @@ const AddCarForm = () => {
   return (
       <>
         <div id="new-car-header" >Add A New Car</div>
-        <img className="imgPreview" src={imgPreview} alt=''></img>
+        <img className="car-imgPreview" src={imgPreview} alt=''></img>
         <label  className="custom-file-upload">CLICK HERE TO UPLOAD A PHOTO
           <input onChange={updateProfPic} type="file" name="user_file" />
         </label>
@@ -92,8 +99,8 @@ const AddCarForm = () => {
               onChange={e => setVin(e.target.value)}
               value={vin}
             ></input>
+            <button id="submit-button" type="submit">Sign Up</button>
         </form>
-        <button id="submit-button" type="submit">Sign Up</button>
       </>
     );
 

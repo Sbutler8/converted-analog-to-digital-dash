@@ -1,6 +1,5 @@
 
 const SET_USER = 'session/setUser';
-const ADD_USER = 'session/addUser';
 const GET_USERS = 'session/getUsers';
 const REMOVE_USER = 'session/removeUser';
 const SET_PROFILE_PIC = 'session/setProfilePic';
@@ -9,13 +8,6 @@ const setUser = (user) => {
   return {
     type: SET_USER,
     payload: user,
-  };
-};
-
-const addUser = (addedUser) => {
-  return {
-    type: ADD_USER,
-    payload: addedUser,
   };
 };
 
@@ -64,8 +56,7 @@ export const addNewUser = (newUser) => async (dispatch) => {
 
   const {name, email, password, gpsPermission, profPic} = newUser;
   const formData = {name, email, password, gpsPermission, profPic};
-
-  console.log(formData)
+  console.log('addUser formData:', formData)
 
   const res = await fetch(`/api/auth/signup`, {
     method: "POST",
@@ -74,8 +65,9 @@ export const addNewUser = (newUser) => async (dispatch) => {
     },
     body: JSON.stringify(formData),
   });
-
-    dispatch(addUser(res));
+  console.log('added user res:', res)
+    let data = await res.json();
+    dispatch(setUser(data));
     return res;
   }
 
@@ -144,8 +136,6 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = action.payload;
       newState.authenticate = true;
       return newState;
-    case ADD_USER:
-      return {...state, [action.addedUser]: action.addedUser};
     case GET_USERS:
       // newState = Object.assign({}, state);
       // newState.users = action.payload;

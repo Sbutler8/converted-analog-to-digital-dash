@@ -23,3 +23,8 @@
     border: none;
     width:auto;
   }
+
+.car-imgPreview {
+    border-radius: 18%;
+    height:90px;
+}

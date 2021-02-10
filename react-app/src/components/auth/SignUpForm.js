@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { login } from '../../store/session'
 import { setPic } from "../../store/session";
 import { addNewUser } from '../../store/session'
 import * as sessionActions from "../../store/session";
@@ -28,10 +29,11 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(setPic( profPic ))
-        .then(file => {
-
-          console.log('FILE: ',file)
+    .then(file => {
           dispatch(addNewUser({ name, email, password, gpsPermission, profPic: file.output }))
+
+          // dispatch(sessionActions.login({email, password}))
+
         }).catch(error => {
           console.log('😱 Error: ', error)
         });

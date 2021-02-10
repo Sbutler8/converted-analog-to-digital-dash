@@ -11,9 +11,9 @@ const NavBar = () => {
   return (
     <>
         <>
-        {!authenticate && (
+        {/* {!authenticate && ( */}
           <ModalViews />
-        )}
+        {/* )} */}
         {authenticate && (
           <ProtectedRoute>
             <LogoutButton />

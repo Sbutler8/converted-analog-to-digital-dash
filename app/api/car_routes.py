@@ -18,6 +18,7 @@ def add_car(id):
     """
     Adds car created from user to db
     """
+    print('HERE I AM!!!!!!!!!!')
     user = User.query.get(id)
     form = request.get_json(force=True)
 

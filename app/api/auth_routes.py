@@ -71,9 +71,7 @@ def sign_up():
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit():
     user = User(
-        # profile_pic=form.data['profile_pic'],
         name=form['name'],
-        # hometown=form.data['hometown'],
         email=form['email'],
         password=form['password'],
         gps_permission=form['gpsPermission'],
@@ -81,7 +79,7 @@ def sign_up():
         )
     db.session.add(user)
     db.session.commit()
-    login_user(user)
+    # login_user(user)
     return user.to_dict()
 
 

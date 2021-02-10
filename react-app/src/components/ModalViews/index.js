@@ -39,7 +39,7 @@ function ModalViews() {
         )}
         {showAddCarModal &&  (
           <Modal onClose={() => setShowAddCarModal(false)} name="signup">
-            <AddCarForm />
+            <AddCarForm setShowAddCarModal={setShowAddCarModal}/>
           </Modal>
         )}
         {showSignupModal &&  (

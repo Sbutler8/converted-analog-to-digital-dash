@@ -28,9 +28,9 @@ export const addNewCar = (car) => async (dispatch) => {
   const {userId, name, year, make, model, vin, pic} = car;
   const formData = {userId, name, year, make, model, vin, pic};
 
-  console.log(formData)
+  console.log('FORMDATA:',formData)
 
-  const res = await fetch(`/api/entry/${userId}`, {
+  const res = await fetch(`/api/cars/entry/${userId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const carReducer = (state = initialState, action) => {
     case GET_CARS:
       return { ...state, cars: action.payload }
     case ADD_CAR:
-      return { ...state, addedCar: action.payload }
+      return {...state, [action.car]: action.car};
     default:
       return state;
   }
