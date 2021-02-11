@@ -5,7 +5,7 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { addJournalEntryPoints } from '../../store/map';
 
 const MapAutoComplete = ({...props}) => {
-  const { GOOGLE_MAP_API_KEY } = process.env;
+  const { GOOGLE_MAP_API_KEY } = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
   const dispatch = useDispatch();
 
   const {
@@ -60,31 +60,32 @@ const MapAutoComplete = ({...props}) => {
       } = suggestion;
 
       return (
-        <li
-          key={id}
-          onClick={handleSelect(suggestion)}
-        >
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </li>
+        <div>
+          <li
+            key={id}
+            onClick={handleSelect(suggestion)}
+          >
+            <strong>{main_text}</strong> <small>{secondary_text}</small>
+          </li>
+        </div>
       );
     });
 
   return (
       <>
+        {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script> */}
         <div ref={registerRef}>
         <input
-          style={{borderRadius:30, textAlign:'center', fontFamily:'Reem Kufi,sans-serif', fontSize:'25px', margin:'15px'}}
+          id="auto-complete"
+          style={{position:'absolute', zIndex: 2, height: '1px', width: '150px', borderRadius:30, textAlign:'center', fontFamily:'Reem Kufi,sans-serif', fontSize:'13px', margin: '5px'}}
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Where on your journey did this happen?"
+          placeholder="Where are you going?"
         />
         {/* We can use the "status" to decide whether we should display the dropdown or not */}
-        {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+        {status === 'OK' && <ul style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
         </div>
-        {/* <script async defer type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}
-        ></script> */}
     </>
   );
 };

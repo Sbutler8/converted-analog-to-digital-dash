@@ -4,11 +4,11 @@ import GoogleMapReact from 'google-map-react';
 // import MapViewDirections from 'react-native-maps-directions';
 import Marker from '../Marker/index';
 import * as mapActions from "../../store/map";
+import MapAutoComplete from '../MapAutoComplete/index';
 
 
 const Map = () => {
   const GOOGLE_MAP_API_KEY  = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
-  console.log(GOOGLE_MAP_API_KEY)
 
   const dispatch = useDispatch();
   const [markerShown, setMarkerShown] = useState(false)
@@ -34,7 +34,7 @@ const Map = () => {
   const getMapOptions = (maps) => {
     return {
       disableDefaultUI: true,
-      mapTypeControl: true,
+      mapTypeControl: false,
       streetViewControl: true,
       styles: [{ featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'on' }] }],
     };
@@ -55,10 +55,11 @@ const Map = () => {
 
   return (
     <>
-    <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}></script>
+    <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script>
     <div className='wrapper'>
         <main className="main">
           <div className="map" style={{ height: '284px', width: '440px', marginTop: '50px', marginLeft: '265px', overflow: 'hidden', borderRadius: '3%' }}>
+            <MapAutoComplete id="auto-complete"/>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
                 defaultCenter={center}
