@@ -5,12 +5,14 @@ import SignUpForm from '../auth/SignUpForm';
 import { Link } from 'react-router-dom';
 import ProfilePictures from '../ProfilePictures';
 import ChooseCar from '../ChooseCar';
+import AddCarForm from '../AddCarForm';
 
-function LoginFormModal() {
+function ModalViews() {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [showCarModal, setShowCarModal] = useState(false);
+    const [showAddCarModal, setShowAddCarModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState({});
 
     return (
@@ -35,13 +37,18 @@ function LoginFormModal() {
             <ChooseCar />
           </Modal>
         )}
+        {showAddCarModal &&  (
+          <Modal onClose={() => setShowAddCarModal(false)} name="signup">
+            <AddCarForm setShowAddCarModal={setShowAddCarModal}/>
+          </Modal>
+        )}
         {showSignupModal &&  (
         <Modal onClose={() => setShowSignupModal(false)} name="signup">
-          <SignUpForm setShowSignupModal={setShowSignupModal} selectedUser={selectedUser}/>
+          <SignUpForm setShowSignupModal={setShowSignupModal} setShowAddCarModal={setShowAddCarModal}/>
         </Modal>
         )}
       </>
     );
   }
 
-  export default LoginFormModal;
+  export default ModalViews;

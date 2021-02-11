@@ -22,7 +22,7 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
 
     return (
         <>
-        <div id="header">Who's Driving'?</div>
+        <div id="profile-pic-header">Who's Driving?</div>
         <div className="container">
             {users &&
             users.map((user) => {

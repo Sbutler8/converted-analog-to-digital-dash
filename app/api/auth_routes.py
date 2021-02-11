@@ -66,15 +66,12 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
-    # form = SignUpForm()
+
     form = request.get_json(force=True)
-    # print('NAME------>',data)
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit():
     user = User(
-        # profile_pic=form.data['profile_pic'],
         name=form['name'],
-        # hometown=form.data['hometown'],
         email=form['email'],
         password=form['password'],
         gps_permission=form['gpsPermission'],
@@ -82,10 +79,8 @@ def sign_up():
         )
     db.session.add(user)
     db.session.commit()
-    login_user(user)
-    print('NEW USER-------------->', user)
+    # login_user(user)
     return user.to_dict()
-    # return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @auth_routes.route('/test', methods=['POST'])

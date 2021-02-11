@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import carReducer from './cars';
+import mapReducer from './map';
 import wsReducer from './websocket';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   ws: wsReducer,
   cars: carReducer,
+  map: mapReducer,
 });
 
 let enhancer;

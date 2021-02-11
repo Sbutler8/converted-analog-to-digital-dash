@@ -9,6 +9,10 @@ import Dash from './components/Dash/index'
 import Home from "./components/Home";
 import ChooseDash from "./components/ChooseDash";
 import ChooseCar from "./components/ChooseCar";
+import { addNewCar } from "./store/cars";
+import AddCarForm from "./components/AddCarForm";
+import Map from "./components/Map";
+import GPS from "./components/GPS";
 
 function App() {
 
@@ -34,8 +38,14 @@ function App() {
       {/* <Route path="/cars" exact={true}>
           <ChooseCar />
       </Route> */}
+      <Route path="/map" exact={true}>
+          <GPS  />
+      </Route>
       <Route path="/dashboards" exact={true}>
           <ChooseDash />
+      </Route>
+      <Route path="/car" exact={true}>
+          <AddCarForm/>
       </Route>
       <Route path="/dash" exact={true}>
           <Dash />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { login } from '../../store/session'
 import { setPic } from "../../store/session";
 import { addNewUser } from '../../store/session'
 import * as sessionActions from "../../store/session";
@@ -8,7 +9,7 @@ import { signUp } from '../../services/auth';
 
 import './SignUpForm.css'
 
-const SignUpForm = ({authenticated, setShowSignupModal}) => {
+const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => {
   const dispatch = useDispatch()
   const history = useHistory();
 
@@ -21,13 +22,6 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
   const [imgPreview, setImagePreview] = useState(null);
 
 
-  // const onSignUp = async (e) => {
-  //   e.preventDefault();
-  //   if (password === repeatPassword) {
-  //     await signUp(name, email, password);
-  //   }
-  // };
-
   if (authenticated) {
     return <Redirect to="/" />;
   }
@@ -35,17 +29,19 @@ const SignUpForm = ({authenticated, setShowSignupModal}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(setPic( profPic ))
-        .then(file => {
-
-          console.log('FILE: ',file)
+    .then(file => {
           dispatch(addNewUser({ name, email, password, gpsPermission, profPic: file.output }))
+
+          // dispatch(sessionActions.login({email, password}))
+
         }).catch(error => {
           console.log('😱 Error: ', error)
         });
 
         setProfPic(null);
         setShowSignupModal(false);
-        await history.push("/dash");
+        setShowAddCarModal(true);
+        // await history.push("/dash");
   };
 
     const updateProfPic = (e) => {

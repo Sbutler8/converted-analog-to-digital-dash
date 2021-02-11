@@ -35,9 +35,10 @@
     }
 
 
-#header {
+#profile-pic-header {
     color: white;
-    size: 30px;
+    font-size: 30px;
+    text-shadow: 0 0 3px #fff;
 }
 
 #signup-link {
