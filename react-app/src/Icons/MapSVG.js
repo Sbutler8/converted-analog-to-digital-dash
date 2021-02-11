@@ -1,9 +1,11 @@
 import React from "react"
+import Map from "../components/Map";
 import './MapSVG.css';
 
 const MapSVG= (props) => {
   return (
     <svg
+      className="svg"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       preserveAspectRatio="none"

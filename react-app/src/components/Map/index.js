@@ -5,7 +5,11 @@ import GoogleMapReact from 'google-map-react';
 import Marker from '../Marker/index';
 import * as mapActions from "../../store/map";
 
+
 const Map = () => {
+  const GOOGLE_MAP_API_KEY  = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+  console.log(GOOGLE_MAP_API_KEY)
+
   const dispatch = useDispatch();
   const [markerShown, setMarkerShown] = useState(false)
   const [center, setCenter] = useState({lat: 39.73750267736547, lng: -104.98928358002577 });
@@ -26,8 +30,7 @@ const Map = () => {
   if (!authenticate) {
     return null;
   }
-  const GOOGLE_MAP_API_KEY  = process.env.GOOGLE_MAP_API_KEY;
-  console.log('KEY--->', GOOGLE_MAP_API_KEY)
+
   const getMapOptions = (maps) => {
     return {
       disableDefaultUI: true,
@@ -52,44 +55,26 @@ const Map = () => {
 
   return (
     <>
-     <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}></script>
+    <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`}></script>
     <div className='wrapper'>
         <main className="main">
-     <div style={{ height: '500px', width: '100%' }}>
-        <GoogleMapReact id="map"
-          bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-          defaultCenter={center}
-          defaultZoom={zoom}
-          onClick={() => setMarkerShown(true)}
-          options={getMapOptions}
-          >
-          <Marker
-            lat={addedMarkers.lat}
-            lng={addedMarkers.lng}
-            name="My Marker"
-            color="pink"
-            />
-          {journalEntryCoordinates &&
-          journalEntryCoordinates.map(feature => {
-            return (
-              <Marker key={feature[0]}
-              lat={feature[0]}
-              lng={feature[1]}
-              name="My Marker"
-              color="blue"
-              />
-              )
-            })}
-          <Marker
-            lat={39.737}
-            lng={-104.989}
-            name="My Marker"
-            color="blue"
-          />
-        </GoogleMapReact >
-      </div>
-      </main>
-
+          <div className="map" style={{ height: '284px', width: '440px', marginTop: '50px', marginLeft: '265px', overflow: 'hidden', borderRadius: '3%' }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
+                defaultCenter={center}
+                defaultZoom={zoom}
+                onClick={() => setMarkerShown(true)}
+                options={getMapOptions}
+                >
+                <Marker
+                  lat={addedMarkers.lat}
+                  lng={addedMarkers.lng}
+                  name="My Marker"
+                  color="pink"
+                />
+              </GoogleMapReact >
+            </div>
+        </main>
     </div>
     </>
   );

@@ -9,15 +9,15 @@ import './GPS.css';
 
 const GPS = () => {
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
 
     })
 
     return (
         <>
-            <MapSVG />
-            <Map />
+            <MapSVG className="dash"/>
+            <Map className="map"/>
         </>
     )
 
