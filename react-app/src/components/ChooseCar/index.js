@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Component } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {getAllCars} from "../../store/cars";
+import { getAllCars, setChosenCar } from "../../store/cars";
 import './ChooseCar.css'
 
 const ChooseCar = () => {
@@ -26,8 +26,8 @@ const ChooseCar = () => {
         {cars &&
           cars.map(car => {
           return (
-            <div className="button-container">
-            <button className="carPic" style={{backgroundImage: `url(${car.pic})`}} ></button>
+            <div key={car.id} className="button-container">
+            <button className="carPic" style={{backgroundImage: `url(${car.pic})`}} onClick={() => dispatch(setChosenCar(car.id))}></button>
             </div>
           )
         })}

@@ -29,16 +29,16 @@ const NavBar = () => {
 
   return (
       <>
-        <nav class="menu">
+        <nav className="menu">
           <input type="checkbox" href="#" className="menu-open" name="menu-open" id="menu-open" />
-          <label className="menu-open-button" for="menu-open">
+          <label className="menu-open-button" htmlFor="menu-open">
             <span className="lines line-1"></span>
             <span className="lines line-2"></span>
             <span className="lines line-3"></span>
           </label>
 
           <Link className="menu-item blue" to="/" onClick={() => handleLogout()} to=''><i className="fas fa-sign-out-alt"></i></Link>
-          <Link className="menu-item lightblue" id="login" to="/" onClick={() => {setShowProfileModal(true)}}><i class="fas fa-sign-in-alt"></i></Link>
+          <Link className="menu-item lightblue" id="login" to="/" onClick={() => {setShowProfileModal(true)}}><i className="fas fa-sign-in-alt"></i></Link>
           <Link className="menu-item red" to="/dash" ><i className="fas fa-tachometer-alt"></i></Link>
           <Link className="menu-item purple" to="/map" ><i className="fas fa-map-marked-alt"></i></Link>
           <Link className="menu-item orange" to="" onClick={() => {setShowCarModal(true)}} ><i className="fas fa-car"></i></Link>
