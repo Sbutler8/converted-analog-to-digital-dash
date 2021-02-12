@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SignUpForm from "./components/auth/SignUpForm";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NavBar from './components/NavBar'
 import * as sessionActions from './store/session'
 import Dash from './components/Dash/index'
 import Home from "./components/Home";
 import ChooseDash from "./components/ChooseDash";
-import ChooseCar from "./components/ChooseCar";
-import { addNewCar } from "./store/cars";
 import AddCarForm from "./components/AddCarForm";
-import Map from "./components/Map";
 import GPS from "./components/GPS";
+import Codes from "./components/Codes";
 
 function App() {
 
@@ -35,9 +32,6 @@ function App() {
       <Route path="/" exact={true}>
           <Home  />
       </Route>
-      {/* <Route path="/cars" exact={true}>
-          <ChooseCar />
-      </Route> */}
       <Route path="/map" exact={true}>
           <GPS  />
       </Route>
@@ -49,6 +43,9 @@ function App() {
       </Route>
       <Route path="/dash" exact={true}>
           <Dash />
+      </Route>
+      <Route path="/codes" exact={true}>
+          <Codes />
       </Route>
       <ProtectedRoute path="/" exact={true} >
         <h1>My Home Page</h1>

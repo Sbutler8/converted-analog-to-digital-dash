@@ -4,8 +4,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocom
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { addJournalEntryPoints } from '../../store/map';
 
-const MapAutoComplete = ({...props}) => {
-  const { GOOGLE_MAP_API_KEY } = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+const MapAutoComplete = () => {
   const dispatch = useDispatch();
 
   const {
@@ -60,14 +59,12 @@ const MapAutoComplete = ({...props}) => {
       } = suggestion;
 
       return (
-        <div>
           <li
             key={id}
             onClick={handleSelect(suggestion)}
           >
             <strong>{main_text}</strong> <small>{secondary_text}</small>
           </li>
-        </div>
       );
     });
 

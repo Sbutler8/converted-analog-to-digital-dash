@@ -20,6 +20,10 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
         setShowLoginModal(true);
     }
 
+    // if (!user) {
+    //     return null;
+    // }
+
     return (
         <>
         <div id="profile-pic-header">Who's Driving?</div>
