@@ -101,15 +101,20 @@ def connected():
 
 a = Arduino()
 a.set_pin_mode('A0', 'O')
+a.set_pin_mode('D8', 'O')
 @socketio.on('get_speed')
 def get_speed():
     print('Backend Here')
     # data = readData(Arduino())
     a.conn.flushOutput()
     while True:
-        data = a.analog_read('A0')
+        speed = a.analog_read('A0')
+        button = a.digital_read('D8')
+        print('BUTTON---->', button)
         # data = a.analog_read(POTENTIOMETER)
-        emit('getting_speed', data)
+
+        emit('engine', button, broadcast=True)
+        emit('getting_speed', speed)
         time.sleep(0.5)
 
 

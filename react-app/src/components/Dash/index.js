@@ -63,6 +63,10 @@ const Dash = ({...props}) => {
     setSpeed(data)
   });
 
+  socket.on("engine", (data) => {
+    console.log('ENGINE came through ', data)
+  });
+
   // function setProgress(percent) {
   //   circumference = radius * 2 * PI
   //   const offset = circumference - percent / 100 * circumference;
