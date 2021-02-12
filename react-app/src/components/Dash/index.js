@@ -24,6 +24,13 @@ const Dash = ({...props}) => {
   const dispatch = useDispatch();
 
   const [speed, setSpeed] = useState(0);
+  const [engine, setEngine] = useState(0);
+  const [battery, setBattery] = useState(0);
+  const [gas, setGas] = useState(0);
+  const [lights, setLights] = useState(0);
+  const [oil, setOil] = useState(0);
+  const [trunk, setTrunk] = useState(0);
+
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -58,14 +65,21 @@ const Dash = ({...props}) => {
       socket.emit('get_speed')
   }, [socket]);
 
-  socket.on("getting_speed", (data) => {
-    console.log('Getting_Speed Front End YAY: ', data)
-    setSpeed(data)
+  socket.on("getting_speed", ({speed, engine}) => {
+    console.log('Getting_Speed Front End YAY: ', speed, engine)
+    if (engine == 1) {
+      setEngine(engine)
+      // document.querySelector('#engine').setAttribute("hidden", false)
+    }
+    setSpeed(speed)
   });
 
-  socket.on("engine", (data) => {
-    console.log('ENGINE came through ', data)
-  });
+  // socket.on("engine", (data) => {
+  //   console.log('ENGINE came through ', data)
+  //   if (data == 1) {
+  //     document.querySelector('#engine').setAttribute("hidden", false)
+  //   }
+  // });
 
   // function setProgress(percent) {
   //   circumference = radius * 2 * PI
@@ -85,12 +99,14 @@ const Dash = ({...props}) => {
   return (
     <>
     <div className="warning-container">
-      <button className="warnings"><Engine color="white"/></button>
-      <button className="warnings"><Battery color="white"/></button>
-      <button className="warnings"><Gas color="white"/></button>
-      <button className="warnings"><Lights color="white"/></button>
-      <button className="warnings"><Oil color="white"/></button>
-      <button className="warnings"><TrunkOpen color="white"/></button>
+      {engine &&
+      <button id="engine" className="warnings"  hidden={false}><Engine color="white"/></button>
+      }
+      <button id="battery" className="warnings" hidden={true}><Battery color="white"/></button>
+      <button id="gas" className="warnings" hidden={true}><Gas color="white"/></button>
+      <button id="lights" className="warnings" hidden={true}><Lights color="white"/></button>
+      <button id="oil" className="warnings" hidden={true}><Oil color="white"/></button>
+      <button id="trunk" className="warnings" hidden={true}><TrunkOpen color="white"/></button>
     </div>
     {/* <button className="engine"><img src={require('../../Icons/dashboard/Engine.js')}></img></button> */}
     {/* <input value={message} onChange={e => onChange(e)}></input>

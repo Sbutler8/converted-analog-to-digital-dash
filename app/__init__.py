@@ -109,12 +109,12 @@ def get_speed():
     a.conn.flushOutput()
     while True:
         speed = a.analog_read('A0')
-        button = a.digital_read('D8')
-        print('BUTTON---->', button)
+        engine = a.digital_read('D8')
+        print('BUTTON---->', engine)
         # data = a.analog_read(POTENTIOMETER)
 
-        emit('engine', button, broadcast=True)
-        emit('getting_speed', speed)
+        # emit('engine', button)
+        emit('getting_speed', {'speed':speed, 'engine':engine})
         time.sleep(0.5)
 
 
