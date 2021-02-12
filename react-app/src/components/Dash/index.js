@@ -7,6 +7,12 @@ import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
 import ldBar from '@loadingio/loading-bar';
+import Engine from "../../Icons/dashboard/Engine";
+import Battery from "../../Icons/dashboard/Battery";
+import Gas from "../../Icons/dashboard/Gas";
+import Lights from "../../Icons/dashboard/Lights";
+import Oil from "../../Icons/dashboard/Oil";
+import TrunkOpen from "../../Icons/dashboard/TrunkOpen";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -74,15 +80,24 @@ const Dash = ({...props}) => {
 
   return (
     <>
+    <div className="warning-container">
+      <button className="warnings"><Engine color="white"/></button>
+      <button className="warnings"><Battery color="white"/></button>
+      <button className="warnings"><Gas color="white"/></button>
+      <button className="warnings"><Lights color="white"/></button>
+      <button className="warnings"><Oil color="white"/></button>
+      <button className="warnings"><TrunkOpen color="white"/></button>
+    </div>
+    {/* <button className="engine"><img src={require('../../Icons/dashboard/Engine.js')}></img></button> */}
     {/* <input value={message} onChange={e => onChange(e)}></input>
     <button onClick={() => onClick()}>Send Message</button> */}
       {/* <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
       <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script> */}
       {/* <script src="./dist/progressbar.min.js">{}</script> */}
       <script type="text/javascript" src="loading-bar.js"></script>
-      <div className="ldBar"></div>
+      {/* <div className="ldBar"></div> */}
       {/* <link rel="stylesheet" type="text/css" href="loading-bar.css"/> */}
-      <button id="speedometer-button" >Start Speedometer</button>
+
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>
 

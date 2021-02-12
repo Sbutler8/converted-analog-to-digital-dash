@@ -1,10 +1,12 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { getAllCars, setChosenCar } from "../../store/cars";
 import './ChooseCar.css'
 
-const ChooseCar = () => {
+const ChooseCar = ({setShowCarModal}) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const userId = useSelector(state => {
       if (state.session.user) {
@@ -27,7 +29,7 @@ const ChooseCar = () => {
           cars.map(car => {
           return (
             <div key={car.id} className="button-container">
-            <button className="carPic" style={{backgroundImage: `url(${car.pic})`}} onClick={() => dispatch(setChosenCar(car.id))}></button>
+            <button className="carPic" style={{backgroundImage: `url(${car.pic})`}} onClick={() => {dispatch(setChosenCar(car.id)); setShowCarModal(false); history.push('/dash')}}></button>
             </div>
           )
         })}

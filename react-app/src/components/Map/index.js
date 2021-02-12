@@ -37,7 +37,7 @@ const Map = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
     console.log(currentLocation)
-  })
+  }, [])
 
   if (!authenticate) {
     return null;

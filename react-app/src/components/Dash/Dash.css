@@ -55,3 +55,27 @@
 .loading-circle {
     fill: url(#linearColors);
 }
+
+.warning-container {
+    position: fixed;
+    z-index: 2;
+    top: 458px;
+    left: 200px;
+}
+
+.warnings {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+  border:none;
+  box-shadow:
+    inset 0 0 10px #fff,      /* inner white */
+    inset 20px 0 80px rgb(45, 48, 36),   /* inner left magenta short */
+    inset -20px 0 80px rgb(179, 241, 7),  /* inner right cyan short */
+    inset 20px 0 300px rgb(10, 238, 67),  /* inner left magenta broad */
+    inset -20px 0 100px rgb(247, 3, 3), /* inner right cyan broad */
+    0 0 50px #fff,            /* outer white */
+    0px 0 20px rgb(248, 250, 247),        /* outer left magenta */
+    0px 0 30px rgb(255, 38, 0);
+}
