@@ -2,7 +2,7 @@ html {	background-color: #333333;
 }
 
 .svg {
-	position: absolute;
-	z-index: -1;
-	bottom: 50px;
+	position: relative;
+	z-index: -2;
+	/* bottom: 50px; */
 }

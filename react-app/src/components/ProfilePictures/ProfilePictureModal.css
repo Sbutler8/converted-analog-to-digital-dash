@@ -36,6 +36,7 @@
 
 
 #profile-pic-header {
+    font-family: system-ui;
     color: white;
     font-size: 30px;
     text-shadow: 0 0 3px #fff;

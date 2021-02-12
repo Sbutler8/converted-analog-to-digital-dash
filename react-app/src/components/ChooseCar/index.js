@@ -22,7 +22,7 @@ const ChooseCar = () => {
 
   return (
     <>
-      <div id="car-header">Which car will you be driving?</div>
+      <div className="car-header">Which car will you be driving?</div>
         {cars &&
           cars.map(car => {
           return (

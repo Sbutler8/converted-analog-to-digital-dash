@@ -8,7 +8,7 @@ import {
   GoogleMap,
   DirectionsRenderer,
 } from 'react-google-maps'
-
+import './Map.css';
 
 
 const Map = () => {
@@ -79,7 +79,7 @@ const Map = () => {
     <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script>
     <div className='wrapper'>
         <main className="main">
-          <div className="map" style={{ height: '284px', width: '440px', marginTop: '50px', marginLeft: '265px', overflow: 'hidden', borderRadius: '3%' }}>
+          <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
             <MapAutoComplete id="auto-complete"/>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}

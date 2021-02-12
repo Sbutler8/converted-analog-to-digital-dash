@@ -17,6 +17,15 @@ const NavBar = () => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showCarModal, setShowCarModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  // const [showCarModal, setShowCarModal] = useState(false);
+  const [showAddCarModal, setShowAddCarModal] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(sessionActions.logout());
+
+  }
 
   return (
       <>
@@ -28,7 +37,7 @@ const NavBar = () => {
             <span className="lines line-3"></span>
           </label>
 
-          <Link className="menu-item blue" to="/" onClick={() => {dispatch(sessionActions.logout())}} to=''><i className="fas fa-sign-out-alt"></i></Link>
+          <Link className="menu-item blue" to="/" onClick={() => handleLogout()} to=''><i className="fas fa-sign-out-alt"></i></Link>
           <Link className="menu-item lightblue" id="login" to="/" onClick={() => {setShowProfileModal(true)}}><i class="fas fa-sign-in-alt"></i></Link>
           <Link className="menu-item red" to="/dash" ><i className="fas fa-tachometer-alt"></i></Link>
           <Link className="menu-item purple" to="/map" ><i className="fas fa-map-marked-alt"></i></Link>
