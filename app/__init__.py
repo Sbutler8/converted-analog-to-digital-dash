@@ -101,7 +101,11 @@ def connected():
 
 a = Arduino()
 a.set_pin_mode('A0', 'O')
+a.set_pin_mode('D11', 'O')
 a.set_pin_mode('D8', 'O')
+a.set_pin_mode('D9', 'O')
+a.set_pin_mode('D10', 'O')
+a.set_pin_mode('D13', 'O')
 @socketio.on('get_speed')
 def get_speed():
     print('Backend Here')
@@ -110,19 +114,16 @@ def get_speed():
     while True:
         speed = a.analog_read('A0')
         engine = a.digital_read('D8')
-        print('BUTTON---->', engine)
+        oil = a.digital_read('D9')
+        gas = a.digital_read('D10')
+        battery = a.digital_read('D13')
+        lights = a.digital_read('D11')
+
         # data = a.analog_read(POTENTIOMETER)
 
         # emit('engine', button)
-        emit('getting_speed', {'speed':speed, 'engine':engine})
+        emit('getting_speed', {'speed':speed, 'engine':engine, 'oil':oil, 'gas':gas, 'battery':battery, 'lights':lights})
         time.sleep(0.5)
-
-
-# @socketio.on('message')
-# def handleMessage(msg):
-#     print(msg)
-#     send(msg, broadcast=True)
-#     return None
 
 @socketio.on('client-disconnecting')
 def test_disconnect():

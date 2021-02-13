@@ -29,16 +29,22 @@ const Dash = ({...props}) => {
   const [gas, setGas] = useState(0);
   const [lights, setLights] = useState(0);
   const [oil, setOil] = useState(0);
+  const [hidden, setHidden] = useState(false);
   const [trunk, setTrunk] = useState(0);
 
   const [status, setStatus] = useState("");
 
   useEffect(() => {
+      setTimeout(() => {
+        if (speed == 0) {
+          socket.emit('get_speed')
+        }
+      }, 500)
       // props.dataValue=speed
       console.log('SPEED IN effect',speed)
       // bar.setAttribute('data-value', 40)
 
-  }, [dispatch, speed])
+  }, [dispatch])
   console.log('SPEED',speed)
 
   // const message = useSelector(state => state.ws.message);
@@ -61,15 +67,31 @@ const Dash = ({...props}) => {
     socket.on("connected", () => {
       console.log('Connected to Front End YAY')
       setStatus('connected')
-      dispatch(webSocketActions.setMessage('connected'));
-      socket.emit('get_speed')
+      // dispatch(webSocketActions.setMessage('connected'));
+      // socket.emit('get_speed')
   }, [socket]);
 
-  socket.on("getting_speed", ({speed, engine}) => {
-    console.log('Getting_Speed Front End YAY: ', speed, engine)
+  socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
+    // console.log('Getting_Speed Front End YAY: ', speed, engine, oil, gas, battery, lights)
     if (engine == 1) {
+      setHidden(false)
       setEngine(engine)
-      // document.querySelector('#engine').setAttribute("hidden", false)
+    }
+    if (oil == 1) {
+      setHidden(false)
+      setOil(oil)
+    }
+    if (gas == 1) {
+      setHidden(false)
+      setGas(gas)
+    }
+    if (battery == 1) {
+      setHidden(false)
+      setBattery(battery)
+    }
+    if (lights == 1) {
+      setHidden(false)
+      setLights(battery)
     }
     setSpeed(speed)
   });
@@ -95,18 +117,31 @@ const Dash = ({...props}) => {
 //     to: { color: '#0bdfff' },
 // });
 
+const turnOff = (e) => {
+  console.log(e)
+  // const icon = document.querySelector(`#${id}`)
+}
+
 
   return (
     <>
     <div className="warning-container">
       {engine &&
-      <button id="engine" className="warnings"  hidden={false}><Engine color="white"/></button>
+        <button id="engine" className="warnings" hidden={hidden} onClick={() => hidden ? setHidden(false):setHidden(true)}><Engine color="white"/></button>
       }
-      <button id="battery" className="warnings" hidden={true}><Battery color="white"/></button>
-      <button id="gas" className="warnings" hidden={true}><Gas color="white"/></button>
-      <button id="lights" className="warnings" hidden={true}><Lights color="white"/></button>
-      <button id="oil" className="warnings" hidden={true}><Oil color="white"/></button>
-      <button id="trunk" className="warnings" hidden={true}><TrunkOpen color="white"/></button>
+      {oil &&
+        <button id="oil" className="warnings"  hidden={hidden} onClick={() => hidden ? setHidden(false):setHidden(true)}><Oil color="white"/></button>
+      }
+      {gas &&
+        <button id="gas" className="warnings"><Gas color="white"/></button>
+      }
+      {battery &&
+        <button id="battery" className="warnings"><Battery color="white"/></button>
+      }
+      {lights &&
+        <button id="lights" className="warnings" hidden={hidden}><Lights color="white"/></button>
+      }
+        <button id="trunk" className="warnings" hidden={true}><TrunkOpen color="white"/></button>
     </div>
     {/* <button className="engine"><img src={require('../../Icons/dashboard/Engine.js')}></img></button> */}
     {/* <input value={message} onChange={e => onChange(e)}></input>

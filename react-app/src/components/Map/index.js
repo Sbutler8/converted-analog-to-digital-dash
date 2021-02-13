@@ -73,7 +73,6 @@ const Map = () => {
   }
 
 
-
   return (
     <>
     <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script>
