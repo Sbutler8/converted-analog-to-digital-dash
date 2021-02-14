@@ -86,6 +86,7 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 @app.route('/dash')
+@app.route('/map')
 @socketio.on('connect')
 def connected():
     print('Connected')
@@ -128,4 +129,4 @@ def get_speed():
 @socketio.on('client-disconnecting')
 def test_disconnect():
     print('Client disconnected')
-    # socketio.disconnect()
+    socketio.disconnect()

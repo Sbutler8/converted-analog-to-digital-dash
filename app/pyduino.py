@@ -31,11 +31,14 @@ class Arduino():
         Performs a digital read on pin_number and returns the value (1 or 0)
         Internally sends b'RD{pin_number}' over the serial connection
         """
-        command = (''.join(('RD', str(pin_number)))).encode()
-        self.conn.write(command)
-        line_received = self.conn.readline().decode().strip()
-        header, value = line_received.split(':') # e.g. D13:1
-        return value
+        try:
+            command = (''.join(('RD', str(pin_number)))).encode()
+            self.conn.write(command)
+            line_received = self.conn.readline().decode().strip()
+            header, value = line_received.split(':') # e.g. D13:1
+            return value
+        except:
+            return 0
         # if header == ('D'+ str(pin_number)):
         #     # If header matches
         #     return int(value)
@@ -59,8 +62,8 @@ class Arduino():
         self.conn.write(command)
         line_received = self.conn.readline().decode().strip()
         header, value = line_received.split(':') # e.g. A4:1
-        # speed = 0.1173 * int(value)
         return value
+
         # if header == ('A' + str(pin_number)):
         #     # If header matches
         #     return int(value)

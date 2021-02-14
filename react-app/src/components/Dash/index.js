@@ -31,96 +31,58 @@ const Dash = ({...props}) => {
   const [gas, setGas] = useState(null);
   const [lights, setLights] = useState(null);
   const [oil, setOil] = useState(null);
-  const [hidden, setHidden] = useState(false);
   const [trunk, setTrunk] = useState(null);
+
+  const [engineHidden, setEngineHidden] = useState(true);
+  const [batteryHidden, setBatteryHidden] = useState(true);
+  const [gasHidden, setGasHidden] = useState(true);
+  const [lightsHidden, setLightsHidden] = useState(true);
+  const [oilHidden, setOilHidden] = useState(true);
+
   const [path, setPath] = useState("");
 
   const [status, setStatus] = useState("");
 
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //       if (speed == 0) {
-  //         socket.emit('get_speed')
-  //       }
-  //     }, 500)
+
+  useEffect(() => {
 
       // drawPath()
       // props.dataValue=speed
       console.log('SPEED IN effect',speed)
       // bar.setAttribute('data-value', 40)
 
-  // }, [dispatch, speed])
-  console.log('SPEED',speed)
-
-  // const message = useSelector(state => state.ws.message);
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-
-  //       socket.emit('get_speed')
-
-  //   }, 1000)
-
-  //   clearInterval(() => interval)
-  // }, [dispatch,speed])
-
-
-  //   useEffect(() => {
-    //     dispatch(sessionActions.authenticate());
-    //     dispatch(webSocketActions.setMessage(message));
-    // }, [dispatch, speed]);
+  }, [])
 
     socket.on("connected", () => {
       console.log('Connected to Front End YAY')
       setStatus('connected')
-      // dispatch(webSocketActions.setMessage('connected'));
       socket.emit('get_speed')
   }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
     // console.log('Getting_Speed Front End YAY: ', speed, engine, oil, gas, battery, lights)
     if (engine == 1) {
-      setHidden(false)
+      setEngineHidden(false)
       setEngine(engine)
     }
     if (oil == 1) {
-      setHidden(false)
+      setOilHidden(false)
       setOil(oil)
     }
     if (gas == 1) {
-      setHidden(false)
+      setGasHidden(false)
       setGas(gas)
     }
     if (battery == 1) {
-      setHidden(false)
+      setBatteryHidden(false)
       setBattery(battery)
     }
     if (lights == 1) {
-      setHidden(false)
+      setLightsHidden(false)
       setLights(battery)
     }
-    setSpeed(Math.ceil(0.1173 * speed))
+    setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 120 mph
   });
-
-  // socket.on("engine", (data) => {
-  //   console.log('ENGINE came through ', data)
-  //   if (data == 1) {
-  //     document.querySelector('#engine').setAttribute("hidden", false)
-  //   }
-  // });
-
-  // function setProgress(percent) {
-  //   circumference = radius * 2 * PI
-  //   const offset = circumference - percent / 100 * circumference;
-  //   circle.style.strokeDashoffset = offset;
-  // }
-
-//   var custom = new ProgressBar.Path('#custom', {
-//     strokeWidth: 2.0,
-//     easing: 'easeIn',
-//     attachment: document.querySelector(''),
-//     from: { color: '#e1ff16' },
-//     to: { color: '#0bdfff' },
-// });
 
 const turnOff = (e) => {
   console.log(e)
@@ -145,21 +107,21 @@ const drawPath = () => {
     <div id="loading-path"></div>
     <div className="warning-container">
       {engine &&
-        <button id="engine" className="warnings" hidden={hidden} onClick={() => hidden ? setHidden(false):setHidden(true)}><Engine color="white"/></button>
+        <button id="engine" className="warnings" hidden={engineHidden} onClick={() => engineHidden ? setEngineHidden(false):setEngineHidden(true)}><Engine color="white"/></button>
       }
       {oil &&
-        <button id="oil" className="warnings"  hidden={hidden} onClick={() => hidden ? setHidden(false):setHidden(true)}><Oil color="white"/></button>
+        <button id="oil" className="warnings"  hidden={oilHidden} onClick={() => oilHidden ? setOilHidden(false):setOilHidden(true)}><Oil color="white"/></button>
       }
       {gas &&
-        <button id="gas" className="warnings"><Gas color="white"/></button>
+        <button id="gas" className="warnings" hidden={gasHidden}  onClick={() => gasHidden ? setGasHidden(false):setGasHidden(true)}><Gas color="white"/></button>
       }
       {battery &&
-        <button id="battery" className="warnings"><Battery color="white"/></button>
+        <button id="battery" className="warnings" hidden={batteryHidden}  onClick={() => batteryHidden ? setBatteryHidden(false):setBatteryHidden(true)}><Battery color="white"/></button>
       }
       {lights &&
-        <button id="lights" className="warnings" hidden={hidden}><Lights color="white"/></button>
+        <button id="lights" className="warnings" hidden={lightsHidden}  onClick={() => lightsHidden ? setLightsHidden(false):setLightsHidden(true)}><Lights color="white"/></button>
       }
-        <button id="trunk" className="warnings" hidden={true}><TrunkOpen color="white"/></button>
+        {/* <button id="trunk" className="warnings" hidden={true}><TrunkOpen color="white"/></button> */}
     </div>
     {/* <button className="engine"><img src={require('../../Icons/dashboard/Engine.js')}></img></button> */}
     {/* <input value={message} onChange={e => onChange(e)}></input>
