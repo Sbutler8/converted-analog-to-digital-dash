@@ -59,8 +59,8 @@ class Arduino():
         self.conn.write(command)
         line_received = self.conn.readline().decode().strip()
         header, value = line_received.split(':') # e.g. A4:1
-        speed = 0.1173 * int(value)
-        return math.ceil(speed)
+        # speed = 0.1173 * int(value)
+        return value
         # if header == ('A' + str(pin_number)):
         #     # If header matches
         #     return int(value)

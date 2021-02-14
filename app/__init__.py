@@ -110,9 +110,9 @@ a.set_pin_mode('D13', 'O')
 def get_speed():
     print('Backend Here')
     # data = readData(Arduino())
-    a.conn.flushOutput()
     while True:
-        speed = a.analog_read('A0')
+        a.conn.flushOutput()
+        speed = a.analog_read('A1')
         engine = a.digital_read('D8')
         oil = a.digital_read('D9')
         gas = a.digital_read('D10')

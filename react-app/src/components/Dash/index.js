@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState, useRef, useDebugValue } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import socketIOClient from "socket.io-client";
 import DashSVG from "../../Icons/DashSVG";
@@ -7,6 +7,7 @@ import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
 import ldBar from '@loadingio/loading-bar';
+import * as d3 from 'd3';
 import Engine from "../../Icons/dashboard/Engine";
 import Battery from "../../Icons/dashboard/Battery";
 import Gas from "../../Icons/dashboard/Gas";
@@ -23,28 +24,32 @@ const Dash = ({...props}) => {
 
   const dispatch = useDispatch();
 
+
   const [speed, setSpeed] = useState(0);
-  const [engine, setEngine] = useState(0);
-  const [battery, setBattery] = useState(0);
-  const [gas, setGas] = useState(0);
-  const [lights, setLights] = useState(0);
-  const [oil, setOil] = useState(0);
+  const [engine, setEngine] = useState(null);
+  const [battery, setBattery] = useState(null);
+  const [gas, setGas] = useState(null);
+  const [lights, setLights] = useState(null);
+  const [oil, setOil] = useState(null);
   const [hidden, setHidden] = useState(false);
-  const [trunk, setTrunk] = useState(0);
+  const [trunk, setTrunk] = useState(null);
+  const [path, setPath] = useState("");
 
   const [status, setStatus] = useState("");
 
-  useEffect(() => {
-      setTimeout(() => {
-        if (speed == 0) {
-          socket.emit('get_speed')
-        }
-      }, 500)
+  // useEffect(() => {
+  //     setTimeout(() => {
+  //       if (speed == 0) {
+  //         socket.emit('get_speed')
+  //       }
+  //     }, 500)
+
+      // drawPath()
       // props.dataValue=speed
       console.log('SPEED IN effect',speed)
       // bar.setAttribute('data-value', 40)
 
-  }, [dispatch])
+  // }, [dispatch, speed])
   console.log('SPEED',speed)
 
   // const message = useSelector(state => state.ws.message);
@@ -68,7 +73,7 @@ const Dash = ({...props}) => {
       console.log('Connected to Front End YAY')
       setStatus('connected')
       // dispatch(webSocketActions.setMessage('connected'));
-      // socket.emit('get_speed')
+      socket.emit('get_speed')
   }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
@@ -93,7 +98,7 @@ const Dash = ({...props}) => {
       setHidden(false)
       setLights(battery)
     }
-    setSpeed(speed)
+    setSpeed(Math.ceil(0.1173 * speed))
   });
 
   // socket.on("engine", (data) => {
@@ -122,9 +127,22 @@ const turnOff = (e) => {
   // const icon = document.querySelector(`#${id}`)
 }
 
+const drawPath = () => {
+  let path = d3.path();
+  path.arc(0, 0, 40, 0, 2 * Math.PI)
+
+  d3.select('#loading-path')
+  .append('svg')
+  .attr('d', path)
+  .attr('fill', 'url(#linearColors)')
+  .attr('stroke', 'white')
+}
+
 
   return (
     <>
+    <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
+    <div id="loading-path"></div>
     <div className="warning-container">
       {engine &&
         <button id="engine" className="warnings" hidden={hidden} onClick={() => hidden ? setHidden(false):setHidden(true)}><Engine color="white"/></button>
@@ -146,9 +164,9 @@ const turnOff = (e) => {
     {/* <button className="engine"><img src={require('../../Icons/dashboard/Engine.js')}></img></button> */}
     {/* <input value={message} onChange={e => onChange(e)}></input>
     <button onClick={() => onClick()}>Send Message</button> */}
-      {/* <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
-      <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script> */}
-      {/* <script src="./dist/progressbar.min.js">{}</script> */}
+      <link rel="stylesheet" type="text/css" href="https://loadingio.github.io/loading-bar/dist/loading-bar.css"/>
+      <script src="https://loadingio.github.io/loading-bar/dist/loading-bar.js"></script>
+      <script src="./dist/progressbar.min.js">{}</script>
       <script type="text/javascript" src="loading-bar.js"></script>
       {/* <div className="ldBar"></div> */}
       {/* <link rel="stylesheet" type="text/css" href="loading-bar.css"/> */}
@@ -211,7 +229,7 @@ const turnOff = (e) => {
             data-stroke="data:ldbar/res,gradient(0,0,#e1ff16, #0bdfff)"
             data-stroke-width="20"
             data-max={98}
-            data-value={speed => speed}
+            data-value={20}
             >
         </div>
 
