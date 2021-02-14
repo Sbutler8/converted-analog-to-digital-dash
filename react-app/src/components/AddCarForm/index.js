@@ -106,7 +106,6 @@ const AddCarForm = ({setShowAddCarModal}) => {
         </form>
       </>
     );
-
 }
 
 export default AddCarForm;

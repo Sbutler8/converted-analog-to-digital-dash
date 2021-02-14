@@ -8,6 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.car_routes import car_routes
+from .api.code_routes import code_routes
 from .seeds import seed_commands
 from .config import Config
 from flask_socketio import SocketIO, emit, disconnect
@@ -38,6 +39,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(car_routes, url_prefix='/api/cars')
+app.register_blueprint(code_routes, url_prefix='/api/codes')
 
 db.init_app(app)
 Migrate(app, db)
@@ -85,48 +87,48 @@ def react_root(path):
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
 
-@app.route('/dash')
-@app.route('/map')
-@socketio.on('connect')
-def connected():
-    print('Connected')
-    time.sleep(2)
-    emit('connected')
-    # readData(Arduino(serial_port='COM4'))
+# @app.route('/dash')
+# @app.route('/map')
+# @socketio.on('connect')
+# def connected():
+#     print('Connected')
+#     time.sleep(2)
+#     emit('connected')
+#     # readData(Arduino(serial_port='COM4'))
+
+# # a = Arduino()
+# # # PIN = 12
+# # POTENTIOMETER = 'A0'
+# # a.set_pin_mode(PIN, 'O')
+# # a.set_pin_mode(POTENTIOMETER, 'O')
 
 # a = Arduino()
-# # PIN = 12
-# POTENTIOMETER = 'A0'
-# a.set_pin_mode(PIN, 'O')
-# a.set_pin_mode(POTENTIOMETER, 'O')
+# a.set_pin_mode('A0', 'O')
+# a.set_pin_mode('D11', 'O')
+# a.set_pin_mode('D8', 'O')
+# a.set_pin_mode('D9', 'O')
+# a.set_pin_mode('D10', 'O')
+# a.set_pin_mode('D13', 'O')
+# @socketio.on('get_speed')
+# def get_speed():
+#     print('Backend Here')
+#     # data = readData(Arduino())
+#     while True:
+#         a.conn.flushOutput()
+#         speed = a.analog_read('A1')
+#         engine = a.digital_read('D8')
+#         oil = a.digital_read('D9')
+#         gas = a.digital_read('D10')
+#         battery = a.digital_read('D13')
+#         lights = a.digital_read('D11')
 
-a = Arduino()
-a.set_pin_mode('A0', 'O')
-a.set_pin_mode('D11', 'O')
-a.set_pin_mode('D8', 'O')
-a.set_pin_mode('D9', 'O')
-a.set_pin_mode('D10', 'O')
-a.set_pin_mode('D13', 'O')
-@socketio.on('get_speed')
-def get_speed():
-    print('Backend Here')
-    # data = readData(Arduino())
-    while True:
-        a.conn.flushOutput()
-        speed = a.analog_read('A1')
-        engine = a.digital_read('D8')
-        oil = a.digital_read('D9')
-        gas = a.digital_read('D10')
-        battery = a.digital_read('D13')
-        lights = a.digital_read('D11')
+#         # data = a.analog_read(POTENTIOMETER)
 
-        # data = a.analog_read(POTENTIOMETER)
+#         # emit('engine', button)
+#         emit('getting_speed', {'speed':speed, 'engine':engine, 'oil':oil, 'gas':gas, 'battery':battery, 'lights':lights})
+#         time.sleep(0.5)
 
-        # emit('engine', button)
-        emit('getting_speed', {'speed':speed, 'engine':engine, 'oil':oil, 'gas':gas, 'battery':battery, 'lights':lights})
-        time.sleep(0.5)
-
-@socketio.on('client-disconnecting')
-def test_disconnect():
-    print('Client disconnected')
-    socketio.disconnect()
+# @socketio.on('client-disconnecting')
+# def test_disconnect():
+#     print('Client disconnected')
+#     socketio.disconnect()
