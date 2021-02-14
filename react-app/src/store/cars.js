@@ -1,5 +1,6 @@
 const GET_CARS = 'cars/getAllCars';
 const ADD_CAR = 'cars/addCar';
+const SET_CAR = 'cars/setCar';
 
 const getCars = (cars) => {
   return {
@@ -15,6 +16,13 @@ const addCar = (car) => {
   };
 };
 
+const setCar = (chosenCar) => {
+  return {
+    type: SET_CAR,
+    payload: chosenCar,
+  };
+};
+
 
 export const getAllCars = (userId) => async (dispatch) => {
   const response = await fetch(`/api/cars/${userId}`);
@@ -22,6 +30,14 @@ export const getAllCars = (userId) => async (dispatch) => {
 
   dispatch(getCars(data.cars));
   return data.users;
+};
+
+export const setChosenCar = (carId) => async (dispatch) => {
+  const response = await fetch(`/api/cars/user/${carId}`);
+  let data = await response.json()
+  console.log('DATA----->', data)
+  dispatch(setCar(data.chosenCar));
+  return data.chosenCar;
 };
 
 export const addNewCar = (car) => async (dispatch) => {
@@ -52,6 +68,8 @@ const carReducer = (state = initialState, action) => {
       return { ...state, cars: action.payload }
     case ADD_CAR:
       return {...state, [action.car]: action.car};
+    case SET_CAR:
+      return { ...state, chosenCar: action.payload }
     default:
       return state;
   }

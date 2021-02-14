@@ -24,6 +24,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    top:107px;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
     opacity: 0.89;
@@ -58,7 +59,7 @@
     opacity: 0.89;
     height: 423px;
     width: 320px;
-    margin-bottom:330px;
+    top:43px;
     border-radius: 10px;
     box-shadow: 0px 0px 80px 1px rgb(54 183 207)
   }
@@ -69,14 +70,14 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
+    background: rgb(132,7,238);
+background: linear-gradient(90deg, rgba(132,7,238,1) 0%, rgba(0,0,15,1) 100%, rgba(0,10,11,1) 100%);
     opacity: 0.89;
     height: 423px;
     width: 320px;
-    margin-bottom:330px;
+    top:35px;
     border-radius: 10px;
-    box-shadow: 0px 0px 80px 1px rgb(54 183 207)
+    box-shadow: 0px 0px 80px 1px rgba(132,7,238,1)
   }
 
   .profile-modal-no-content {

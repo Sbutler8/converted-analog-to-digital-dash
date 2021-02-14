@@ -8,10 +8,16 @@ from werkzeug.utils import secure_filename
 car_routes = Blueprint('cars', __name__)
 
 
-@car_routes.route('/<int:id>')
-def cars(id):
-    cars = Car.query.join(users_cars).join(User).filter(User.id == id).all()
+@car_routes.route('/<int:userId>')
+def cars(userId):
+    cars = Car.query.join(users_cars).join(User).filter(User.id == userId).all()
     return {"cars": [car.to_dict() for car in cars]}
+
+@car_routes.route('/user/<int:carId>')
+def setCar(carId):
+    car = Car.query.get(carId)
+    print('CAR----->', car)
+    return {"chosenCar": car.to_dict()}
 
 @car_routes.route('/entry/<int:id>', methods=['POST'])
 def add_car(id):

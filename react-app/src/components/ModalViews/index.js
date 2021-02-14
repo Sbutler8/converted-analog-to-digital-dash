@@ -2,25 +2,24 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal'
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
-import { Link } from 'react-router-dom';
 import ProfilePictures from '../ProfilePictures';
 import ChooseCar from '../ChooseCar';
 import AddCarForm from '../AddCarForm';
 
-function ModalViews() {
-    const [showProfileModal, setShowProfileModal] = useState(false);
+function ModalViews({showProfileModal, setShowProfileModal, showCarModal, setShowCarModal}) {
+    // const [showProfileModal, setShowProfileModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
-    const [showCarModal, setShowCarModal] = useState(false);
+    // const [showCarModal, setShowCarModal] = useState(false);
     const [showAddCarModal, setShowAddCarModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState({});
 
     return (
       <>
-        <Link id="login" to="/" onClick={() => {
+        {/* <Link id="login" to="/" onClick={() => {
           setShowProfileModal(true)
           }}>Login
-        </Link>
+        </Link> */}
 
         {showProfileModal && (
           <Modal onClose={() => setShowProfileModal(false)} name="profile">
@@ -34,7 +33,7 @@ function ModalViews() {
         )}
         {showCarModal &&  (
           <Modal onClose={() => setShowCarModal(false)} name="car">
-            <ChooseCar />
+            <ChooseCar setShowCarModal={setShowCarModal}/>
           </Modal>
         )}
         {showAddCarModal &&  (

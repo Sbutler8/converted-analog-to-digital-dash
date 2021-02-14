@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import * as d3 from 'd3';
 import './DashSVG.css';
 
+
 const DashSVG = ({...props}) => {
+
+  useEffect(() => {
+    // drawPath();
+  }, [])
+
+  const drawPath = () => {
+    let path = d3.path();
+    path.arc(0, 0, 40, 0, 2 * Math.PI)
+
+    d3.select('#loading-path')
+    .append('svg')
+    .attr('id', 'path')
+    .attr('d', path)
+    .attr('fill', 'white')
+    .attr('stroke', 'white')
+  }
   const SPEEDOMETERLENGTH = 1229.57;
 
     return (
    <>
+   <div id="loading-path"></div>
      <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

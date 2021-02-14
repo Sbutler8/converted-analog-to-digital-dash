@@ -1,8 +1,8 @@
 html {	background-color: #333333;
 }
 
-.svg {
-	position: absolute;
-	z-index: -1;
+/* .svg {
+	position: relative;
+	z-index: -2;
 	bottom: 50px;
-}
+} */

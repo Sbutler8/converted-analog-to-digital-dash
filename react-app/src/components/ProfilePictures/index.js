@@ -20,6 +20,10 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
         setShowLoginModal(true);
     }
 
+    // if (!user) {
+    //     return null;
+    // }
+
     return (
         <>
         <div id="profile-pic-header">Who's Driving?</div>
@@ -27,7 +31,7 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
             {users &&
             users.map((user) => {
                 return (
-                    <div key={user.id} className="button-container">
+                    <div key={user.id} className="profile-button-container">
                     <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() =>{ getClickedUser(user); setShowProfileModal(false)}}></button>
                     </div>
                 )

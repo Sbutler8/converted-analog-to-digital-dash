@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import GoogleMapReact from 'google-map-react';
-// import MapViewDirections from 'react-native-maps-directions';
 import Marker from '../Marker/index';
 import * as mapActions from "../../store/map";
 import MapAutoComplete from '../MapAutoComplete/index';
+import {
+  GoogleMap,
+  DirectionsRenderer,
+} from 'react-google-maps'
+import './Map.css';
 
 
 const Map = () => {
   const GOOGLE_MAP_API_KEY  = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+  const directionsService = new window.google.maps.DirectionsService();
+
+  const destination = { lat: 39.746315975073344, lng: -104.99017351161523 };
+
 
   const dispatch = useDispatch();
-  const [markerShown, setMarkerShown] = useState(false)
-  const [center, setCenter] = useState({lat: 39.73750267736547, lng: -104.98928358002577 });
-  const [addedMarkers, setAddedMarkers] = useState([{lat: 0, lng: 0 }]);
-  const [zoom, setZoom] = useState(4);
-  const user = useSelector((state) => state.session.user);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(mapActions.getAllJournalEntryPoints(user.id))
-    }
-  }, [dispatch, user]);
+  const [currentLocation, setCurrentLocation] = useState({})
+  const [center, setCenter] = useState({});
+  const [zoom, setZoom] = useState(15);
+  const [directions, setDirections] = useState("");
 
   const authenticate = useSelector((state) => state.session.authenticate);
-  const journalEntryCoordinates = useSelector((state) => state.map.coordinates);
-  console.log(journalEntryCoordinates);
+
+  const success = position => {
+    const currentLocation = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    }
+    setCurrentLocation(currentLocation);
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+    console.log(currentLocation)
+  }, [])
 
   if (!authenticate) {
     return null;
@@ -41,39 +53,43 @@ const Map = () => {
   };
 
 
-  const onMapClick = (e) => {
-    console.log('LATLONG----------->',e)
-    // isMarkerShown:true
-
-    return (<Marker
-            lat={e.lat}
-            lng={e.lng}
-            name="My Marker"
-            color="blue"
-          />)
+  const getDirections = () => {
+    directionsService.route(
+      {
+        origin: currentLocation,
+        destination: destination,
+        travelMode: window.google.maps.TravelMode.DRIVING
+      },
+      (result, status) => {
+        if (status === window.google.maps.DirectionsStatus.OK) {
+          setDirections({
+            directions: result,
+          });
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
+      }
+    );
   }
+
 
   return (
     <>
     <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script>
     <div className='wrapper'>
         <main className="main">
-          <div className="map" style={{ height: '284px', width: '440px', marginTop: '50px', marginLeft: '265px', overflow: 'hidden', borderRadius: '3%' }}>
+          <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
             <MapAutoComplete id="auto-complete"/>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-                defaultCenter={center}
+                defaultCenter={currentLocation}
                 defaultZoom={zoom}
-                onClick={() => setMarkerShown(true)}
                 options={getMapOptions}
                 >
-                <Marker
-                  lat={addedMarkers.lat}
-                  lng={addedMarkers.lng}
-                  name="My Marker"
-                  color="pink"
-                />
+                {directions && <DirectionsRenderer directions={getDirections()} />}
               </GoogleMapReact >
+              {currentLocation &&
+              <Marker position={currentLocation} style={{position:'absolute', zIndex:-12}}/>}
             </div>
         </main>
     </div>
