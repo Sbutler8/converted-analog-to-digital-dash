@@ -1,44 +1,34 @@
 const GET_CODE = 'cars/getCode';
 
-const getCode = (car) => {
+const getCode = (diagnostic) => {
   return {
     type: GET_CODE,
-    payload: car,
+    payload: diagnostic,
   };
 };
 
-export const getOBDCode = async (car) => {
+export const getOBDCode = (car) => async (dispatch) => {
 
-    const {carId, vin, mileage, code} = car;
-    const carObj = {carId, vin, mileage, code};
+    const {vin, code} = car;
 
-    const response = await fetch(`api/codes/${carId}/http://api.carmd.com/v3.0/diag?vin=${vin}&mileage=${mileage}&dtc=${code}`, {
+    const response = await fetch(`https://api.eu.apiconnect.ibmcloud.com/hella-ventures-car-diagnostic-api/api/v1/dtc?client_id=${process.env.REACT_APP_IBM_CLIENT_ID}&client_secret=${process.env.REACT_APP_IBM_CLIENT_SECRET}&code_id=${code}&vin=${vin}&language=EN`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        "authorization": process.env.AUTHORIZATION,
-        "partner-token": process.env.PARTNER_TOKEN,
+        "content-type": 'application/json',
       },
     });
-    return await response.json();
+    let data = await response.json();
+    console.log('OBD RESPONSE--->', data);
+    dispatch(getCode(data))
+    return data
   }
-
-
-// export const getOBDCode = (carId) => async (dispatch) => {
-//   const response = await fetch(`/api/codes/${carId}`);
-//   let data = await response.json()
-//   console.log('DATA----->', data)
-//   dispatch(setCar(data.chosenCar));
-//   return data.chosenCar;
-// };
-
 
 const initialState = {};
 
 const codeReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CODE:
-      return { ...state, cars: action.payload }
+      return { ...state, diagnostic: action.payload }
     default:
       return state;
   }

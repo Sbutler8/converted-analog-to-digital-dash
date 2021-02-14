@@ -7,69 +7,44 @@ const Codes = () => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
-    const [year, setYear] = useState("");
-    const [make, setMake] = useState("");
-    const [model, setModel] = useState("");
     const [vin, setVin] = useState("");
-    const [mileage, setMileage] = useState("");
     const [code, setCode] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(getOBDCode({year, make, model, vin, mileage }))
+        dispatch(getOBDCode({vin,code}))
     };
 
-    const car = useSelector(state => state.cars.chosenCar)
+    const car = useSelector(state => {
+        if (state.cars.chosenCar) {
+            return state.cars.chosenCar
+        }
+     })
 
     useEffect(() => {
         if (car) {
             setName(car.name);
-            setYear(car.year);
-            setMake(car.make);
-            setModel(car.model);
-            setVin(car.vin);
+            setVin(car.vin.slice(0,11));
         }
-    }, [dispatch, car])
+    }, [dispatch])
+
+    const diagnostic = useSelector(state => {
+        if (state.codes.diagnostic) {
+            return state.codes.diagnostic.dtc_data
+        }
+    });
 
     return (
         <>
             <div className="code-header">Code Lookup</div>
             <form onSubmit={handleSubmit}>
-            <div className="add-car-form" >
-                <label className="fields">Year</label>
-                <input
-                type="text"
-                name="year"
-                onChange={e => setYear(e.target.value)}
-                value={year}
-                ></input>
-                <label className="fields">Make</label>
-                <input
-                type="text"
-                name="make"
-                onChange={e => setMake(e.target.value)}
-                value={make}
-                ></input>
-                <label className="fields">Model</label>
-                <input
-                type="text"
-                name="model"
-                onChange={e => setModel(e.target.value)}
-                value={model}
-                ></input>
+            <div className="code-form" >
                 <label className="fields">Vin</label>
                 <input
                 type="text"
                 name="vin"
-                onChange={e => setVin(e.target.value)}
-                value={vin}
-                ></input>
-                <label className="fields">Mileage</label>
-                <input
-                type="text"
-                name="mileage"
-                onChange={e => setMileage(e.target.value)}
-                value={mileage}
+                onChange={e => setVin(e.target.value.slice(0,11))}
+                value={vin.slice(0,11)}
                 ></input>
                 <label className="fields">Code</label>
                 <input
@@ -79,8 +54,32 @@ const Codes = () => {
                 value={code}
                 ></input>
             </div>
-            <button id="submit-button" type="submit">What Is Wrong With {car.name}</button>
+            <button id="code-submit-button" type="submit">What Is Wrong With {name}?</button>
             </form>
+            <table className="code-table">
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Fault</th>
+                    </tr>
+                    {!diagnostic &&
+                        <tr>
+                            <th className="table-no-data">Car Looks Great!</th>
+                        </tr>
+                    }
+                </thead>
+                <tbody>
+                    {diagnostic &&
+                    <>
+                        <tr>
+                            <td className="table-data-row-system">{diagnostic.system}</td>
+                            <td className="table-data-row-fault">{diagnostic.fault}</td>
+                        </tr>
+                    </>
+                    }
+                    {}
+                </tbody>
+            </table>
         </>
     )
 }

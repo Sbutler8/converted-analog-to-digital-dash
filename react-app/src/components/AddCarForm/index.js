@@ -102,7 +102,7 @@ const AddCarForm = ({setShowAddCarModal}) => {
               value={vin}
             ></input>
           </div>
-          <button id="submit-button" type="submit">Sign Up</button>
+          <button id="submit-button" type="submit">Add Car</button>
         </form>
       </>
     );
