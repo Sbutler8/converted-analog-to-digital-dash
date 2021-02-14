@@ -32,6 +32,9 @@ input:hover {
     border-radius: 50%;
     padding: 4px 4px;
 }
+.custom-file-upload {
+    font-family: system-ui;
+}
 
 #signup-header {
     text-align: center;
@@ -40,7 +43,7 @@ input:hover {
     outline: none;
     border-radius: 50px;
     color: #fff;
-    text-transform: uppercase;
+    font-family: system-ui;
     font-size: 25px;
     margin: 5px;
     text-shadow: 0 0 3px #fff;
@@ -54,4 +57,9 @@ input:hover {
 
 input[type="file"] {
     display: none;
+}
+
+
+.text-input {
+    margin-right: 42px;
 }
