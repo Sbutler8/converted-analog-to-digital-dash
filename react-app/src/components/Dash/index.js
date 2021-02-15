@@ -45,10 +45,11 @@ const Dash = ({...props}) => {
 
 
   useEffect(() => {
+    socket.emit('get_speed')
 
       // drawPath()
       // props.dataValue=speed
-      console.log('SPEED IN effect',speed)
+    console.log('SPEED IN effect',speed)
       // bar.setAttribute('data-value', 40)
 
   }, [])
@@ -56,7 +57,6 @@ const Dash = ({...props}) => {
     socket.on("connected", () => {
       console.log('Connected to Front End YAY')
       setStatus('connected')
-      socket.emit('get_speed')
   }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
