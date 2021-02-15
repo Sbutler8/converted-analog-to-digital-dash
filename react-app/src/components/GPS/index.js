@@ -5,6 +5,7 @@ import MapSVG from '../../Icons/MapSVG';
 import Map from '../Map';
 import io from "socket.io-client"
 import './GPS.css';
+import { getCurrentWeather } from '../../store/weather';
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -16,6 +17,8 @@ const GPS = () => {
     useEffect(() => {
         socket.emit('get_speed')
     }, [])
+
+    // dispatch(getCurrentWeather);
 
     socket.on("getting_speed", ({speed}) => {
         setSpeed(Math.ceil(0.1173 * speed))
