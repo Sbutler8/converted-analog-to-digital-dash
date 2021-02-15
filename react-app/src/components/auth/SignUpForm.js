@@ -61,12 +61,12 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
   return (
     <>
     <div id="signup-header" >Sign up</div>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup-form">
       <img className="imgPreview" src={imgPreview} alt=''></img>
-      <label  className="custom-file-upload">CLICK HERE TO UPLOAD A PHOTO
+      <label  className="custom-file-upload">CLICK HERE TO UPLOAD A PROFILE PHOTO
           <input onChange={updateProfPic} type="file" name="user_file" />
       </label>
-      <div>
+      <div className="text-input">
         <input
           id="name"
           type="text"
@@ -76,7 +76,7 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
           value={name}
         ></input>
       </div>
-      <div>
+      <div className="text-input">
         <input
           id="email"
           type="text"
@@ -86,7 +86,7 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
           value={email}
         ></input>
       </div>
-      <div>
+      <div className="text-input">
         <input
           id="password"
           type="password"
@@ -96,7 +96,7 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
           value={password}
         ></input>
       </div>
-      <div>
+      <div className="text-input">
         <input
           id="repeatPassword"
           type="password"

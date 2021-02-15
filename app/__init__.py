@@ -8,6 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.car_routes import car_routes
+from .api.code_routes import code_routes
 from .seeds import seed_commands
 from .config import Config
 from flask_socketio import SocketIO, emit, disconnect
@@ -38,6 +39,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(car_routes, url_prefix='/api/cars')
+app.register_blueprint(code_routes, url_prefix='/api/codes')
 
 db.init_app(app)
 Migrate(app, db)
@@ -86,6 +88,7 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 @app.route('/dash')
+@app.route('/map')
 @socketio.on('connect')
 def connected():
     print('Connected')
@@ -128,4 +131,4 @@ def get_speed():
 @socketio.on('client-disconnecting')
 def test_disconnect():
     print('Client disconnected')
-    # socketio.disconnect()
+    socketio.disconnect()

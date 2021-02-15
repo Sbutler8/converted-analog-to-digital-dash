@@ -38,10 +38,10 @@ input:hover {
     border: none;
     outline: none;
     border-radius: 50px;
-    /* background: #8e2de2; */
+    background: #222223;
     color: #fff;
-    text-transform: uppercase;
+    font-family: system-ui;
     padding: 10px 0;
-    font-size: 10px;
+    font-size: 13px;
     margin: 5px;
 }

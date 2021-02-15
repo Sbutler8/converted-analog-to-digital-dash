@@ -60,10 +60,12 @@ const AddCarForm = ({setShowAddCarModal}) => {
       <>
         <div id="new-car-header" >Add A New Car</div>
         <img className="car-imgPreview" src={imgPreview} alt=''></img>
-        <label  className="custom-file-upload">CLICK HERE TO UPLOAD A PHOTO
+        <label  className="custom-file-upload">CLICK HERE TO UPLOAD A PHOTO OF YOUR CAR
           <input onChange={updateProfPic} type="file" name="user_file" />
         </label>
-        <form className="add-car-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <div className="add-car-form" >
+
             <label className="fields">Car Name (optional)</label>
             <input
               type="text"
@@ -99,11 +101,11 @@ const AddCarForm = ({setShowAddCarModal}) => {
               onChange={e => setVin(e.target.value)}
               value={vin}
             ></input>
-            <button id="submit-button" type="submit">Sign Up</button>
+          </div>
+          <button id="submit-button" type="submit">Add Car</button>
         </form>
       </>
     );
-
 }
 
 export default AddCarForm;

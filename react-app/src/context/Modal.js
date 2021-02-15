@@ -33,6 +33,7 @@ export function Modal({ onClose, children, name }) {
       <div
         className={name==="login" ? 'modal-content'
         :name==="signup" ? 'signup-modal-content'
+        :name==="addCar" ? 'addCar-modal-content'
         :name==="car" ? 'car-modal-content'
         :name==="profile" ? 'profile-modal-content':null}
       >

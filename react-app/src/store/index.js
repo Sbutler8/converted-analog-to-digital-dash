@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import carReducer from './cars';
 import mapReducer from './map';
+import codeReducer from './codes';
+import weatherReducer from './weather';
 import wsReducer from './websocket';
 
 const rootReducer = combineReducers({
@@ -10,6 +12,8 @@ const rootReducer = combineReducers({
   ws: wsReducer,
   cars: carReducer,
   map: mapReducer,
+  codes: codeReducer,
+  weather: weatherReducer,
 });
 
 let enhancer;

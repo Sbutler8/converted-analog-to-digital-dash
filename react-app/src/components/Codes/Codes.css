@@ -1,0 +1,74 @@
+.code-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 10px;
+}
+
+.code-header {
+    text-align: center;
+    font-family: system-ui;
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 0 3px #fff;
+    margin-top: 5px;
+}
+
+.code-table {
+    border: 3px solid rgba(255,255,255,0.6);
+}
+
+thead {
+    width: 100%;
+}
+
+thead > tr, tbody > tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:100%;
+}
+
+.code-table {
+    border-spacing: 0.5rem;
+    margin-left: 141px;
+    font-family: system-ui;
+    font-size: 23px;
+    color: white;
+    text-shadow: 0 0 3px #f7c613;
+    width: 600px;
+    box-shadow: 9px 9px 15px 20px #ccc
+}
+
+.table-no-data {
+    font-size: 30px;
+    color: rgb(1, 250, 55);
+}
+
+.table-data-row-system {
+    font-size: 18px;
+    color: rgb(250, 246, 1);
+    text-shadow: 0 0 5px rgb(250, 246, 1);
+}
+
+.table-data-row-fault {
+    font-size: 18px;
+    color: rgb(250, 1, 1);
+    text-shadow: 0 0 5px rgb(250, 1, 1);
+}
+
+
+#code-submit-button {
+    text-align: center;
+    width: 30%;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background: #fff;
+    color: rgb(8, 1, 1);
+    font-family: system-ui;
+    padding: 10px 0;
+    font-size: 13px;
+    margin: 20px 0 ;
+}

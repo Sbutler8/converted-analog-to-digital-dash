@@ -17,7 +17,6 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   useEffect(() => {
     setEmail(selectedUser.email)
-    console.log('EMAIL', email)
   },[dispatch])
 
   const onLogin = async (e) => {
