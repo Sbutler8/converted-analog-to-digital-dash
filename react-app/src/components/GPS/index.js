@@ -18,6 +18,10 @@ const GPS = () => {
         socket.emit('get_speed')
     }, [])
 
+    // if (speed == 0) {
+    //     socket.emit('get_speed')
+    // }
+
     // dispatch(getCurrentWeather);
 
     socket.on("getting_speed", ({speed}) => {

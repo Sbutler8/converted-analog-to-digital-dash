@@ -89,3 +89,14 @@
     0px 0 20px rgb(248, 250, 247),        /* outer left magenta */
     0px 0 30px rgb(255, 38, 0);
 }
+
+#loading-path {
+  position: absolute;
+  z-index: -1;
+}
+
+#svg-container {
+  position: absolute;
+  z-index: 1;
+  overflow: visible;
+}
