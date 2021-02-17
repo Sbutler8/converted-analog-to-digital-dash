@@ -44,22 +44,19 @@ const Dash = ({...props}) => {
 
 
   useEffect(() => {
-    socket.emit('get_speed')
 
-      drawPath()
-      // props.dataValue=speed
+    drawPath(speed)
     console.log('SPEED IN effect',speed)
-      // bar.setAttribute('data-value', 40)
+  }, [speed])
 
-  }, [])
-
-    socket.on("connected", () => {
-      console.log('Connected to Front End YAY')
-      setStatus('connected')
+  socket.on("connected", () => {
+    console.log('Connected to Front End YAY')
+    socket.emit('get_speed')
+    setStatus('connected')
   }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
-    // console.log('Getting_Speed Front End YAY: ', speed, engine, oil, gas, battery, lights)
+
     if (engine == 1) {
       setEngineHidden(false)
       setEngine(engine)
@@ -80,7 +77,7 @@ const Dash = ({...props}) => {
       setLightsHidden(false)
       setLights(battery)
     }
-    setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 120 mph
+    setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 100 mph
   });
 
 const turnOff = (e) => {
@@ -88,14 +85,16 @@ const turnOff = (e) => {
   // const icon = document.querySelector(`#${id}`)
 }
 
-const drawPath = () => {
+const drawPath = (speed) => {
   let path = d3.path();
-  path.arc(402,230, 118,132*(Math.PI/180), 48*(Math.PI/180));
+
+  path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485);
 
   d3.select('#loading-path')
   .append('svg')
   .attr('id', 'svg-container')
   .append('path')
+  .attr('transform', 'rotate(131)')
   .attr('d', path)
   .attr('id', 'svg-path')
   .attr('stroke-width', '25px')
