@@ -1,0 +1,17 @@
+.fa-arrow-circle-left {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    z-index: 1;
+    margin: 5px;
+    color: #3e3c3c;
+    font-size: 40px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 0 rgb(0 0 0 / 14%);
+}
+
+.WD {
+    margin: 10px 0;
+    width: 480px;
+    border-radius: 5px;
+}

@@ -15,6 +15,7 @@ var socket = io.connect(`${endPoint}`);
 const Dash = () => {
   let path = d3.path();
 
+
   const [speed, setSpeed] = useState(0);
   const [engine, setEngine] = useState(null);
   const [battery, setBattery] = useState(null);

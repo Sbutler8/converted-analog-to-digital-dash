@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import About from '../About/index';
+import { Modal } from '../../context/Modal';
 import Slider from "react-slick";
 import io from "socket.io-client";
 import "slick-carousel/slick/slick.css";
@@ -10,15 +12,13 @@ let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const Home = () => {
-    const dispatch = useDispatch();
+    const [showAbout, setShowAbout] = useState(true);
+
     socket.on("connected", () => {
         console.log('Connected to Front End YAY')
         socket.emit('lient-disconnecting');
     }, [socket]);
 
-    // useEffect(() => {
-    //     dispatch(sessionActions.getAllUsers())
-    // }, [dispatch])
 
     const carImages = ['https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
@@ -45,6 +45,7 @@ const Home = () => {
 
     return (
         <>
+        <i class="fas fa-info-circle" onClick={() => showAbout ? setShowAbout(false):setShowAbout(true)}></i>
         <Slider {...settings} className="carousel">
         {carImages.map(img => {
             return (
@@ -58,6 +59,11 @@ const Home = () => {
             )
         })}
     </Slider>
+    {showAbout &&
+        <Modal onClose={() => setShowAbout(false)} name="about">
+            <About showAbout={showAbout} setShowAbout={setShowAbout}/>
+        </Modal>
+    }
     </>
 
     )
