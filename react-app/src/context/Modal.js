@@ -35,6 +35,7 @@ export function Modal({ onClose, children, name }) {
         :name==="signup" ? 'signup-modal-content'
         :name==="addCar" ? 'addCar-modal-content'
         :name==="car" ? 'car-modal-content'
+        :name==="about" ? 'about-modal-content'
         :name==="profile" ? 'profile-modal-content':null}
       >
         {children}

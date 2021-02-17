@@ -1,12 +1,7 @@
 import React, { useEffect, useState, useRef, useDebugValue } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import socketIOClient from "socket.io-client";
 import DashSVG from "../../Icons/DashSVG";
-import * as sessionActions from '../../store/session'
-import * as webSocketActions from '../../store/websocket'
 import './Dash.css'
 import io from "socket.io-client"
-import ldBar from '@loadingio/loading-bar';
 import * as d3 from 'd3';
 import Engine from "../../Icons/dashboard/Engine";
 import Battery from "../../Icons/dashboard/Battery";
@@ -17,11 +12,8 @@ import Oil from "../../Icons/dashboard/Oil";
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
-const Dash = ({...props}) => {
-  const ProgressBar = require('progressbar.js')
-  // const ldBar = require('react-loading-io');
-
-  const dispatch = useDispatch();
+const Dash = () => {
+  let path = d3.path();
 
 
   const [speed, setSpeed] = useState(0);
@@ -38,28 +30,17 @@ const Dash = ({...props}) => {
   const [lightsHidden, setLightsHidden] = useState(true);
   const [oilHidden, setOilHidden] = useState(true);
 
-  const [path, setPath] = useState("");
-
+  let [pathArc, setPathArc] = useState(path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485));
   const [status, setStatus] = useState("");
 
-
-  useEffect(() => {
+  socket.on("connected", () => {
+    console.log('Connected to Front End YAY')
     socket.emit('get_speed')
-
-      drawPath()
-      // props.dataValue=speed
-    console.log('SPEED IN effect',speed)
-      // bar.setAttribute('data-value', 40)
-
-  }, [])
-
-    socket.on("connected", () => {
-      console.log('Connected to Front End YAY')
-      setStatus('connected')
+    setStatus('connected')
   }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
-    // console.log('Getting_Speed Front End YAY: ', speed, engine, oil, gas, battery, lights)
+
     if (engine == 1) {
       setEngineHidden(false)
       setEngine(engine)
@@ -80,34 +61,17 @@ const Dash = ({...props}) => {
       setLightsHidden(false)
       setLights(battery)
     }
-    setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 120 mph
+    setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 100 mph
   });
-
-const turnOff = (e) => {
-  console.log(e)
-  // const icon = document.querySelector(`#${id}`)
-}
-
-const drawPath = () => {
-  let path = d3.path();
-  path.arc(402,230, 118,132*(Math.PI/180), 48*(Math.PI/180));
-
-  d3.select('#loading-path')
-  .append('svg')
-  .attr('id', 'svg-container')
-  .append('path')
-  .attr('d', path)
-  .attr('id', 'svg-path')
-  .attr('stroke-width', '25px')
-  .attr('fill', 'none')
-  .attr('stroke', 'url(#linearColors)')
-}
-
 
   return (
     <>
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
-    <div id="loading-path"></div>
+    <div id="loading-path">
+    <svg id="svg-container">
+      <path id="svg-path" transform={'rotate(131)'} d={path}></path>
+    </svg>
+    </div>
     <div className="warning-container">
       {engine &&
         <button id="engine" className="warnings" hidden={engineHidden} onClick={() => engineHidden ? setEngineHidden(false):setEngineHidden(true)}><Engine color="white"/></button>

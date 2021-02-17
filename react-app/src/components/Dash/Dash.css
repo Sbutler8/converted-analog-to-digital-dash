@@ -100,3 +100,9 @@
   z-index: 1;
   overflow: visible;
 }
+
+#svg-path {
+  stroke-width: 35px;
+  stroke: url(#linearColors);
+  fill: none;
+}

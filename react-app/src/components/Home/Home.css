@@ -51,7 +51,17 @@ html,body {
 .category {
     font-size: 18px;
     color: #333;
-    margin-left: 15px;;
+    margin-left: 15px;
+}
+
+.fa-info-circle {
+    position: absolute;
+    z-index: 1;
+    margin: 5px;
+    color: #EEEEEE;
+    font-size: 40px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 0 rgb(0 0 0 / 14%);
 }
 
 #pictureText {
