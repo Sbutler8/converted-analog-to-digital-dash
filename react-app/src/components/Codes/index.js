@@ -54,7 +54,13 @@ const Codes = () => {
                 value={code}
                 ></input>
             </div>
-            <button id="code-submit-button" type="submit">What Is Wrong With {name}?</button>
+            {car &&
+                <button id="code-submit-button" type="submit">What Is Wrong With {name}?</button>
+            }
+            {!car &&
+                <button id="code-submit-button" type="submit">What Is Wrong With My Car?</button>
+
+            }
             </form>
             <table className="code-table">
                 <thead>
