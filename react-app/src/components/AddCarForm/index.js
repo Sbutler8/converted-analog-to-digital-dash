@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewCar } from "../../store/cars";
 import { setPic } from "../../store/session";
 import './AddCarForm.css'
-
-// if (authenticated) {
-//     return <Redirect to="/" />;
-//   }
 
 const AddCarForm = ({setShowAddCarModal}) => {
   const dispatch = useDispatch();

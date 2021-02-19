@@ -1,5 +1,4 @@
 import React from "react"
-import Map from "../components/Map";
 import './MapSVG.css';
 
 const MapSVG= (props) => {

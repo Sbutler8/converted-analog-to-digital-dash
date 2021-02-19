@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import GoogleMapReact from 'google-map-react';
 import Marker from '../Marker/index';
-import * as mapActions from "../../store/map";
 import MapAutoComplete from '../MapAutoComplete/index';
 import {
-  GoogleMap,
   DirectionsRenderer,
 } from 'react-google-maps'
 import './Map.css';
@@ -17,10 +15,7 @@ const Map = () => {
 
   const destination = { lat: 39.746315975073344, lng: -104.99017351161523 };
 
-
-  const dispatch = useDispatch();
   const [currentLocation, setCurrentLocation] = useState({})
-  const [center, setCenter] = useState({});
   const [zoom, setZoom] = useState(15);
   const [directions, setDirections] = useState("");
 
@@ -37,7 +32,7 @@ const Map = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
     console.log(currentLocation)
-  }, [])
+  }, [currentLocation])
 
   if (!authenticate) {
     return null;
@@ -75,14 +70,15 @@ const Map = () => {
 
   return (
     <>
-    <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script>
+
+    {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script> */}
     <div className='wrapper'>
         <main className="main">
           <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
             <MapAutoComplete id="auto-complete"/>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-                defaultCenter={currentLocation}
+                defaultCenter={{lat: 39.780352, lng: -104.8772608}}
                 defaultZoom={zoom}
                 options={getMapOptions}
                 >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session'
 import './ProfilePictureModal.css';
@@ -7,7 +7,6 @@ import './ProfilePictureModal.css';
 
 const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUser, setShowSignupModal}) => {
     const dispatch = useDispatch();
-    const [loginModal, setLoginModal] = useState(false);
 
     useEffect(() => {
         dispatch(sessionActions.getAllUsers());
@@ -19,10 +18,6 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
         setSelectedUser(user);
         setShowLoginModal(true);
     }
-
-    // if (!user) {
-    //     return null;
-    // }
 
     return (
         <>

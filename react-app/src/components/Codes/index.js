@@ -26,7 +26,7 @@ const Codes = () => {
             setName(car.name);
             setVin(car.vin.slice(0,11));
         }
-    }, [dispatch])
+    }, [dispatch, car])
 
     const diagnostic = useSelector(state => {
         if (state.codes.diagnostic) {

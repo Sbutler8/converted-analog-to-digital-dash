@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import About from '../About/index';
 import { Modal } from '../../context/Modal';
 import Slider from "react-slick";
@@ -45,7 +44,7 @@ const Home = () => {
 
     return (
         <>
-        <i class="fas fa-info-circle" onClick={() => showAbout ? setShowAbout(false):setShowAbout(true)}></i>
+        <i className="fas fa-info-circle" onClick={() => showAbout ? setShowAbout(false):setShowAbout(true)}></i>
         <Slider {...settings} className="carousel">
         {carImages.map(img => {
             return (

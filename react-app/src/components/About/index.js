@@ -13,7 +13,7 @@ const About = ({showAbout, setShowAbout}) => {
             <>
                 <div className="about-header">About</div>
                 <p className="about-body">This application is for users who love the latest and greatest trends in today's automotive industry. I have had a dream of converting my old 1988 Mazda's analog dashboard into a digital touch screen. This app is meant to mimic the conversion of an older cars analog dashboard to that of a newer digital dashboard. In order to do so realistically one would connect a raspberryPi and Arduino to the On Board Diagnostics (OBD) Port in their car via serial cable. Nearly every car made after 1996 has an OBD2 port which can send parameter IDs, making it possible to extract human-readable data from your car such as speed, RPM, throttle position, and much more.</p>
-                <i class="fas fa-arrow-circle-right" onClick={() => {setShowAbout2(true)}}></i>
+                <i className="fas fa-arrow-circle-right" onClick={() => {setShowAbout2(true)}}></i>
                 <br></br>
                 <br></br>
                 <br></br>

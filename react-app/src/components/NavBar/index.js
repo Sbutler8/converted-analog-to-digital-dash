@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ModalViews from '../ModalViews'
-import SignUpFormModal from '../SignUpFormModal';
-import LogoutButton from '../auth/LogoutButton';
-import ProtectedRoute from '../auth/ProtectedRoute';
 import { useDispatch } from 'react-redux';
-import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from '../../store/session'
 import { Link } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
@@ -14,37 +10,17 @@ import './NavBar.css';
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const authenticate = useSelector((state) => state.session.authenticate);
   const user = useSelector((state) => state.session.user);
 
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showCarModal, setShowCarModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
-  // const [showCarModal, setShowCarModal] = useState(false);
-  const [showAddCarModal, setShowAddCarModal] = useState(false);
   const [showGPSPermissionModal, setShowGPSPermissionModal] = useState(false);
 
   const handleLogout = () => {
     dispatch(sessionActions.logout());
 
-  }
-
-  const redirect = () => {
-    if (user.gps_permission) {
-      history.push('/map')
-    } else {
-      console.log('HERE')
-      if (showGPSPermissionModal) {
-        return (
-          <Modal id="gps-modal" onClose={() => setShowGPSPermissionModal(false)} name="gps">
-              <GPSPermission />
-          </Modal>
-        )
-      }
-    }
   }
 
   return (
@@ -58,17 +34,17 @@ const NavBar = () => {
           </label>
           {authenticate &&
           <>
-            <Link className="menu-item blue" to="/" onClick={() => handleLogout()} to=''><i className="fas fa-sign-out-alt"></i></Link>
+            <Link className="menu-item blue" to="/" onClick={() => handleLogout()}><i className="fas fa-sign-out-alt"></i></Link>
             <Link className="menu-item red" to="/dash" ><i className="fas fa-tachometer-alt"></i></Link>
             {user.gps_permission &&
               <Link className="menu-item purple" to="/map" ><i className="fas fa-map-marked-alt"></i></Link>
             }
             {!user.gps_permission &&
-              <Link className="menu-item purple" onClick={() => setShowGPSPermissionModal(true)}><i className="fas fa-map-marked-alt"></i></Link>
+              <Link className="menu-item purple" to="" onClick={() => setShowGPSPermissionModal(true)}><i className="fas fa-map-marked-alt"></i></Link>
             }
             {showGPSPermissionModal &&
             <Modal id="gps-modal" onClose={() => setShowGPSPermissionModal(false)} name="gps">
-              <GPSPermission />
+              <GPSPermission setShowGPSPermissionModal={setShowGPSPermissionModal}/>
             </Modal>
             }
             <Link className="menu-item orange" to="" onClick={() => {setShowCarModal(true)}} ><i className="fas fa-car"></i></Link>
