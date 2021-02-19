@@ -1,0 +1,61 @@
+.fa-exclamation-triangle {
+    color: red;
+    font-size: 30px;
+}
+
+.gps-warning-container {
+    font-family: system-ui;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.warning-text {
+    margin: 0 12px;
+}
+
+.toggle {
+    position : relative ;
+    display : inline-block;
+    width: 57px;
+    height: 20px;
+    background-color: red;
+    border-radius: 30px;
+    border: 2px solid gray;
+}
+
+.toggle:after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: gray;
+    top: 1px;
+    left: 1px;
+    transition:  all 0.3s;
+}
+
+.checkbox:checked + .toggle::after {
+    left : 38px;
+}
+
+.checkbox:checked + .toggle {
+    background-color: limegreen;
+}
+
+.checkbox {
+    display : none;
+}
+
+.gps-submit-button {
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    background: #222223;
+    color: #fff;
+    width: 50px;
+    height: 20px;
+}

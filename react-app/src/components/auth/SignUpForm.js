@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from '../../store/session'
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { useDispatch} from "react-redux";
 import { setPic } from "../../store/session";
 import { addNewUser } from '../../store/session'
-import * as sessionActions from "../../store/session";
-import { signUp } from '../../services/auth';
 
 import './SignUpForm.css'
 
 const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => {
   const dispatch = useDispatch()
-  const history = useHistory();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

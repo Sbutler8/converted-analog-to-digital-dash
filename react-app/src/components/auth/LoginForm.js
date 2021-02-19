@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
 
@@ -8,8 +7,6 @@ import './LoginFormModal.css'
 const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   const dispatch = useDispatch();
-  const history = useHistory();
-  const authenticate = useSelector((state) => state.session.authenticate);
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -17,7 +14,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   useEffect(() => {
     setEmail(selectedUser.email)
-  },[dispatch])
+  },[dispatch, selectedUser.email])
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -26,20 +23,11 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
     dispatch(sessionActions.login({email, password}))
     setShowLoginModal(false)
     setShowCarModal(true)
-    // if (!authenticate) history.push('/cars');
-
   };
-
-
-  if (authenticate) {
-    // return <Redirect to="/" />;
-    // setShowCarModal(true)
-  }
 
 
   return (
     <>
-    {/* <div id="header">Welcome back {user.name}</div> */}
     <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="form" onSubmit={onLogin}>
         <div>

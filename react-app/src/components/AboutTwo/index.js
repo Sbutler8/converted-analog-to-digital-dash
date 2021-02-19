@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './AboutTwo.css'
 
 const AboutTwo = ({showAbout2, setShowAbout, setShowAbout2}) => {
@@ -8,8 +8,7 @@ const AboutTwo = ({showAbout2, setShowAbout, setShowAbout2}) => {
             {showAbout2 &&
             <>
                  <i class="fas fa-arrow-circle-left" onClick={() => {setShowAbout(true); setShowAbout2(false)}}></i>
-                <img src="./WD.png" className="WD"></img>
-
+                <img src="./WD.png" className="WD" alt=""></img>
             </>
             }
         </>

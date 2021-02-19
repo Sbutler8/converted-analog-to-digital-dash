@@ -10,8 +10,6 @@ import ChooseDash from "./components/ChooseDash";
 import AddCarForm from "./components/AddCarForm";
 import GPS from "./components/GPS";
 import Codes from "./components/Codes";
-import io from "socket.io-client"
-
 
 function App() {
 

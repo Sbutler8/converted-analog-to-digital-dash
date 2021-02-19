@@ -1,7 +1,6 @@
 const SET_DATA = 'session/setData';
 const ADD_DATA = 'session/addData';
 const END_DATA = 'session/addEndData'
-const REMOVE_POINT = 'session/removePoint';
 
 const setData = (journal_entry) => {
   return {
@@ -25,10 +24,6 @@ const addEndData = (endpoint_lat, endpoint_lon) => {
     endpoint_lon
   }
 }
-
-const removePoint = () => ({
-  type: REMOVE_POINT
-});
 
 export const getAllJournalEntryPoints = (userId) => async dispatch => {
     const response = await fetch(`/api/map/${userId}`);

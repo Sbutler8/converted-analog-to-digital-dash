@@ -103,11 +103,27 @@ background: linear-gradient(90deg, rgba(132,7,238,1) 0%, rgba(0,0,15,1) 100%, rg
     align-items: center;
     position: absolute;
     background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,251,1) 0%, rgba(152,153,154,1) 100%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,251,1) 0%, rgba(152,153,154,1) 100%);
     height: 450px;
     width: 640px;
     top: 20px;
     left: 60px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 80px 1px rgba(152,153,154,1)
+  }
+
+  .gps-modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 200px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(251,251,251,1) 0%, rgba(152,153,154,1) 100%);
+    height: 66px;
+    width: 727px;
+    left: 42px;
     border-radius: 10px;
     box-shadow: 0px 0px 80px 1px rgba(152,153,154,1)
   }
