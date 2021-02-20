@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashSVG from "../../Icons/DashSVG";
 import './Dash.css'
 import io from "socket.io-client"
@@ -15,15 +15,25 @@ var socket = io.connect(`${endPoint}`);
 const Dash = () => {
   let path = d3.path();
 
-
   const [speed, setSpeed] = useState(0);
   const [engineHidden, setEngineHidden] = useState(true);
   const [batteryHidden, setBatteryHidden] = useState(true);
   const [gasHidden, setGasHidden] = useState(true);
   const [lightsHidden, setLightsHidden] = useState(true);
   const [oilHidden, setOilHidden] = useState(true);
+  const [toggle, setToggle] = useState(false)
 
   let [pathArc, setPathArc] = useState(path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485));
+
+
+  useEffect(() => {
+    if (!toggle) {
+      setSpeed(0);
+      socket.disconnect()
+    } else {
+      socket.connect()
+    }
+  }, [toggle])
 
   socket.on("connected", () => {
     console.log('Connected to Front End YAY')
@@ -53,6 +63,10 @@ const Dash = () => {
   return (
     <>
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
+    <div className="toggle-arduino-container">
+        <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
+        <label for="switch" className="toggle"></label>
+    </div>
     <div id="loading-path">
     <svg id="svg-container">
       <path id="svg-path" transform={'rotate(131)'} d={path}></path>
