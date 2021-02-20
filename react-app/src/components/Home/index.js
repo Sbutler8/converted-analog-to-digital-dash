@@ -6,6 +6,7 @@ import io from "socket.io-client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Home.css'
+import { useSelector } from 'react-redux';
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -13,11 +14,11 @@ var socket = io.connect(`${endPoint}`);
 const Home = () => {
 
     const [showAbout, setShowAbout] = useState(true);
+    const user = useSelector(state => state.session.user)
 
     socket.on("connected", () => {
-        console.log('Connected to Front End YAY')
-        socket.emit('lient-disconnecting');
-    }, [socket]);
+        socket.disconnect();
+    }, []);
 
 
     const carImages = ['https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
@@ -59,7 +60,7 @@ const Home = () => {
             )
         })}
     </Slider>
-    {showAbout &&
+    {showAbout && !user &&
         <Modal onClose={() => setShowAbout(false)} name="about">
             <About showAbout={showAbout} setShowAbout={setShowAbout}/>
         </Modal>

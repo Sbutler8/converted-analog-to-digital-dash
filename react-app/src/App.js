@@ -21,10 +21,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    socket.disconnect()
-  })
-
-  useEffect(() => {
       dispatch(sessionActions.authenticate())
       setLoaded(true);
   }, [dispatch]);

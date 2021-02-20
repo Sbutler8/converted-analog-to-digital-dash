@@ -25,6 +25,15 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
     setShowCarModal(true)
   };
 
+  const getPassword = () => {
+    if (email === 'demo@demo.com') {
+      // setPassword('password');
+      return 'password';
+    } else {
+      return password;
+    }
+  }
+
 
   return (
     <>
@@ -49,13 +58,13 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
             name="password"
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={getPassword()}
+            onChange={(e) => email === 'demo@demo.com' ? setPassword('password'):setPassword(e.target.value)}
           />
         </div>
 
           <button id="submit-button" type="submit">Login</button>
-      
+
       </form>
     </>
   );
