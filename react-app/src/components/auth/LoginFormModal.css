@@ -1,8 +1,9 @@
-.form {
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-right: 40px;
 }
 
 label {
@@ -34,7 +35,7 @@ input:hover {
 
 #submit-button {
     text-align: center;
-    width: 30%;
+    width: 70px;
     border: none;
     outline: none;
     border-radius: 50px;

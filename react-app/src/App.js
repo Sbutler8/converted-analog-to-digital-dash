@@ -10,11 +10,19 @@ import ChooseDash from "./components/ChooseDash";
 import AddCarForm from "./components/AddCarForm";
 import GPS from "./components/GPS";
 import Codes from "./components/Codes";
+import io from "socket.io-client"
+
+let endPoint = process.env.REACT_APP_BASE_URL;
+var socket = io.connect(`${endPoint}`);
 
 function App() {
 
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    socket.disconnect()
+  })
 
   useEffect(() => {
       dispatch(sessionActions.authenticate())

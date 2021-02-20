@@ -16,7 +16,7 @@
     margin: 0 12px;
 }
 
-.toggle {
+.gps-toggle {
     position : relative ;
     display : inline-block;
     width: 57px;
@@ -26,7 +26,7 @@
     border: 2px solid gray;
 }
 
-.toggle:after {
+.gps-toggle:after {
     content: '';
     position: absolute;
     width: 18px;
@@ -38,11 +38,11 @@
     transition:  all 0.3s;
 }
 
-.checkbox:checked + .toggle::after {
+.checkbox:checked + .gps-toggle::after {
     left : 38px;
 }
 
-.checkbox:checked + .toggle {
+.checkbox:checked + .gps-toggle {
     background-color: limegreen;
 }
 

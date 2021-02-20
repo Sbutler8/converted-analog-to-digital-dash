@@ -87,8 +87,8 @@ def react_root(path):
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
 
-@app.route('/dash')
-@app.route('/map')
+# @app.route('/dash')
+# @app.route('/map')
 @socketio.on('connect')
 def connected():
     print('Connected')

@@ -73,8 +73,11 @@
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
     opacity: 0.89;
-    height: 423px;
-    width: 320px;
+    height: -webkit-fill-available;
+    max-height: 423px;
+    max-width: ;
+    width: -webkit-fill-available;
+    max-width: 400px;
     top:43px;
     border-radius: 10px;
     box-shadow: 0px 0px 80px 1px rgb(54 183 207)
