@@ -125,7 +125,8 @@ def get_speed():
         # data = a.analog_read(POTENTIOMETER)
 
         # emit('engine', button)
-        emit('getting_speed', {'speed':speed, 'engine':engine, 'oil':oil, 'gas':gas, 'battery':battery, 'lights':lights})
+        print(engine, oil, gas, battery, lights)
+        emit('getting_speed', {'speed':speed, 'engine':engine, 'oil':oil, 'gas':gas, 'battery':battery, 'lights':lights}, broadcast=True)
         time.sleep(0.5)
 
 @socketio.on('client-disconnecting')
