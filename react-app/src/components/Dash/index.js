@@ -33,13 +33,14 @@ const Dash = () => {
       socket.disconnect()
     } else {
       socket.connect()
+      socket.emit('get_speed')
     }
   }, [toggle])
 
-  socket.on("connected", () => {
-    console.log('Connected to Front End YAY')
-    socket.emit('get_speed')
-  }, [socket]);
+  // socket.on("connected", () => {
+  //   console.log('Connected to Front End YAY')
+  //   socket.emit('get_speed')
+  // }, [socket]);
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
 
@@ -66,7 +67,7 @@ const Dash = () => {
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
     <div className="toggle-arduino-container">
         <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
-        <label for="switch" className="toggle"></label>
+        <label htmlFor="switch" className="toggle"></label>
     </div>
     <div id="loading-path">
     <svg id="svg-container">
@@ -103,9 +104,12 @@ const Dash = () => {
         </defs>
     </svg>
     {!toggle &&
-      <div class="speed-slide-container">
-        <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
-      </div>
+      <>
+        <div className="speed-slide-container">
+          <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
+        </div>
+        <div>Send one of the following warnings</div>
+      </>
     }
 
     </>
