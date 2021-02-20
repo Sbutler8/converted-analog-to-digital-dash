@@ -11,6 +11,7 @@ let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const Home = () => {
+
     const [showAbout, setShowAbout] = useState(true);
 
     socket.on("connected", () => {

@@ -17,12 +17,6 @@ const Dash = () => {
 
 
   const [speed, setSpeed] = useState(0);
-  const [engine, setEngine] = useState(null);
-  const [battery, setBattery] = useState(null);
-  const [gas, setGas] = useState(null);
-  const [lights, setLights] = useState(null);
-  const [oil, setOil] = useState(null);
-
   const [engineHidden, setEngineHidden] = useState(true);
   const [batteryHidden, setBatteryHidden] = useState(true);
   const [gasHidden, setGasHidden] = useState(true);
@@ -38,25 +32,20 @@ const Dash = () => {
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
 
-    if (engine === 1) {
+    if (engine == 1) {
       setEngineHidden(false)
-      setEngine(engine)
     }
-    if (oil === 1) {
+    if (oil == 1) {
       setOilHidden(false)
-      setOil(oil)
     }
-    if (gas === 1) {
+    if (gas == 1) {
       setGasHidden(false)
-      setGas(gas)
     }
-    if (battery === 1) {
+    if (battery == 1) {
       setBatteryHidden(false)
-      setBattery(battery)
     }
-    if (lights === 1) {
+    if (lights == 1) {
       setLightsHidden(false)
-      setLights(battery)
     }
     setSpeed(Math.ceil(0.1173 * speed)) //set max speed to 100 mph
   });
@@ -70,21 +59,12 @@ const Dash = () => {
     </svg>
     </div>
     <div className="warning-container">
-      {engine &&
+
         <button id="engine" className="warnings" hidden={engineHidden} onClick={() => engineHidden ? setEngineHidden(false):setEngineHidden(true)}><Engine color="white"/></button>
-      }
-      {oil &&
         <button id="oil" className="warnings"  hidden={oilHidden} onClick={() => oilHidden ? setOilHidden(false):setOilHidden(true)}><Oil color="white"/></button>
-      }
-      {gas &&
         <button id="gas" className="warnings" hidden={gasHidden}  onClick={() => gasHidden ? setGasHidden(false):setGasHidden(true)}><Gas color="white"/></button>
-      }
-      {battery &&
         <button id="battery" className="warnings" hidden={batteryHidden}  onClick={() => batteryHidden ? setBatteryHidden(false):setBatteryHidden(true)}><Battery color="white"/></button>
-      }
-      {lights &&
         <button id="lights" className="warnings" hidden={lightsHidden}  onClick={() => lightsHidden ? setLightsHidden(false):setLightsHidden(true)}><Lights color="white"/></button>
-      }
     </div>
 
       <DashSVG id="svg" speed={speed}/>

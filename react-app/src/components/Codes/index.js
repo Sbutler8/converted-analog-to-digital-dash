@@ -15,6 +15,8 @@ const Codes = () => {
         dispatch(getOBDCode({vin,code}))
     };
 
+    const user = useSelector(state => state.session.user)
+
     const car = useSelector(state => {
         if (state.cars.chosenCar) {
             return state.cars.chosenCar
@@ -22,7 +24,7 @@ const Codes = () => {
      })
 
     useEffect(() => {
-        if (car) {
+        if (car && user) {
             setName(car.name);
             setVin(car.vin.slice(0,11));
         }
