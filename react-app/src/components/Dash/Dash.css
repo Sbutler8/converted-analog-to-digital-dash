@@ -160,7 +160,6 @@
 
 .slider {
   width: 100%; /* Full-width */
-  height: 25px; /* Specified height */
   background: #fdfcfc; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -183,4 +182,23 @@
 
 input:hover {
   box-shadow: none;
+}
+
+.manual-controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.speed-slide-container > input {
+  margin: 0;
+}
+
+.manual-warnings-list {
+  color: white;
+  font-family: system-ui;
+  text-shadow:  0 0 3px #fff;
+  font-size: 18px;
 }

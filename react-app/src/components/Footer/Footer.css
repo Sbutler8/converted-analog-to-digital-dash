@@ -1,0 +1,14 @@
+.footer-container {
+    position: absolute;
+    z-index: 2;
+    top: 439px;
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#github, #linkedin {
+    margin: 0px 10px;
+    font-size: 40px;
+    color:#ccc;
+}

@@ -37,11 +37,6 @@ const Dash = () => {
     }
   }, [toggle])
 
-  // socket.on("connected", () => {
-  //   console.log('Connected to Front End YAY')
-  //   socket.emit('get_speed')
-  // }, [socket]);
-
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
 
     if (engine == 1) {
@@ -104,14 +99,13 @@ const Dash = () => {
         </defs>
     </svg>
     {!toggle &&
-      <>
+      <div className="manual-controls-container">
         <div className="speed-slide-container">
           <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
         </div>
-        <div>Send one of the following warnings</div>
-      </>
+        <div className="manual-warnings-list">Emit one or all of the following warnings</div>
+      </div>
     }
-
     </>
   );
 }

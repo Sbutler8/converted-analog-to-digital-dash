@@ -24,6 +24,8 @@ const GPS = () => {
 
     // dispatch(getCurrentWeather);
 
+    
+
     socket.on("getting_speed", ({speed}) => {
         setSpeed(Math.ceil(0.1173 * speed))
     })
