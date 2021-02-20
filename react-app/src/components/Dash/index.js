@@ -22,6 +22,7 @@ const Dash = () => {
   const [lightsHidden, setLightsHidden] = useState(true);
   const [oilHidden, setOilHidden] = useState(true);
   const [toggle, setToggle] = useState(false)
+  const [sliderValue, setSliderValue] = useState(0)
 
   let [pathArc, setPathArc] = useState(path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485));
 
@@ -83,7 +84,6 @@ const Dash = () => {
 
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>
-
       <svg viewBox="0 0 36 36" className="circular-chart">
         <defs>
           <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
@@ -102,6 +102,11 @@ const Dash = () => {
           </linearGradient>
         </defs>
     </svg>
+    {!toggle &&
+      <div class="speed-slide-container">
+        <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
+      </div>
+    }
 
     </>
   );
