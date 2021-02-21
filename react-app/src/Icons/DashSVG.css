@@ -6,7 +6,7 @@
 }
 
 #speed {
-    position: fixed;
+    position: absolute;
 	color: white;
 	top: 183px;
     left: 380px;

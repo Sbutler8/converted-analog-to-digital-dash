@@ -8,6 +8,7 @@ import Battery from "../../Icons/dashboard/Battery";
 import Gas from "../../Icons/dashboard/Gas";
 import Lights from "../../Icons/dashboard/Lights";
 import Oil from "../../Icons/dashboard/Oil";
+import ManualDropDownEmitters from "../ManualDropDownEmitters";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -103,7 +104,7 @@ const Dash = () => {
         <div className="speed-slide-container">
           <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
         </div>
-        <div className="manual-warnings-list">Emit one or all of the following warnings</div>
+       <ManualDropDownEmitters engineHidden={engineHidden} setEngineHidden={setEngineHidden} oilHidden={oilHidden} setOilHidden={setOilHidden} gasHidden={gasHidden} setGasHidden={setGasHidden} batteryHidden={batteryHidden} setBatteryHidden={setBatteryHidden} lightsHidden={lightsHidden} setLightsHidden={setLightsHidden}/>
       </div>
     }
     </>
