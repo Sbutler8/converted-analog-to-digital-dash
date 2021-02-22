@@ -106,3 +106,99 @@
   stroke: url(#linearColors);
   fill: none;
 }
+
+.toggle-arduino-container {
+  position: absolute;
+  z-index: 1;
+  margin: 20px 10px;
+}
+
+
+.toggle {
+  position : relative ;
+  display : inline-block;
+  width: 114px;
+  height: 52px;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXkNwCzGnYwgsZu-brfXQynSW_o2dLq1fD8A&usqp=CAU');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 30px;
+  border: 2px solid gray;
+}
+
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 52px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  top: 1px;
+  left: 1px;
+  transition:  all 0.3s;
+}
+
+.checkbox:checked + .toggle::after {
+  left : 61px;
+}
+
+.checkbox:checked + .toggle {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSGEdW5wlMwOFEy71niBUM-u0-CWF3NY2aFg&usqp=CAU');
+  background-size: auto 40px;
+  background-position: left;
+}
+
+.checkbox {
+  display : none;
+}
+
+.speed-slide-container {
+  width: -webkit-fill-available;
+  width: 300px;
+  margin-left: 20px;
+}
+
+.slider {
+  width: 90%; /* Full-width */
+  background: #fdfcfc; /* Grey background */
+  outline: none; /* Remove outline */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider::-webkit-slider-thumb {
+
+  background-image: url('https://s1.cdn.autoevolution.com/images/gallery/MAZDA-626--Mk-3--Sedan-923_6.jpg');
+  width: 100%;
+  height: 24px;
+  border: 0;
+  cursor: pointer;
+}
+
+input:hover {
+  box-shadow: none;
+}
+
+.manual-controls-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.speed-slide-container > input {
+  margin: 0;
+}
+
+.manual-warnings-list {
+  color: white;
+  font-family: system-ui;
+  text-shadow:  0 0 3px #fff;
+  font-size: 18px;
+}

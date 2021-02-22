@@ -21,24 +21,26 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
 
     return (
         <>
-        <div id="profile-pic-header">Who's Driving?</div>
-        <div className="container">
-            {users &&
-            users.map((user) => {
-                return (
-                    <div key={user.id} className="profile-button-container">
-                    <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() =>{ getClickedUser(user); setShowProfileModal(false)}}></button>
-                    </div>
-                )
-            })}
-        </div>
-        <div className="signupPic">
-            <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}} onClick={()=> {setShowProfileModal(false); setShowSignupModal(true)}}></button>
-        </div>
-        <div id="signup-link">
-            <div>Don't Have An Account?</div>
-            <div>Sign-up Now</div>
-        </div>
+        {/* <div className="profile-pic-container"> */}
+            <div id="profile-pic-header">Who's Driving?</div>
+            <div className="container">
+                {users &&
+                users.map((user) => {
+                    return (
+                        <div key={user.id} className="profile-button-container">
+                        <button className="profilePic" style={{backgroundImage: `url(${user.pic})`}} onClick={() =>{ getClickedUser(user); setShowProfileModal(false)}}></button>
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="signupPic">
+                <button className="profilePic" style={{backgroundImage: 'url(' + require('../../public/profileImages/new_user.png') + ')'}} onClick={()=> {setShowProfileModal(false); setShowSignupModal(true)}}></button>
+            </div>
+            <div id="signup-link">
+                <div>Don't Have An Account?</div>
+                <div>Sign-up Now</div>
+            </div>
+        {/* </div> */}
         </>
     )
 }

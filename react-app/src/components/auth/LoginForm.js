@@ -25,11 +25,20 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
     setShowCarModal(true)
   };
 
+  const getPassword = () => {
+    if (email === 'demo@demo.com') {
+      // setPassword('password');
+      return 'password';
+    } else {
+      return password;
+    }
+  }
+
 
   return (
     <>
     <div id="login-header">Welcome back {selectedUser.username}!</div>
-      <form className="form" onSubmit={onLogin}>
+      <form className="login-form" onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
             <div>{error}</div>
@@ -49,11 +58,13 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
             name="password"
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={getPassword()}
+            onChange={(e) => email === 'demo@demo.com' ? setPassword('password'):setPassword(e.target.value)}
           />
-          <button id="submit-button" type="submit">Login</button>
         </div>
+
+          <button id="submit-button" type="submit">Login</button>
+
       </form>
     </>
   );

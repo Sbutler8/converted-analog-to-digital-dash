@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashSVG from "../../Icons/DashSVG";
 import './Dash.css'
 import io from "socket.io-client"
@@ -8,6 +8,7 @@ import Battery from "../../Icons/dashboard/Battery";
 import Gas from "../../Icons/dashboard/Gas";
 import Lights from "../../Icons/dashboard/Lights";
 import Oil from "../../Icons/dashboard/Oil";
+import ManualDropDownEmitters from "../ManualDropDownEmitters";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -15,20 +16,27 @@ var socket = io.connect(`${endPoint}`);
 const Dash = () => {
   let path = d3.path();
 
-
   const [speed, setSpeed] = useState(0);
   const [engineHidden, setEngineHidden] = useState(true);
   const [batteryHidden, setBatteryHidden] = useState(true);
   const [gasHidden, setGasHidden] = useState(true);
   const [lightsHidden, setLightsHidden] = useState(true);
   const [oilHidden, setOilHidden] = useState(true);
+  const [toggle, setToggle] = useState(false)
+  const [sliderValue, setSliderValue] = useState(0)
 
   let [pathArc, setPathArc] = useState(path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485));
 
-  socket.on("connected", () => {
-    console.log('Connected to Front End YAY')
-    socket.emit('get_speed')
-  }, [socket]);
+
+  useEffect(() => {
+    if (!toggle) {
+      setSpeed(0);
+      socket.disconnect()
+    } else {
+      socket.connect()
+      socket.emit('get_speed')
+    }
+  }, [toggle])
 
   socket.on("getting_speed", ({speed, engine, oil, gas, battery, lights}) => {
 
@@ -53,6 +61,10 @@ const Dash = () => {
   return (
     <>
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
+    <div className="toggle-arduino-container">
+        <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
+        <label htmlFor="switch" className="toggle"></label>
+    </div>
     <div id="loading-path">
     <svg id="svg-container">
       <path id="svg-path" transform={'rotate(131)'} d={path}></path>
@@ -69,7 +81,6 @@ const Dash = () => {
 
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>
-
       <svg viewBox="0 0 36 36" className="circular-chart">
         <defs>
           <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
@@ -88,7 +99,14 @@ const Dash = () => {
           </linearGradient>
         </defs>
     </svg>
-
+    {!toggle &&
+      <div className="manual-controls-container">
+        <div className="speed-slide-container">
+          <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
+        </div>
+       <ManualDropDownEmitters engineHidden={engineHidden} setEngineHidden={setEngineHidden} oilHidden={oilHidden} setOilHidden={setOilHidden} gasHidden={gasHidden} setGasHidden={setGasHidden} batteryHidden={batteryHidden} setBatteryHidden={setBatteryHidden} lightsHidden={lightsHidden} setLightsHidden={setLightsHidden}/>
+      </div>
+    }
     </>
   );
 }
