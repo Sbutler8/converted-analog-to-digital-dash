@@ -14,7 +14,6 @@ const MapAutoComplete = () => {
     setValue,
     clearSuggestions
   } = usePlacesAutocomplete({
-    // requestOptions: { /* Define search scope here */ }
     debounce: 300
   });
 
@@ -70,7 +69,6 @@ const MapAutoComplete = () => {
 
   return (
       <>
-        {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script> */}
         <div ref={registerRef}>
         <input
           id="auto-complete"
@@ -80,7 +78,6 @@ const MapAutoComplete = () => {
           disabled={!ready}
           placeholder="Where are you going?"
         />
-        {/* We can use the "status" to decide whether we should display the dropdown or not */}
         {status === 'OK' && <ul style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
         </div>
     </>

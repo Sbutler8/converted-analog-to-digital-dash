@@ -25,7 +25,7 @@ const Dash = () => {
   const [toggle, setToggle] = useState(false)
   const [sliderValue, setSliderValue] = useState(0)
 
-  let [pathArc, setPathArc] = useState(path.arc(-85,-458, 118,0*(Math.PI/180), speed * .0485));
+  let [pathArc, setPathArc] = useState(path.arc(-70,-404, 113,0*(Math.PI/180), speed * .0485));
 
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const Dash = () => {
 
       <DashSVG id="svg" speed={speed}/>
       <div id="speed">{speed}</div>
-      <svg viewBox="0 0 36 36" className="circular-chart">
+      <svg>
         <defs>
           <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
             <stop offset="5%" stopColor="#e1ff16"></stop>
@@ -102,7 +102,7 @@ const Dash = () => {
     {!toggle &&
       <div className="manual-controls-container">
         <div className="speed-slide-container">
-          <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} class="slider" id="myRange" ></input>
+          <input type="range" min="0" max="100" value={sliderValue} onChange={(e) => {setSliderValue(e.target.value); setSpeed(e.target.value)}} className="slider" id="myRange" ></input>
         </div>
        <ManualDropDownEmitters engineHidden={engineHidden} setEngineHidden={setEngineHidden} oilHidden={oilHidden} setOilHidden={setOilHidden} gasHidden={gasHidden} setGasHidden={setGasHidden} batteryHidden={batteryHidden} setBatteryHidden={setBatteryHidden} lightsHidden={lightsHidden} setLightsHidden={setLightsHidden}/>
       </div>

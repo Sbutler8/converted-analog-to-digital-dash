@@ -56,7 +56,6 @@ export const addNewUser = (newUser) => async (dispatch) => {
 
   const {name, email, password, gpsPermission, profPic} = newUser;
   const formData = {name, email, password, gpsPermission, profPic};
-  console.log('addUser formData:', formData)
 
   const res = await fetch(`/api/auth/signup`, {
     method: "POST",
@@ -65,7 +64,6 @@ export const addNewUser = (newUser) => async (dispatch) => {
     },
     body: JSON.stringify(formData),
   });
-  console.log('added user res:', res)
     let data = await res.json();
     dispatch(setUser(data));
     return res;
@@ -93,7 +91,6 @@ export const setPic = (file) => async (dispatch) => {
 
   // for single file
   formData.append("image", file);
-  console.log('STORE name---->', JSON.stringify(formData))
   const res = await fetch(`/api/auth/test`, {
     method: "POST",
     body: formData,
@@ -101,7 +98,6 @@ export const setPic = (file) => async (dispatch) => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log('data------>', data)
 
     dispatch(setProfilePic(data.file));
     return data;
@@ -120,8 +116,6 @@ export const addProfPic = (formObj ) => async (dispatch) => {
       body: JSON.stringify(formData),
     });
 
-    console.log('STORE DATA---------->', formData)
-    console.log(res)
     dispatch(setProfilePic(res));
     return res
   };

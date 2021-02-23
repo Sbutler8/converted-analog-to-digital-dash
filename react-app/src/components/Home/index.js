@@ -22,18 +22,19 @@ const Home = () => {
     }, []);
 
 
-    const carImages = ['https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/995474/pexels-photo-995474.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    const carImages = [
+                'https://images.pexels.com/photos/2320208/pexels-photo-2320208.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/4480527/pexels-photo-4480527.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/103290/pexels-photo-103290.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1008659/pexels-photo-1008659.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1534604/pexels-photo-1534604.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/103286/pexels-photo-103286.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/149813/pexels-photo-149813.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/1280560/pexels-photo-1280560.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/1409966/pexels-photo-1409966.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1082655/pexels-photo-1082655.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/1409968/pexels-photo-1409968.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/35624/auto-car-cadillac-oldtimer.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500']
+                'https://images.pexels.com/photos/2792292/pexels-photo-2792292.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500']
 
     let settings = {
         dots: true,
