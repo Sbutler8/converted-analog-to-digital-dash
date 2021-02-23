@@ -65,7 +65,7 @@ const Dash = () => {
     <DateTime component='dash'/>
     <div className="toggle-arduino-container">
         <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
-        <label htmlFor="switch" className="toggle"></label>
+        <label htmlFor="switch" className="toggle" style={toggle ? {backgroundColor:'rgb(23, 248, 3)'}:{backgroundColor:'#f81919'}}></label>
     </div>
     <div id="loading-path">
     <svg id="svg-container">
