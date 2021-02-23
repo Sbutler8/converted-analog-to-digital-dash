@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { addJournalEntryPoints } from '../../store/map';
+import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const MapAutoComplete = () => {
           disabled={!ready}
           placeholder="Where are you going?"
         />
-        {status === 'OK' && <ul style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
+        {status === 'OK' && <ul className="map-auto-complete-link" style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
         </div>
     </>
   );

@@ -47,7 +47,6 @@ const Map = () => {
     };
   };
 
-
   const getDirections = () => {
     directionsService.route(
       {
