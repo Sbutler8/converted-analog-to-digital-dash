@@ -24,10 +24,8 @@
 }
 
 #svg {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+  position: absolute;
+  left: 14px;
 }
 
 #speedometer-button {

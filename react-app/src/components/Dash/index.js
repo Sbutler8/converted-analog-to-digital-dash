@@ -9,6 +9,7 @@ import Gas from "../../Icons/dashboard/Gas";
 import Lights from "../../Icons/dashboard/Lights";
 import Oil from "../../Icons/dashboard/Oil";
 import ManualDropDownEmitters from "../ManualDropDownEmitters";
+import DateTime from "../DateTime";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -25,7 +26,7 @@ const Dash = () => {
   const [toggle, setToggle] = useState(false)
   const [sliderValue, setSliderValue] = useState(0)
 
-  let [pathArc, setPathArc] = useState(path.arc(-70,-404, 113,0*(Math.PI/180), speed * .0485));
+  let [pathArc, setPathArc] = useState(path.arc(-80,-414, 113,0*(Math.PI/180), speed * .0485));
 
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const Dash = () => {
   return (
     <>
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
+    <DateTime component='dash'/>
     <div className="toggle-arduino-container">
         <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
         <label htmlFor="switch" className="toggle"></label>

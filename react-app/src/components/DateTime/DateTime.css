@@ -1,0 +1,28 @@
+.dash-date, .dash-time, .map-date, .map-time  {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Reem Kufi';
+    color: white;
+    font-size: 25px;
+    text-shadow: 0 0 3px #fff;
+}
+
+.dash-date {
+    left: 310px;
+    top: 2px;
+}
+
+.dash-time {
+    left: 326px;
+    top: 28px;
+}
+
+.map-date {
+    left: 342px;
+    top: 2px;
+}
+
+.map-time {
+    left: 359px;
+    top: 28px;
+}

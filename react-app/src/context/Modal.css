@@ -25,6 +25,7 @@
     align-items: center;
     position: absolute;
     top:107px;
+    left: 220px;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(194,183,222,1) 0%, rgba(62,213,242,1) 0%, rgba(0,0,0,1) 100%);
     opacity: 0.89;
@@ -78,6 +79,7 @@
     width: -webkit-fill-available;
     max-width: 400px;
     top:25px;
+    left: 165px;
     border-radius: 10px;
     box-shadow: 0px 0px 80px 1px rgb(54 183 207)
   }
@@ -89,11 +91,12 @@
     align-items: center;
     position: absolute;
     background: rgb(132,7,238);
-background: linear-gradient(90deg, rgba(132,7,238,1) 0%, rgba(0,0,15,1) 100%, rgba(0,10,11,1) 100%);
+    background: linear-gradient(90deg, rgba(132,7,238,1) 0%, rgba(0,0,15,1) 100%, rgba(0,10,11,1) 100%);
     opacity: 0.89;
     height: 423px;
     width: 320px;
     top:35px;
+    left: 195px;
     border-radius: 10px;
     box-shadow: 0px 0px 80px 1px rgba(132,7,238,1)
   }

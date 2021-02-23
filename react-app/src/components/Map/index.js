@@ -7,6 +7,7 @@ import {
   DirectionsRenderer,
 } from 'react-google-maps'
 import './Map.css';
+import DateTime from '../DateTime';
 
 
 const Map = () => {
@@ -66,9 +67,9 @@ const Map = () => {
     );
   }
 
-
   return (
     <>
+    <DateTime component='map'/>
     <div className='wrapper'>
         <main className="main">
           <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
