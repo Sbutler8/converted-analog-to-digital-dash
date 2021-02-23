@@ -16,11 +16,6 @@ function ModalViews({showProfileModal, setShowProfileModal, showCarModal, setSho
 
     return (
       <>
-        {/* <Link id="login" to="/" onClick={() => {
-          setShowProfileModal(true)
-          }}>Login
-        </Link> */}
-
         {showProfileModal && (
           <Modal onClose={() => setShowProfileModal(false)} name="profile">
             <ProfilePictures setShowProfileModal={setShowProfileModal} setShowLoginModal={setShowLoginModal} setSelectedUser={setSelectedUser} setShowSignupModal={setShowSignupModal} />

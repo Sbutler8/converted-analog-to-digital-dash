@@ -25,6 +25,9 @@
 
 #svg {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 #speedometer-button {
@@ -46,7 +49,7 @@
 .circle {
     stroke: url(#linearColors);
     fill: none;
-    stroke-width: 3.2;
+    stroke-width: 3.5;
     stroke-linecap: round;
     stroke-dashoffset: 0;
     animation: progress 1s ease-out forwards;
@@ -69,7 +72,7 @@
 .warning-container {
     position: fixed;
     z-index: 2;
-    top: 458px;
+    top: 408px;
     left: 200px;
 }
 
@@ -102,7 +105,7 @@
 }
 
 #svg-path {
-  stroke-width: 35px;
+  stroke-width: 39px;
   stroke: url(#linearColors);
   fill: none;
 }
@@ -154,9 +157,10 @@
 }
 
 .speed-slide-container {
-  width: -webkit-fill-available;
-  width: 300px;
-  margin-left: 20px;
+  width: 176px;
+  position: absolute;
+  left: 3px;
+  top: 418px;
 }
 
 .slider {

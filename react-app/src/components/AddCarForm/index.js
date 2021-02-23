@@ -27,7 +27,6 @@ const AddCarForm = ({setShowAddCarModal}) => {
       e.preventDefault();
       dispatch(setPic(pic))
           .then(file => {
-            console.log('FILE------>', file)
               dispatch(addNewCar({userId, name, year, make, model, vin, pic: file.output }))
           }).catch(error => {
               console.log('😱 Error: ', error)
@@ -40,7 +39,6 @@ const AddCarForm = ({setShowAddCarModal}) => {
 
   const updateProfPic = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     if (file) setCarPic(file);
 
     const fileReader = new FileReader();

@@ -23,7 +23,6 @@ export const getCurrentWeather= () => async (dispatch) => {
   })
   .then(response => {
     dispatch(getWeather(response))
-    console.log(response);
   })
   .catch(err => {
     console.error(err);

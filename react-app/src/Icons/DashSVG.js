@@ -9,8 +9,8 @@ const DashSVG = ({...props}) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       preserveAspectRatio="none"
-      width={800}
-      height={480}
+      width={700}
+      height={430}
       viewBox="0 0 800 480"
       {...props}
     >

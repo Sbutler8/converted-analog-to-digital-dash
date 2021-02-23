@@ -21,7 +21,6 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
 
     return (
         <>
-        {/* <div className="profile-pic-container"> */}
             <div id="profile-pic-header">Who's Driving?</div>
             <div className="container">
                 {users &&
@@ -40,7 +39,6 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
                 <div>Don't Have An Account?</div>
                 <div>Sign-up Now</div>
             </div>
-        {/* </div> */}
         </>
     )
 }

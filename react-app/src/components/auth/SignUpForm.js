@@ -27,9 +27,6 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
     dispatch(setPic( profPic ))
     .then(file => {
           dispatch(addNewUser({ name, email, password, gpsPermission, profPic: file.output }))
-
-          // dispatch(sessionActions.login({email, password}))
-
         }).catch(error => {
           console.log('😱 Error: ', error)
         });
@@ -37,12 +34,10 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
         setProfPic(null);
         setShowSignupModal(false);
         setShowAddCarModal(true);
-        // await history.push("/dash");
   };
 
     const updateProfPic = (e) => {
       const file = e.target.files[0];
-      console.log(file)
       if (file) setProfPic(file);
 
       const fileReader = new FileReader();

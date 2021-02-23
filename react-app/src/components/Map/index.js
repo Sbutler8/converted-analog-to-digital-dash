@@ -31,7 +31,6 @@ const Map = () => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
-    console.log(currentLocation)
   }, [currentLocation])
 
   if (!authenticate) {
@@ -70,8 +69,6 @@ const Map = () => {
 
   return (
     <>
-
-    {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places&callback=initMap`}></script> */}
     <div className='wrapper'>
         <main className="main">
           <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>

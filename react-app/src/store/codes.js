@@ -18,7 +18,6 @@ export const getOBDCode = (car) => async (dispatch) => {
       },
     });
     let data = await response.json();
-    console.log('OBD RESPONSE--->', data);
     dispatch(getCode(data))
     return data
   }

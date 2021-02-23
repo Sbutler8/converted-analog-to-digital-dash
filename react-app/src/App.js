@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -10,10 +10,6 @@ import ChooseDash from "./components/ChooseDash";
 import AddCarForm from "./components/AddCarForm";
 import GPS from "./components/GPS";
 import Codes from "./components/Codes";
-import io from "socket.io-client"
-
-let endPoint = process.env.REACT_APP_BASE_URL;
-var socket = io.connect(`${endPoint}`);
 
 function App() {
 
@@ -25,37 +21,38 @@ function App() {
       setLoaded(true);
   }, [dispatch]);
 
+
   if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-      <Route path="/" exact={true}>
-          <Home  />
-      </Route>
-      <Route path="/map" exact={true}>
-          <GPS  />
-      </Route>
-      <Route path="/dashboards" exact={true}>
-          <ChooseDash />
-      </Route>
-      <Route path="/car" exact={true}>
-          <AddCarForm/>
-      </Route>
-      <Route path="/dash" exact={true}>
-          <Dash />
-      </Route>
-      <Route path="/codes" exact={true}>
-          <Codes />
-      </Route>
-      <ProtectedRoute path="/" exact={true} >
-        <h1>My Home Page</h1>
-      </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+        <NavBar />
+        <Switch>
+        <Route path="/" exact={true}>
+            <Home  />
+        </Route>
+        <Route path="/map" exact={true}>
+            <GPS  />
+        </Route>
+        <Route path="/dashboards" exact={true}>
+            <ChooseDash />
+        </Route>
+        <Route path="/car" exact={true}>
+            <AddCarForm/>
+        </Route>
+        <Route path="/dash" exact={true}>
+            <Dash />
+        </Route>
+        <Route path="/codes" exact={true}>
+            <Codes />
+        </Route>
+        <ProtectedRoute path="/" exact={true} >
+          <h1>My Home Page</h1>
+        </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
   );
 }
 export default App;

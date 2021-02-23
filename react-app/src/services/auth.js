@@ -4,7 +4,6 @@ export const authenticate = async() => {
       'Content-Type': 'application/json'
     }
   });
-  console.log('RES',response)
   return await response.json();
 }
 
@@ -58,4 +57,3 @@ export const setPic = async (data) => {
   });
   return await response.json();
 }
-

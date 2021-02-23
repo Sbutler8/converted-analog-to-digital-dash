@@ -35,7 +35,6 @@ export const getAllCars = (userId) => async (dispatch) => {
 export const setChosenCar = (carId) => async (dispatch) => {
   const response = await fetch(`/api/cars/user/${carId}`);
   let data = await response.json()
-  console.log('DATA----->', data)
   dispatch(setCar(data.chosenCar));
   return data.chosenCar;
 };
@@ -43,8 +42,6 @@ export const setChosenCar = (carId) => async (dispatch) => {
 export const addNewCar = (car) => async (dispatch) => {
   const {userId, name, year, make, model, vin, pic} = car;
   const formData = {userId, name, year, make, model, vin, pic};
-
-  console.log('FORMDATA:',formData)
 
   const res = await fetch(`/api/cars/entry/${userId}`, {
     method: "POST",
