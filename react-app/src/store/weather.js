@@ -7,27 +7,23 @@ const getWeather = (weather) => {
   };
 };
 
-export const getCurrentWeather= () => async (dispatch) => {
+export const getCurrentWeather= (lat,lon) => async (dispatch) => {
 
-  fetch("https://accuweatherstefan-skliarovv1.p.rapidapi.com/get24HoursConditionsByLocationKey", {
-    "method": "POST",
-    "headers": {
-      "content-type": "application/x-www-form-urlencoded",
-      "x-rapidapi-key": "582e68111bmshb5869215cf673c1p12d94fjsn5cde7220cec1",
-      "x-rapidapi-host": "AccuWeatherstefan-skliarovV1.p.rapidapi.com"
-    },
-    "body": {
-      "apiKey": process.env.REACT_APP_WEATHER_KEY,
-      "locationKey": "Denver"
-    }
+  fetch(`https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=${lon}&lat=${lat}`, {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "12d1845924mshe44b4eafdb59514p1d95edjsn027c72fdb35a",
+		"x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com"
+	}
   })
-  .then(response => {
-    dispatch(getWeather(response))
+  .then(async response => {
+    let data = await response.json()
+    console.log(data.data[0]);
+    dispatch(getWeather(data.data[0]))
   })
   .catch(err => {
     console.error(err);
   });
-
   }
 
 const initialState = {};
