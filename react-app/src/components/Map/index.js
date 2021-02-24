@@ -18,9 +18,14 @@ const Map = () => {
 
   const [currentLocation, setCurrentLocation] = useState({})
   const [zoom, setZoom] = useState(15);
-  const [directions, setDirections] = useState("");
+  let [directions, setDirections] = useState({});
 
   const authenticate = useSelector((state) => state.session.authenticate);
+  const endDestination = useSelector(state => {
+    if (state.map.lat) {
+      return state.map;
+    }
+  })
 
   const success = position => {
     const currentLocation = {
@@ -31,8 +36,14 @@ const Map = () => {
   };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
+    setTimeout(() => {
+      navigator.geolocation.getCurrentPosition(success);
+    }, 2000)
   }, [currentLocation])
+
+    // useEffect(() => {
+    //   getDirections()
+    // }, [endDestination])
 
   if (!authenticate) {
     return null;
@@ -47,18 +58,24 @@ const Map = () => {
     };
   };
 
-  const getDirections = () => {
+  let delayFactor = 0;
+
+  function getDirections () {
     directionsService.route(
       {
         origin: currentLocation,
-        destination: destination,
+        destination: endDestination,
         travelMode: window.google.maps.TravelMode.DRIVING
       },
       (result, status) => {
+        console.log(result)
         if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections({
-            directions: result,
-          });
+          setDirections(result.geocoded_waypoints);
+        } else if(status === window.google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
+            delayFactor++;
+            setTimeout(() => {
+            getDirections()
+          }, delayFactor * 1000);
         } else {
           console.error(`error fetching directions ${result}`);
         }
@@ -79,7 +96,7 @@ const Map = () => {
                 defaultZoom={zoom}
                 options={getMapOptions}
                 >
-                {directions && <DirectionsRenderer directions={getDirections()} />}
+              {endDestination && <DirectionsRenderer directions={setTimeout(() => {getDirections()}, 5000)} />}
               </GoogleMapReact >
               {currentLocation &&
               <Marker position={currentLocation} style={{position:'absolute', zIndex:-12}}/>}

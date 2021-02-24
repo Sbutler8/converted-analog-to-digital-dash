@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { addJournalEntryPoints } from '../../store/map';
+import { addDestinationPoint } from '../../store/map';
 import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
@@ -43,9 +43,7 @@ const MapAutoComplete = () => {
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
           console.log('📍 Coordinates1: ', { lat, lng });
-          dispatch(addJournalEntryPoints(lat, lng))
-          // props.setLat(lat);
-          // props.setLon(lng);
+          dispatch(addDestinationPoint(lat, lng))
       }).catch(error => {
         console.log('😱 Error: ', error)
       });

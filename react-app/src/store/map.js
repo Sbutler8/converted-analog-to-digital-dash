@@ -50,7 +50,7 @@ export const getTripPoints = (userId) => async dispatch => {
   }
 };
 
-const initialState = { coordinates: null, addedLat: null, addedLon: null, addedEndLat: null, addedEndLon: null };
+const initialState = { };
 
 const mapReducer = (state = initialState, action) => {
   let newState;
@@ -66,8 +66,7 @@ const mapReducer = (state = initialState, action) => {
       return newState;
     case END_DATA:
       newState = Object.assign({}, state);
-      newState.addedEndLat = action.endpoint_lat;
-      newState.addedEndLon = action.endpoint_lon;
+      newState = {'lat': action.endpoint_lat, 'lng':action.endpoint_lon}
       return newState;
     // case REMOVE_USER:
     //   newState = Object.assign({}, state, { user: null, authenticate: false });
