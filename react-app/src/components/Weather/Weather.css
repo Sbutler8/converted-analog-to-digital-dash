@@ -1,5 +1,28 @@
 .weather-container {
     position: absolute;
-    left: 600px;
-    top: 250px;
+    font-family: system-ui;
+    color: white;
+    left: 640px;
+    top: 200px;
+}
+
+.weather-fields {
+    font-size: 13px;
+    text-shadow: 0 0 2px #fff;
+}
+
+#weather-icon {
+    position: absolute;
+    bottom: 64px;
+    width: 30px;
+    height: 30px;
+    margin-left: 2px;
+}
+
+#weather-header {
+    /* text-align: center; */
+    font-size: 12px;
+    text-shadow: 0 0 1px #fff;
+    font-weight: bold;
+    margin-left: 20px;
 }

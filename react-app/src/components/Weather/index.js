@@ -25,17 +25,24 @@ const Weather = () => {
         navigator.geolocation.getCurrentPosition(success);
     }, [])
 
-    setTimeout(dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))); //fetch weather every 5 min
+    // if (currentLocation) {
+    //     setTimeout(() => {
+    //         dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
+    //     }, 5000)
+    // }
 
     return (
         <div className="weather-container">
+
             {weather &&
             <>
-                <div>{weather.temp}</div>
-                <div>Feels like: {weather.app_temp}</div>
-                <img src={` https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png`}></img>
-                <div>{weather.weather.description}</div>
-                <div>{weather.wind_spd}[m/s]</div>
+                <div id="weather-header">Today's Weather
+                <img id="weather-icon" src={` https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png`}></img>
+            </div>
+            <div className="weather-fields">Temp: {weather.temp}</div>
+            <div className="weather-fields">Feels like: {weather.app_temp}</div>
+            <div className="weather-fields">{weather.weather.description}</div>
+            <div className="weather-fields">Wind Speed: {weather.wind_spd} [m/s]</div>
             </>
             }
         </div>

@@ -38,7 +38,7 @@ const Map = () => {
   useEffect(() => {
     setTimeout(() => {
       navigator.geolocation.getCurrentPosition(success);
-    }, 2000)
+    }, 5000)
   }, [currentLocation])
 
     // useEffect(() => {
@@ -70,7 +70,7 @@ const Map = () => {
       (result, status) => {
         console.log(result)
         if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections(result.geocoded_waypoints);
+          setDirections({...result});
         } else if(status === window.google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
             delayFactor++;
             setTimeout(() => {

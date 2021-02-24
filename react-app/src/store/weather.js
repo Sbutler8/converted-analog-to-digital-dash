@@ -18,7 +18,7 @@ export const getCurrentWeather= (lat,lon) => async (dispatch) => {
   })
   .then(async response => {
     let data = await response.json()
-    console.log(data.data[0]);
+    console.log(data.data);
     dispatch(getWeather(data.data[0]))
   })
   .catch(err => {
@@ -26,12 +26,16 @@ export const getCurrentWeather= (lat,lon) => async (dispatch) => {
   });
   }
 
-const initialState = {};
+const initialState = {weather: null};
 
 const weatherReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case GET_WEATHER:
-      return { ...state, weather: action.payload }
+      newState = Object.assign({}, state);
+      newState.weather = action.payload;
+      return newState;
+      // return { ...state, weather: action.payload }
     default:
       return state;
   }
