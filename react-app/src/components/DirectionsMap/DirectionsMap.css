@@ -1,0 +1,5 @@
+.trip-info-container {
+    position: absolute;
+    color: white;
+    z-index:5;
+}

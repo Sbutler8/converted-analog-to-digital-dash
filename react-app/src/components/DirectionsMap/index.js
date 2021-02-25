@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import Marker from '../Marker/index';
 import { compose, withProps } from "recompose";
+import { setTripInfo } from '../../store/map';
 import './DirectionsMap.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { dispatch } from 'd3';
 const { DirectionsRenderer, withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 
 const DirectionsMap = () => {
 
+    const dispatch = useDispatch()
     let delayFactor = 0;
-    let [startLoc, setStartLoc] = useState(null)
+    let [startLoc, setStartLoc] = useState(null);
 
-    const [directions, setDirections] = useState(null)
-    const [wayPoints, setWayPoints] = useState(null)
-    let [currentLocation, setCurrentLocation] = useState(null)
+    const [directions, setDirections] = useState(null);
+    const [wayPoints, setWayPoints] = useState(null);
+    const [legs, setLegs] = useState(null);
+    const [tripDistance, setTripDistance] = useState(null);
+    const [tripDuration, setTripDuration] = useState(null);
+    let [currentLocation, setCurrentLocation] = useState(null);
 
     const destinationLoc = useSelector(state => {
         if (state.map.lat) {
@@ -29,14 +35,24 @@ const DirectionsMap = () => {
         console.log('CURRENT', startLoc)
       };
 
+    // setTimeout(() => {
+        // }, 10000) //get current location every 10 seconds
+
     useEffect(() => {
+        setCurrentLocation(startLoc);
+
         navigator.geolocation.getCurrentPosition(success);
         if (destinationLoc) {
             getDirections(startLoc, destinationLoc);
         }
-
-        setCurrentLocation();
     }, [destinationLoc]);
+
+    useEffect(() => {
+        if (directions) {
+            // console.log(directions.routes[0].legs[0])
+            dispatch(setTripInfo(directions.routes[0].legs[0]))
+        }
+    }, [directions])
 
     const getDirections = (startLoc, destinationLoc, wayPoints = []) => {
         const waypts = [];
@@ -61,6 +77,10 @@ const DirectionsMap = () => {
           (result, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
               setDirections(result)
+
+            //   setTripDistance(result.routes[0].legs[0].distance.text)
+            //   setTripDuration(result.routes[0].legs[0].duration.text)
+            //   setLegs(result.routes[0].legs[0].steps)
               setWayPoints(result.routes[0].overview_path.filter((elem, index) => {
                 return index % 50 === 0; //the higher the numer the higher the precision
                 }))
@@ -79,28 +99,28 @@ const DirectionsMap = () => {
         );
     }
 
-    setCurrentLocation = () => {
-        let count = 0;
-        let refreshIntervalId = setInterval(() => {
-            const locations = wayPoints;
-            if (locations) {
-            if (count <= locations.length - 1) {
-                let currentLocation = {currentLocation};
-                this.setState({ currentLocation });
+    // setCurrentLocation = () => {
+    //     let count = 0;
+    //     let refreshIntervalId = setInterval(() => {
+    //         const locations = wayPoints;
+    //         if (locations) {
+    //         if (count <= locations.length - 1) {
+    //             currentLocation = {currentLocation};
+    //             // this.setState({ currentLocation });
 
-                const wayPts = [];
-                wayPts.push(currentLocation);
-                const startLoc = startLoc.lat + ", " + startLoc.lng;
-                const destinationLoc = destinationLoc.lat + ", " + destinationLoc.lng;
-                delayFactor = 0;
-                getDirections(startLoc, destinationLoc, wayPts);
-                count++;
-            } else {
-                clearInterval(refreshIntervalId);
-            }
-            }
-        }, 1000);
-    };
+    //             const wayPts = [];
+    //             wayPts.push(currentLocation);
+    //             const startLoc = startLoc.lat + ", " + startLoc.lng;
+    //             const destinationLoc = destinationLoc.lat + ", " + destinationLoc.lng;
+    //             delayFactor = 0;
+    //             getDirections(startLoc, destinationLoc, wayPts);
+    //             count++;
+    //         } else {
+    //             clearInterval(refreshIntervalId);
+    //         }
+    //         }
+    //     }, 1000);
+    // };
 
     const getMapOptions = () => {
         return {
@@ -169,6 +189,12 @@ const DirectionsMap = () => {
                 />
                 )}
             </GoogleMap>
+            }
+            {tripDistance && tripDuration &&
+                (<div className="trip-info-container">
+                    <div>{tripDuration}</div>
+                    <div>{tripDistance}</div>
+                </div>)
             }
         </>
     )
