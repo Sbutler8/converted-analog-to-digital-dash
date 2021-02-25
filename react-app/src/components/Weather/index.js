@@ -28,21 +28,20 @@ const Weather = () => {
     // if (currentLocation) {
     //     setTimeout(() => {
     //         dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
-    //     }, 5000)
+    //     }, 3000)
     // }
 
     return (
         <div className="weather-container">
-
             {weather &&
             <>
                 <div id="weather-header">Today's Weather
-                <img id="weather-icon" src={` https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png`}></img>
-            </div>
-            <div className="weather-fields">Temp: {weather.temp}</div>
-            <div className="weather-fields">Feels like: {weather.app_temp}</div>
-            <div className="weather-fields">{weather.weather.description}</div>
-            <div className="weather-fields">Wind Speed: {weather.wind_spd} [m/s]</div>
+                    <img id="weather-icon" src={` https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png`}></img>
+                </div>
+                <div className="weather-fields">Temp: {weather.temp}</div>
+                <div className="weather-fields">Feels like: {weather.app_temp}</div>
+                <div className="weather-fields">{weather.weather.description}</div>
+                <div className="weather-fields">Wind Speed: {weather.wind_spd} [m/s]</div>
             </>
             }
         </div>

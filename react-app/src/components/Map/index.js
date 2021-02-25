@@ -36,14 +36,15 @@ const Map = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      navigator.geolocation.getCurrentPosition(success);
-    }, 5000)
-  }, [currentLocation])
+  }, [])
 
-    // useEffect(() => {
-    //   getDirections()
-    // }, [endDestination])
+  setTimeout(() => {
+    navigator.geolocation.getCurrentPosition(success);
+  }, 5000)
+
+    useEffect(() => {
+      getDirections()
+    }, [endDestination])
 
   if (!authenticate) {
     return null;
@@ -72,10 +73,10 @@ const Map = () => {
         if (status === window.google.maps.DirectionsStatus.OK) {
           setDirections({...result});
         } else if(status === window.google.maps.DirectionsStatus.OVER_QUERY_LIMIT) {
-            delayFactor++;
+            delayFactor+= 0.2;
             setTimeout(() => {
             getDirections()
-          }, delayFactor * 1000);
+          }, delayFactor * 200);
         } else {
           console.error(`error fetching directions ${result}`);
         }

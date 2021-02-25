@@ -10,6 +10,7 @@ import ChooseDash from "./components/ChooseDash";
 import AddCarForm from "./components/AddCarForm";
 import GPS from "./components/GPS";
 import Codes from "./components/Codes";
+import DirectionsMap from "./components/DirectionsMap";
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
     <BrowserRouter>
         <NavBar />
         <Switch>
+        <Route path="/newmap" exact={true}>
+            <DirectionsMap />
+        </Route>
         <Route path="/" exact={true}>
             <Home  />
         </Route>
