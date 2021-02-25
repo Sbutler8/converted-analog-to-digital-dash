@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import MapSVG from '../../Icons/MapSVG';
-// import Map from '../Map';
+import Map from '../Map';
 import io from "socket.io-client"
 import './GPS.css';
 import { getCurrentWeather } from '../../store/weather';
@@ -26,7 +26,7 @@ const GPS = () => {
     return (
         <>
             <MapSVG className="dash"/>
-            {/* <Map className="map"/> */}
+            <Map />
             {/* <DirectionsMap />  */}
             <div id="map-speed">{speed}</div>
         </>

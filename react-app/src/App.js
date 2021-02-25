@@ -31,9 +31,9 @@ function App() {
     <BrowserRouter>
         <NavBar />
         <Switch>
-        <Route path="/newmap" exact={true}>
+        {/* <Route path="/newmap" exact={true}>
             <DirectionsMap />
-        </Route>
+        </Route> */}
         <Route path="/" exact={true}>
             <Home  />
         </Route>
