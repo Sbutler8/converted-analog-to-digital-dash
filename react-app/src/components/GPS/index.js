@@ -56,13 +56,13 @@ const GPS = () => {
             </>
             }
             {showDetails &&
-                 <div className="detailed-directions-main" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
+                 <div className="detailed-directions-main" style={{ height: '284px', width: '440px', overflowY: 'scroll', borderRadius: '3%' }}>
                     <div className="detailed-directions-header">Step-By-Step-Directions</div>
                     {steps &&
                         steps.map((step,i)=> {
                             return(
                             <div className="step-by-step-directions-container">
-                                {i+1}: {step.instructions.split('<b>').join('').split('</b>').join('')}
+                                <b>{i+1}</b>: {step.instructions.split('<b>').join('').split('</b>').join('').split('style').join('').split('<div ="font-size:0.9em">').join('').split('/<wbr/>').join('').split('</div>').join('')}
                             </div>
                             )
                         })
