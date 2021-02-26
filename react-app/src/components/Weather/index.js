@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentWeather } from '../../store/weather';
 import './Weather.css';
 
-const Weather = () => {
+const Weather = ({name}) => {
     const dispatch = useDispatch();
 
     const [currentLocation, setCurrentLocation] = useState({})
@@ -23,16 +23,18 @@ const Weather = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
+        // dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))
     }, [])
 
     // if (currentLocation) {
     //     setTimeout(() => {
     //         dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
-    //     }, 3000)
+    //     }, 5000)
     // }
 
     return (
-        <div className="weather-container">
+        <div className={name==="dash" ? 'weather-dash-container '
+        :name==="gps" ? 'weather-gps-container ':null}>
             {weather &&
             <>
                 <div id="weather-header">Today's Weather

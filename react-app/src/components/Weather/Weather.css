@@ -1,9 +1,17 @@
-.weather-container {
+.weather-dash-container {
     position: absolute;
     font-family: system-ui;
     color: white;
     left: 640px;
     top: 200px;
+}
+
+.weather-gps-container {
+    position: absolute;
+    font-family: system-ui;
+    color: white;
+    left: 10px;
+    top: 134px;
 }
 
 .weather-fields {

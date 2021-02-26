@@ -1,0 +1,30 @@
+.directions-details-container {
+    position: absolute;
+    font-family: Reem Kufi;
+    color: white;
+    z-index: 2;
+    border: 1px solid rgb(253, 31, 205);
+    left: 636px;
+    top: 165px;
+    box-shadow: 0px 0px 17px 5px rgb(253, 31, 205)
+}
+
+.trip-info-header {
+    text-align: center;
+    font-size: 18px;
+    text-shadow: 0 0 1px #fff;
+    font-weight: bold;
+}
+
+.trip-info-fields {
+    font-size: 15px;
+    text-shadow: 0 0 2px #fff;
+    margin: 2px;
+}
+
+.trip-details-button {
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    margin-left: 26px;
+}

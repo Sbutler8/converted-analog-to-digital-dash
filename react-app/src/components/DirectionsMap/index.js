@@ -4,7 +4,6 @@ import { compose, withProps } from "recompose";
 import { setTripInfo } from '../../store/map';
 import './DirectionsMap.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { dispatch } from 'd3';
 const { DirectionsRenderer, withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 
 const DirectionsMap = () => {
@@ -20,9 +19,10 @@ const DirectionsMap = () => {
     const [tripDuration, setTripDuration] = useState(null);
     let [currentLocation, setCurrentLocation] = useState(null);
 
+    const tripInfo = useSelector(state => state.map.tripInfo);
     const destinationLoc = useSelector(state => {
-        if (state.map.lat) {
-          return state.map;
+        if (state.map.destination) {
+          return state.map.destination;
         }
       })
 
@@ -35,24 +35,18 @@ const DirectionsMap = () => {
         console.log('CURRENT', startLoc)
       };
 
-    // setTimeout(() => {
-        // }, 10000) //get current location every 10 seconds
-
     useEffect(() => {
         setCurrentLocation(startLoc);
 
         navigator.geolocation.getCurrentPosition(success);
         if (destinationLoc) {
+            console.log(tripInfo)
+            if (tripInfo) {
+                return
+            }
             getDirections(startLoc, destinationLoc);
         }
-    }, [destinationLoc]);
-
-    useEffect(() => {
-        if (directions) {
-            // console.log(directions.routes[0].legs[0])
-            dispatch(setTripInfo(directions.routes[0].legs[0]))
-        }
-    }, [directions])
+    }, [destinationLoc, tripInfo]);
 
     const getDirections = (startLoc, destinationLoc, wayPoints = []) => {
         const waypts = [];
@@ -77,10 +71,8 @@ const DirectionsMap = () => {
           (result, status) => {
             if (status === window.google.maps.DirectionsStatus.OK) {
               setDirections(result)
+              dispatch(setTripInfo(result.routes[0].legs[0]))
 
-            //   setTripDistance(result.routes[0].legs[0].distance.text)
-            //   setTripDuration(result.routes[0].legs[0].duration.text)
-            //   setLegs(result.routes[0].legs[0].steps)
               setWayPoints(result.routes[0].overview_path.filter((elem, index) => {
                 return index % 50 === 0; //the higher the numer the higher the precision
                 }))

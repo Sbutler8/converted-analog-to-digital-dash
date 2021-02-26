@@ -3,10 +3,12 @@ import { useDispatch } from "react-redux";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { addDestinationPoint } from '../../store/map';
+import { useId } from "react-id-generator";
 import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
   const dispatch = useDispatch();
+  const [htmlId] = useId();
 
   const {
     ready,
@@ -58,7 +60,6 @@ const MapAutoComplete = () => {
 
       return (
           <li
-            key={id}
             onClick={handleSelect(suggestion)}
           >
             <strong>{main_text}</strong> <small>{secondary_text}</small>

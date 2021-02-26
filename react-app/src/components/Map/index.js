@@ -35,12 +35,12 @@ const Map = () => {
 
   return (
     <>
-    <DateTime component='map'/>
+    {/* <DateTime component='map'/> */}
     <div className='wrapper'>
         <main className="main">
           <div style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
             <MapAutoComplete id="auto-complete"/>
-              <DirectionsMap />
+            <DirectionsMap />
           </div>
         </main>
     </div>

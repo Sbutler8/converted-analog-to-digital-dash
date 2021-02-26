@@ -18,7 +18,6 @@ const addEndData = (endpoint_lat, endpoint_lon) => {
 }
 
 export const setTripInfo = (tripInfo) => async dispatch => {
-  console.log('passed in trip info:', tripInfo)
   dispatch(setTripData(tripInfo));
 };
 
@@ -27,7 +26,7 @@ export const addDestinationPoint = (lat, lon) => async dispatch => {
   dispatch(addEndData(lat, lon));
 };
 
-const initialState = { };
+const initialState = { tripInfo: null, destination: null};
 
 const mapReducer = (state = initialState, action) => {
   let newState;
@@ -35,7 +34,7 @@ const mapReducer = (state = initialState, action) => {
     case SET_TRIP_DATA:
       newState = Object.assign({}, state);
       console.log('map reducer trip:',action.trip)
-      newState = {
+      newState.tripInfo = {
         'duration': action.trip.duration.text,
         'distance': action.trip.distance.text,
         'steps': action.trip.steps,
@@ -48,7 +47,7 @@ const mapReducer = (state = initialState, action) => {
       return newState;
     case END_DATA:
       newState = Object.assign({}, state);
-      newState = {'lat': action.endpoint_lat, 'lng':action.endpoint_lon}
+      newState.destination = {'lat': action.endpoint_lat, 'lng':action.endpoint_lon}
       return newState;
     // case REMOVE_USER:
     //   newState = Object.assign({}, state, { user: null, authenticate: false });
