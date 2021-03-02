@@ -7,7 +7,7 @@ const Marker = (props) => {
     const { color, name } = props;
 
     return (
-        <div>
+        <div className="marker-container">
             <div className="pin bounce"
             style={{ backgroundColor: color, cursor: 'pointer'}}
             title={name}

@@ -1,6 +1,11 @@
 .main {
     position: absolute;
+    z-index: 1;
     top: 69px;
     left: 177px;
+}
 
+#auto-complete {
+    position: absolute;
+    z-index: 2;
 }

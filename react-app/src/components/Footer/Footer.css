@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 2;
     top: 410px;
-    right: 5px;
+    left: 685px;
     display:  flex;
     flex-direction: row;
     justify-content: space-around;

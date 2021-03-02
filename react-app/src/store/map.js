@@ -1,19 +1,11 @@
-const SET_DATA = 'session/setData';
+const SET_TRIP_DATA = 'session/setTripData';
 const ADD_DATA = 'session/addData';
 const END_DATA = 'session/addEndData'
 
-const setData = (journal_entry) => {
+const setTripData = (trip) => {
   return {
-    type: SET_DATA,
-    payload: journal_entry,
-  };
-};
-
-const addData = (journal_entry_lat, journal_entry_lon) => {
-  return {
-    type: ADD_DATA,
-    journal_entry_lat,
-    journal_entry_lon,
+    type: SET_TRIP_DATA,
+    trip,
   };
 };
 
@@ -25,39 +17,28 @@ const addEndData = (endpoint_lat, endpoint_lon) => {
   }
 }
 
-export const getAllJournalEntryPoints = (userId) => async dispatch => {
-    const response = await fetch(`/api/map/${userId}`);
-    if (response.ok) {
-      let data = await response.json()
-      dispatch(setData(data.coordinates));
-    }
+export const setTripInfo = (tripInfo) => async dispatch => {
+  dispatch(setTripData(tripInfo));
 };
 
-export const addJournalEntryPoints= (lat, lon) => async dispatch => {
-      dispatch(addData(lat, lon));
-};
 
 export const addDestinationPoint = (lat, lon) => async dispatch => {
   dispatch(addEndData(lat, lon));
 };
 
-
-export const getTripPoints = (userId) => async dispatch => {
-  const response = await fetch(`/api/map/${userId}`);
-  if (response.ok) {
-    let data = await response.json()
-    dispatch(setData(data.coordinates));
-  }
-};
-
-const initialState = { coordinates: null, addedLat: null, addedLon: null, addedEndLat: null, addedEndLon: null };
+const initialState = { tripInfo: null, destination: null};
 
 const mapReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case SET_DATA:
+    case SET_TRIP_DATA:
       newState = Object.assign({}, state);
-      newState.coordinates = action.payload;
+      console.log('map reducer trip:',action.trip)
+      newState.tripInfo = {
+        'duration': action.trip.duration.text,
+        'distance': action.trip.distance.text,
+        'steps': action.trip.steps,
+      };
       return newState;
     case ADD_DATA:
       newState = Object.assign({}, state);
@@ -66,8 +47,7 @@ const mapReducer = (state = initialState, action) => {
       return newState;
     case END_DATA:
       newState = Object.assign({}, state);
-      newState.addedEndLat = action.endpoint_lat;
-      newState.addedEndLon = action.endpoint_lon;
+      newState.destination = {'lat': action.endpoint_lat, 'lng':action.endpoint_lon}
       return newState;
     // case REMOVE_USER:
     //   newState = Object.assign({}, state, { user: null, authenticate: false });

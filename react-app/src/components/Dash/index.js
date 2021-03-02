@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import DashSVG from "../../Icons/DashSVG";
 import './Dash.css'
 import io from "socket.io-client"
@@ -9,11 +10,14 @@ import Gas from "../../Icons/dashboard/Gas";
 import Lights from "../../Icons/dashboard/Lights";
 import Oil from "../../Icons/dashboard/Oil";
 import ManualDropDownEmitters from "../ManualDropDownEmitters";
+import DateTime from "../DateTime";
+import Weather from "../Weather";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const Dash = () => {
+  const dispatch = useDispatch();
   let path = d3.path();
 
   const [speed, setSpeed] = useState(0);
@@ -25,8 +29,27 @@ const Dash = () => {
   const [toggle, setToggle] = useState(false)
   const [sliderValue, setSliderValue] = useState(0)
 
-  let [pathArc, setPathArc] = useState(path.arc(-70,-404, 113,0*(Math.PI/180), speed * .0485));
+  let [pathArc, setPathArc] = useState(path.arc(-80,-414, 113,0*(Math.PI/180), speed * .0485));
+  // const [currentLocation, setCurrentLocation] = useState({})
+  // const weather = useSelector(state => {
+  //   if (state.weather.weather) {
+  //     return state.weather.weather;
+  //   }
+  // })
 
+  // const success = position => {
+  //   const currentLocation = {
+  //     lat: position.coords.latitude,
+  //     lng: position.coords.longitude
+  //   }
+  //   setCurrentLocation(currentLocation);
+  // };
+
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(success);
+  // }, [])
+
+  // setTimeout(dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))); //fetch weather every 5 min
 
   useEffect(() => {
     if (!toggle) {
@@ -61,9 +84,13 @@ const Dash = () => {
   return (
     <>
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
+    <DateTime component='dash'/>
+    <div className="weather">
+    {/* <Weather name='dash'/> */}
+    </div>
     <div className="toggle-arduino-container">
         <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
-        <label htmlFor="switch" className="toggle"></label>
+        <label htmlFor="switch" className="toggle" style={toggle ? {backgroundColor:'rgb(23, 248, 3)'}:{backgroundColor:'#f81919'}}></label>
     </div>
     <div id="loading-path">
     <svg id="svg-container">

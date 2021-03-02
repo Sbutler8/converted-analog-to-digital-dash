@@ -16,12 +16,12 @@ if (process.env.NODE_ENV !== "production") {
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
       <ModalProvider >
         <Provider store={store}>
           <App />
         </Provider>
       </ModalProvider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );

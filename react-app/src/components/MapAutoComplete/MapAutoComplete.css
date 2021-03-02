@@ -1,0 +1,6 @@
+.map-auto-complete-link > li:hover {
+    background-color: rgb(70, 67, 67);
+    color: white;
+    border-radius: 3px;
+    width:90%;
+}

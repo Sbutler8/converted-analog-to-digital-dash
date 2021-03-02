@@ -7,31 +7,18 @@ import {
   DirectionsRenderer,
 } from 'react-google-maps'
 import './Map.css';
+import DateTime from '../DateTime';
+import DirectionsMap from '../DirectionsMap';
 
 
 const Map = () => {
-  const GOOGLE_MAP_API_KEY  = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
-  const directionsService = new window.google.maps.DirectionsService();
-
-  const destination = { lat: 39.746315975073344, lng: -104.99017351161523 };
-
-  const [currentLocation, setCurrentLocation] = useState({})
-  const [zoom, setZoom] = useState(15);
-  const [directions, setDirections] = useState("");
 
   const authenticate = useSelector((state) => state.session.authenticate);
-
-  const success = position => {
-    const currentLocation = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
+  const endDestination = useSelector(state => {
+    if (state.map.lat) {
+      return state.map;
     }
-    setCurrentLocation(currentLocation);
-  };
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
-  }, [currentLocation])
+  })
 
   if (!authenticate) {
     return null;
@@ -46,44 +33,15 @@ const Map = () => {
     };
   };
 
-
-  const getDirections = () => {
-    directionsService.route(
-      {
-        origin: currentLocation,
-        destination: destination,
-        travelMode: window.google.maps.TravelMode.DRIVING
-      },
-      (result, status) => {
-        if (status === window.google.maps.DirectionsStatus.OK) {
-          setDirections({
-            directions: result,
-          });
-        } else {
-          console.error(`error fetching directions ${result}`);
-        }
-      }
-    );
-  }
-
-
   return (
     <>
+    {/* <DateTime component='map'/> */}
     <div className='wrapper'>
         <main className="main">
-          <div className="map" style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
+          <div style={{ height: '284px', width: '440px', overflow: 'hidden', borderRadius: '3%' }}>
             <MapAutoComplete id="auto-complete"/>
-              <GoogleMapReact
-                bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-                defaultCenter={{lat: 39.780352, lng: -104.8772608}}
-                defaultZoom={zoom}
-                options={getMapOptions}
-                >
-                {directions && <DirectionsRenderer directions={getDirections()} />}
-              </GoogleMapReact >
-              {currentLocation &&
-              <Marker position={currentLocation} style={{position:'absolute', zIndex:-12}}/>}
-            </div>
+            <DirectionsMap />
+          </div>
         </main>
     </div>
     </>

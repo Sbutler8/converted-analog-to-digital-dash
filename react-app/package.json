@@ -23,6 +23,7 @@
     "react-datepicker": "^3.4.1",
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
+    "react-id-generator": "^3.0.1",
     "react-loading-io": "^2.1.0",
     "react-native-maps-directions": "^1.8.0",
     "react-places-autocomplete": "^7.3.0",

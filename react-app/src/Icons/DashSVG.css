@@ -1,15 +1,8 @@
-/* #svg {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-content: center;
-} */
-
 #speed {
     position: absolute;
 	color: white;
 	top: 155px;
-    left: 332px;
+    left: 344px;
 	font-size: 78px;
 	text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
 }

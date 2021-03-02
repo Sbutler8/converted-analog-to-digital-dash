@@ -2,10 +2,13 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { addJournalEntryPoints } from '../../store/map';
+import { addDestinationPoint } from '../../store/map';
+import { useId } from "react-id-generator";
+import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
   const dispatch = useDispatch();
+  const [htmlId] = useId();
 
   const {
     ready,
@@ -42,9 +45,7 @@ const MapAutoComplete = () => {
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
           console.log('📍 Coordinates1: ', { lat, lng });
-          dispatch(addJournalEntryPoints(lat, lng))
-          // props.setLat(lat);
-          // props.setLon(lng);
+          dispatch(addDestinationPoint(lat, lng))
       }).catch(error => {
         console.log('😱 Error: ', error)
       });
@@ -59,7 +60,6 @@ const MapAutoComplete = () => {
 
       return (
           <li
-            key={id}
             onClick={handleSelect(suggestion)}
           >
             <strong>{main_text}</strong> <small>{secondary_text}</small>
@@ -78,7 +78,7 @@ const MapAutoComplete = () => {
           disabled={!ready}
           placeholder="Where are you going?"
         />
-        {status === 'OK' && <ul style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
+        {status === 'OK' && <ul className="map-auto-complete-link" style={{position:'absolute', zIndex: 2, marginTop:'40px'}}>{renderSuggestions()}</ul>}
         </div>
     </>
   );
