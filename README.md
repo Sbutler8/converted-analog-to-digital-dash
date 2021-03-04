@@ -27,6 +27,7 @@ Ideally, this custom app will be robust enough to take in any cars serial data a
 <a href="https://developers.google.com/maps"><img alt="Google Maps" src="https://img.shields.io/badge/-Google%20Maps-4285F4?style=flat-square&logo=Google%20Maps&logoColor=white" /></a>
 <a href="https://devdocs.io/css/"><img alt="CSS3" src="https://img.shields.io/badge/-CSS3%20-61DAFB?style=flat-square&logo=CSS3&logoColor=white&color=brightgreen"/></a>
 <a href="https://devdocs.io/html/"><img alt="HTML5" src="https://img.shields.io/badge/-HTML5%20-61DAFB?style=flat-square&logo=HTML5&logoColor=white&color=blue"/></a>
+<a href="https://github.com/d3/"><img alt="d3" src="https://img.shields.io/badge/-d3%20-orange?style=flat-square&logo=d3%20&logoColor=white" /></a>
 
 #### Back End
 
