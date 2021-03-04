@@ -75,6 +75,7 @@ Ideally, this custom app will be robust enough to take in any cars serial data a
 #### 7. Step-by-step directions in an easy to follow list format.
 #### 8. On Board Diagnostic Parameter IDs (OBD PIDs) lookup to decode what the error code your car is throwing means. Used implementing IBM's Car API.
 #### 9. The ability to change which car you are driving with customized pre-filled fields when performing PID code lookups.
+#### 10. Ability to see full stack web application features in full with or without the Arduino hardware using easy toggle switch.
 ![Alt text](https://github.com/Sbutler8/converted-analog-to-digital-dash/blob/main/react-app/public/solo_project_2_screen_recording.gif)
 
 [contributors-shield]: https://img.shields.io/github/contributors/Sbutler8/converted-analog-to-digital-dash.svg?style=for-the-badge
