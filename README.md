@@ -68,9 +68,13 @@ Ideally, this custom app will be robust enough to take in any cars serial data a
    * warning battery light
    * warning check engine light
 #### 2. The ability to upload user profile photos and an image of their car using AWS S3 third party API
-#### 3. Live geolocation services pinpointing where the user is in real time using Google Maps API
-#### 4. On Board Diagnostic Parameter IDs (OBD PIDs) lookup to decode what the error code your car is throwing means. Used implementing IBM's Car API.
-#### 5. The ability to change which car you are driving with customized pre-filled fields when performing PID code lookups.
+#### 3. Weather data displayed and updated every five minutes based off current location
+#### 4. Live geolocation services pinpointing where the user is in real time using Google Maps API
+#### 5. Auto complete Google Maps dropdown for a simpler directions lookup prefill option. 
+#### 6. Google Maps visualization of directions from current location to input destination.
+#### 7. Step-by-step directions in an easy to follow list format.
+#### 8. On Board Diagnostic Parameter IDs (OBD PIDs) lookup to decode what the error code your car is throwing means. Used implementing IBM's Car API.
+#### 9. The ability to change which car you are driving with customized pre-filled fields when performing PID code lookups.
 ![Alt text](https://github.com/Sbutler8/converted-analog-to-digital-dash/blob/main/react-app/public/solo_project_2_screen_recording.gif)
 
 [contributors-shield]: https://img.shields.io/github/contributors/Sbutler8/converted-analog-to-digital-dash.svg?style=for-the-badge
