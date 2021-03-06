@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getAllCars, setChosenCar } from "../../store/cars";
 import './ChooseCar.css'
 
-const ChooseCar = ({setShowCarModal}) => {
+const ChooseCar = ({setShowCarModal, setShowAddCarModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -13,6 +13,13 @@ const ChooseCar = ({setShowCarModal}) => {
             return state.session.user.id
       }
     });
+
+  const addCar = () => {
+    setShowCarModal(false);
+    setShowAddCarModal(true);
+    // setShowAddCarModal(false);
+    // setShowCarModal(true);
+  }
 
   useEffect(() => {
       if (userId) {
@@ -24,6 +31,7 @@ const ChooseCar = ({setShowCarModal}) => {
 
   return (
     <>
+      <button className="left-button-container" type="button" onClick={() => addCar()}><i class="fas fa-plus"></i></button>
       <div className="car-header">Which car will you be driving?</div>
         {cars &&
           cars.map(car => {

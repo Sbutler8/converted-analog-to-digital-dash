@@ -33,7 +33,6 @@ const mapReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_TRIP_DATA:
       newState = Object.assign({}, state);
-      console.log('map reducer trip:',action.trip)
       newState.tripInfo = {
         'duration': action.trip.duration.text,
         'distance': action.trip.distance.text,

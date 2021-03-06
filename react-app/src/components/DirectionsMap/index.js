@@ -32,7 +32,6 @@ const DirectionsMap = () => {
           lng: position.coords.longitude
         }
         setStartLoc(startLoc);
-        console.log('CURRENT', startLoc)
       };
 
     useEffect(() => {
@@ -40,7 +39,6 @@ const DirectionsMap = () => {
 
         navigator.geolocation.getCurrentPosition(success);
         if (destinationLoc) {
-            console.log(tripInfo)
             if (tripInfo) {
                 return
             }
@@ -132,11 +130,6 @@ const DirectionsMap = () => {
                 defaultCenter={new window.google.maps.LatLng(startLoc.lat, startLoc.lng)}
                 options={getMapOptions()}
             >
-                {wayPoints &&
-
-                    console.log(directions)
-
-                }
                 {directions &&
                 <>
                     <Marker

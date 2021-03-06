@@ -23,12 +23,13 @@ const DateTime = ({component}) => {
     }
 
     return (
-        <>
+        <div className={component==="dash" ? 'dash-date-time-container'
+        :component==="map" ? 'map-date-time-container':null}>
             <div className={component==="dash" ? 'dash-date'
                 :component==="map" ? 'map-date':null}>{date}</div>
             <div className={component==="dash" ? 'dash-time'
                 :component==="map" ? 'map-time':null}>{time}</div>
-        </>
+        </div>
     )
 }
 

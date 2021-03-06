@@ -1,6 +1,4 @@
 .dash-date, .dash-time, .map-date, .map-time  {
-    position: absolute;
-    z-index: 1;
     font-family: 'Reem Kufi';
     color: white;
     font-size: 25px;
@@ -17,10 +15,36 @@
     top: 28px;
 }
 
+.dash-date-time-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.dash-date-time-container {
+    left: 321px;
+}
+
 .map-date {
     left: 342px;
     top: 2px;
+    margin-right: 40px;
 }
+
+.map-date-time-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.map-date-time-container {
+    left: 300px;
+    }
 
 .map-time {
     left: 359px;

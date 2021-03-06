@@ -34,16 +34,6 @@ const GPS = () => {
         setSpeed(Math.ceil(0.1173 * speed))
     })
 
-    // const fillInstructions = (instruction) => {
-    //     document.addEventListener('DOMContentLoaded', () => {
-    //         console.log(instruction)
-    //         let directionContainer = document.querySelector('.step-by-step-directions-container');
-    //         let addedInstruction = document.createElement('div');
-    //         addedInstruction.innerHTML = instruction;
-    //         directionContainer.appendChild(addedInstruction);
-    //     })
-    // }
-
     return (
         <>
             <DateTime component='map'/>
@@ -62,7 +52,7 @@ const GPS = () => {
                         steps.map((step,i)=> {
                             return(
                             <div className="step-by-step-directions-container">
-                                <b>{i+1}</b>: {step.instructions.split('<b>').join('').split('</b>').join('').split('style').join('').split('<div ="font-size:0.9em">').join('').split('/<wbr/>').join('').split('</div>').join('')}
+                                <b>{i+1}</b>: {step.instructions.split('<b>').join('').split('</b>').join('').split('style').join('').split('<div ="font-size:0.9em">').join('').split('/<wbr/>').join('').split('</div>').join(' ')}
                             </div>
                             )
                         })

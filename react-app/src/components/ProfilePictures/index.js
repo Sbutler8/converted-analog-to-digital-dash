@@ -15,7 +15,6 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
     const users = useSelector(state => state.session.users);
 
     const getClickedUser = (user) => {
-        console.log('sel USER',user)
         setSelectedUser(user);
         setShowLoginModal(true);
     }
