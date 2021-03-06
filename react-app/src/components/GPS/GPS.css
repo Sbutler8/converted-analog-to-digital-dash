@@ -32,6 +32,24 @@
     text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
 }
 
+#map-speed-2digit {
+    position: fixed;
+    color: white;
+    top: 371px;
+    left: 360px;
+    font-size: 78px;
+    text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
+}
+
+#map-speed-100 {
+    position: fixed;
+    color: white;
+    top: 371px;
+    left: 336px;
+    font-size: 78px;
+    text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
+}
+
 
 .step-by-step-directions-container {
     display: flex;

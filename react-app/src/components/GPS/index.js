@@ -55,7 +55,8 @@ const GPS = () => {
                     }
                  </div>
             }
-            <div id="map-speed">{speed}</div>
+            <div id={speed >= 100 ? "map-speed-100":
+               (speed > 9 && speed < 100) ? "map-speed-2digit":"map-speed"}>{speed}</div>
         </>
     )
 

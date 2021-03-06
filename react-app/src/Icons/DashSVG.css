@@ -7,6 +7,24 @@
 	text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
 }
 
+#speed-2digit {
+	position: absolute;
+	color: white;
+	top: 155px;
+    left: 325px;
+	font-size: 78px;
+	text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
+}
+
+#speed-100 {
+    position: absolute;
+	color: white;
+	top: 155px;
+    left: 298px;
+	font-size: 78px;
+	text-shadow: 1px 1px 4px #fff, 1px 1px 10px #ccc;
+}
+
 #left-gauge {
 	position: fixed;
 	z-index: 2;

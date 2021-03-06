@@ -107,7 +107,8 @@ const Dash = () => {
     </div>
 
       <DashSVG id="svg" speed={speed}/>
-      <div id="speed">{speed}</div>
+      <div id={speed == 100 ? "speed-100":
+               (speed > 9 && speed < 100) ? "speed-2digit":"speed"}>{speed}</div>
       <svg>
         <defs>
           <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
