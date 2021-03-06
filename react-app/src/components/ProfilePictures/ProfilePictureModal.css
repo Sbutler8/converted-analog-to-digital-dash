@@ -6,6 +6,21 @@
     align-content: center;
 }
 
+.demo-user-container {
+    position: relative;
+}
+
+.demo-user-label {
+    position: absolute;
+    text-align: center;
+    width: 94px;
+    font-weight: bold;
+    margin-top: 50px;
+    font-family: system-ui;
+    font-size: 18px;
+    text-shadow: 0 3px 3px #000;
+}
+
 .profilePic {
     background-size: 89px auto;
     background-position: center center;

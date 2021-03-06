@@ -26,11 +26,11 @@ const Weather = ({name}) => {
         // dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))
     }, [])
 
-    // if (currentLocation) {
-    //     setTimeout(() => {
-    //         dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
-    //     }, 5000)
-    // }
+    if (currentLocation) {
+        setTimeout(() => {
+            dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
+        }, 5 * 60 * 1000)
+    }
 
     return (
         <div className={name==="dash" ? 'weather-dash-container '

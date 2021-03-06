@@ -47,7 +47,7 @@ const GPS = () => {
     return (
         <>
             <DateTime component='map'/>
-            {/* <Weather name='gps'/> */}
+            <Weather name='gps'/>
             <MapSVG className="dash"/>
             {!showDetails &&
             <>

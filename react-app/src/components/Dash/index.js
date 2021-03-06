@@ -86,7 +86,7 @@ const Dash = () => {
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
     <DateTime component='dash'/>
     <div className="weather">
-    {/* <Weather name='dash'/> */}
+    <Weather name='dash'/>
     </div>
     <div className="toggle-arduino-container">
         <input type="checkbox" id="switch"  className="checkbox" value={toggle} onClick={() => toggle ? setToggle(false):setToggle(true)}/>
