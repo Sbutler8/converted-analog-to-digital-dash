@@ -6,7 +6,6 @@ import './Weather.css';
 const Weather = ({name}) => {
     const dispatch = useDispatch();
 
-    const [currentLocation, setCurrentLocation] = useState({})
     const weather = useSelector(state => {
         if (state.weather.weather) {
         return state.weather.weather;
@@ -18,8 +17,6 @@ const Weather = ({name}) => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
         }
-        setCurrentLocation(currentLocation);
-
         dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
     };
 
