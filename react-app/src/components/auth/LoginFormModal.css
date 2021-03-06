@@ -1,3 +1,15 @@
+.left-button-container {
+    display:contents;
+}
+
+.fa-arrow-left {
+    position: absolute;
+    font-size: 20px;
+    top: 10px;
+    left: 10px;
+    color: white;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;

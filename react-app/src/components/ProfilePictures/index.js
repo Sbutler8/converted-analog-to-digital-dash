@@ -48,6 +48,7 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
                 <div>Don't Have An Account?</div>
                 <div>Sign-up Now</div>
             </div>
+            <button className="close-button-container" type="button" onClick={() => setShowProfileModal(false)}><i class="fas fa-times"></i></button>
         </>
     )
 }

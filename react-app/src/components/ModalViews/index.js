@@ -23,7 +23,7 @@ function ModalViews({showProfileModal, setShowProfileModal, showCarModal, setSho
         )}
         {showLoginModal &&  (
           <Modal onClose={() => setShowLoginModal(false)} name="login">
-            <LoginForm setShowLoginModal={setShowLoginModal} selectedUser={selectedUser} showCarModal={showCarModal} setShowCarModal={setShowCarModal}/>
+            <LoginForm setShowLoginModal={setShowLoginModal} selectedUser={selectedUser} showCarModal={showCarModal} setShowCarModal={setShowCarModal} setShowProfileModal={setShowProfileModal}/>
           </Modal>
         )}
         {showCarModal &&  (

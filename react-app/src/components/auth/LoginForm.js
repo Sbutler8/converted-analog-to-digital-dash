@@ -4,7 +4,7 @@ import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
 
 
-const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
+const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowProfileModal}) => {
 
   const dispatch = useDispatch();
 
@@ -37,6 +37,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   return (
     <>
+    <button className="left-button-container" type="button" onClick={() => {setShowLoginModal(false);setShowProfileModal(true)}}><i class="fas fa-arrow-left"></i></button>
     <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="login-form" onSubmit={onLogin}>
         <div>
