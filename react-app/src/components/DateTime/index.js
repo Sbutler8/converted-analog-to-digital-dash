@@ -8,8 +8,14 @@ const DateTime = ({component}) => {
     const [time, setTime] = useState("");
 
     useEffect(() => {
-        setInterval(getTime, 1000);
-      }, [time])
+        const timer = setTimeout(() => {
+            getTime()
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [getTime]);
+
+    // setInterval(() => getTime(), 1000);
+
 
     function getTime () {
         let d = new Date();
@@ -23,12 +29,13 @@ const DateTime = ({component}) => {
     }
 
     return (
-        <>
+        <div className={component==="dash" ? 'dash-date-time-container'
+        :component==="map" ? 'map-date-time-container':null}>
             <div className={component==="dash" ? 'dash-date'
                 :component==="map" ? 'map-date':null}>{date}</div>
             <div className={component==="dash" ? 'dash-time'
                 :component==="map" ? 'map-time':null}>{time}</div>
-        </>
+        </div>
     )
 }
 

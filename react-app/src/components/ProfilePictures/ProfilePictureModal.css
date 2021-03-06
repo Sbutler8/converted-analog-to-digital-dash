@@ -1,9 +1,36 @@
+.close-button-container {
+    display:contents;
+}
+
 .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
+}
+
+.demo-user-container {
+    position: relative;
+}
+
+.demo-user-label {
+    position: absolute;
+    text-align: center;
+    width: 94px;
+    font-weight: bold;
+    margin-top: 50px;
+    font-family: system-ui;
+    font-size: 18px;
+    text-shadow: 0 3px 3px #000;
+}
+
+.fa-times {
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 10px;
+    color: white;
 }
 
 .profilePic {
@@ -45,7 +72,9 @@
 #signup-link {
     display: flex;
     position: absolute;
-    text-shadow: 0 0 4px #fff;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 3px 3px #000;
     bottom: 40px;
     justify-content: center;
     flex-direction: column;

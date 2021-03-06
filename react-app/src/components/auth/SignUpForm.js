@@ -110,6 +110,7 @@ const SignUpForm = ({authenticated, setShowSignupModal, setShowAddCarModal}) => 
       </div>
     <button id="submit-button" type="submit">Sign Up</button>
     </form>
+    <button className="close-button-container" type="button" onClick={() => setShowSignupModal(false)}><i class="fas fa-times"></i></button>
     </>
   );
 };

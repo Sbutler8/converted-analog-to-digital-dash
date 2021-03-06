@@ -28,7 +28,7 @@ const Codes = () => {
             setName(car.name);
             setVin(car.vin.slice(0,11));
         }
-    }, [dispatch, car])
+    }, [dispatch, setName, setVin, user, car])
 
     const diagnostic = useSelector(state => {
         if (state.codes.diagnostic) {
@@ -37,7 +37,7 @@ const Codes = () => {
     });
 
     return (
-        <>
+        <div className="code-container">
             <div className="code-header">Code Lookup</div>
             <form onSubmit={handleSubmit}>
             <div className="code-form" >
@@ -54,6 +54,7 @@ const Codes = () => {
                 name="code"
                 onChange={e => setCode(e.target.value)}
                 value={code}
+                required
                 ></input>
             </div>
             {car &&
@@ -88,7 +89,7 @@ const Codes = () => {
                     {}
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 

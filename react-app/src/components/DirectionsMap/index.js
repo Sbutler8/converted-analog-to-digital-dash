@@ -32,7 +32,6 @@ const DirectionsMap = () => {
           lng: position.coords.longitude
         }
         setStartLoc(startLoc);
-        console.log('CURRENT', startLoc)
       };
 
     useEffect(() => {
@@ -40,11 +39,10 @@ const DirectionsMap = () => {
 
         navigator.geolocation.getCurrentPosition(success);
         if (destinationLoc) {
-            console.log(tripInfo)
             if (tripInfo) {
                 return
             }
-            getDirections(startLoc, destinationLoc);
+            getDirections(startLoc, destinationLoc, getDirections, startLoc, success);
         }
     }, [destinationLoc, tripInfo]);
 
@@ -91,29 +89,6 @@ const DirectionsMap = () => {
         );
     }
 
-    // setCurrentLocation = () => {
-    //     let count = 0;
-    //     let refreshIntervalId = setInterval(() => {
-    //         const locations = wayPoints;
-    //         if (locations) {
-    //         if (count <= locations.length - 1) {
-    //             currentLocation = {currentLocation};
-    //             // this.setState({ currentLocation });
-
-    //             const wayPts = [];
-    //             wayPts.push(currentLocation);
-    //             const startLoc = startLoc.lat + ", " + startLoc.lng;
-    //             const destinationLoc = destinationLoc.lat + ", " + destinationLoc.lng;
-    //             delayFactor = 0;
-    //             getDirections(startLoc, destinationLoc, wayPts);
-    //             count++;
-    //         } else {
-    //             clearInterval(refreshIntervalId);
-    //         }
-    //         }
-    //     }, 1000);
-    // };
-
     const getMapOptions = () => {
         return {
           disableDefaultUI: true,
@@ -132,11 +107,6 @@ const DirectionsMap = () => {
                 defaultCenter={new window.google.maps.LatLng(startLoc.lat, startLoc.lng)}
                 options={getMapOptions()}
             >
-                {wayPoints &&
-
-                    console.log(directions)
-
-                }
                 {directions &&
                 <>
                     <Marker

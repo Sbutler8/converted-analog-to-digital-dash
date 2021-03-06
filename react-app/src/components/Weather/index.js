@@ -6,7 +6,6 @@ import './Weather.css';
 const Weather = ({name}) => {
     const dispatch = useDispatch();
 
-    const [currentLocation, setCurrentLocation] = useState({})
     const weather = useSelector(state => {
         if (state.weather.weather) {
         return state.weather.weather;
@@ -14,23 +13,17 @@ const Weather = ({name}) => {
     })
 
     const success = position => {
-        const currentLocation = {
+        let currentLocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
         }
-        setCurrentLocation(currentLocation);
+        dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
     };
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
-        // dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))
     }, [])
 
-    if (currentLocation) {
-        setTimeout(() => {
-            dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng));
-        }, 20000)
-    }
 
     return (
         <div className={name==="dash" ? 'weather-dash-container '
@@ -40,8 +33,8 @@ const Weather = ({name}) => {
                 <div id="weather-header">Today's Weather
                     <img id="weather-icon" src={` https://www.weatherbit.io/static/img/icons/${weather.weather.icon}.png`}></img>
                 </div>
-                <div className="weather-fields">Temp: {weather.temp}</div>
-                <div className="weather-fields">Feels like: {weather.app_temp}</div>
+                <div className="weather-fields">Temp: {Math.floor(weather.temp * 9/5) + 32}</div>
+                <div className="weather-fields">Feels like: {Math.floor(weather.app_temp* 9/5) + 32}</div>
                 <div className="weather-fields">{weather.weather.description}</div>
                 <div className="weather-fields">Wind Speed: {weather.wind_spd} [m/s]</div>
             </>

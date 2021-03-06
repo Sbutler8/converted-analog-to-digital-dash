@@ -4,7 +4,7 @@ import * as sessionActions from "../../store/session";
 import './LoginFormModal.css'
 
 
-const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
+const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowProfileModal}) => {
 
   const dispatch = useDispatch();
 
@@ -19,8 +19,11 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-
-    dispatch(sessionActions.login({email, password}))
+    if (email === 'demo@demo.com') {
+      dispatch(sessionActions.login({email:'demo@demo.com', password:'password'}))
+    } else {
+      dispatch(sessionActions.login({email, password}))
+    }
     setShowLoginModal(false)
     setShowCarModal(true)
   };
@@ -37,6 +40,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal}) => {
 
   return (
     <>
+    <button className="left-button-container" type="button" onClick={() => {setShowLoginModal(false);setShowProfileModal(true)}}><i className="fas fa-arrow-left"></i></button>
     <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="login-form" onSubmit={onLogin}>
         <div>

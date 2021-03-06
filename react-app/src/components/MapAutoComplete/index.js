@@ -8,7 +8,6 @@ import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
   const dispatch = useDispatch();
-  const [htmlId] = useId();
 
   const {
     ready,
@@ -44,7 +43,6 @@ const MapAutoComplete = () => {
     getGeocode({ address: description })
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
-          console.log('📍 Coordinates1: ', { lat, lng });
           dispatch(addDestinationPoint(lat, lng))
       }).catch(error => {
         console.log('😱 Error: ', error)
@@ -69,6 +67,9 @@ const MapAutoComplete = () => {
 
   return (
       <>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCypMjFK9dShvuZNCh7e7uMFf3z9bwOBCs&libraries=places&callback=initMap"></script>
+
+      {/* <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCypMjFK9dShvuZNCh7e7uMFf3z9bwOBCs&libraries=places"></script> */}
         <div ref={registerRef}>
         <input
           id="auto-complete"

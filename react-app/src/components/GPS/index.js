@@ -1,22 +1,18 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import MapSVG from '../../Icons/MapSVG';
 import Map from '../Map';
 import DateTime from '../DateTime';
 import io from "socket.io-client"
 import './GPS.css';
-import { getCurrentWeather } from '../../store/weather';
 import DirectionsDetails from '../DirectionsDetails';
 import Weather from '../Weather';
-// import DirectionsMap from '../DirectionsMap';
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const GPS = () => {
-    const dispatch = useDispatch();
     const [speed, setSpeed] = useState(0)
     const [showDetails, setShowDetails] = useState(false);
 
@@ -33,16 +29,6 @@ const GPS = () => {
     socket.on("getting_speed", ({speed}) => {
         setSpeed(Math.ceil(0.1173 * speed))
     })
-
-    // const fillInstructions = (instruction) => {
-    //     document.addEventListener('DOMContentLoaded', () => {
-    //         console.log(instruction)
-    //         let directionContainer = document.querySelector('.step-by-step-directions-container');
-    //         let addedInstruction = document.createElement('div');
-    //         addedInstruction.innerHTML = instruction;
-    //         directionContainer.appendChild(addedInstruction);
-    //     })
-    // }
 
     return (
         <>
@@ -62,7 +48,7 @@ const GPS = () => {
                         steps.map((step,i)=> {
                             return(
                             <div className="step-by-step-directions-container">
-                                <b>{i+1}</b>: {step.instructions.split('<b>').join('').split('</b>').join('').split('style').join('').split('<div ="font-size:0.9em">').join('').split('/<wbr/>').join('').split('</div>').join('')}
+                                <b>{i+1}</b>: {step.instructions.split('<b>').join('').split('</b>').join('').split('style').join('').split('<div ="font-size:0.9em">').join('').split('/<wbr/>').join('').split('</div>').join(' ')}
                             </div>
                             )
                         })

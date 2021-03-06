@@ -33,3 +33,11 @@
     -10px 0 120px rgb(205, 250, 2),        /* outer left magenta */
     10px 0 120px #0ff;
 }
+
+.fa-plus {
+    position: absolute;
+    font-size: 20px;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+}

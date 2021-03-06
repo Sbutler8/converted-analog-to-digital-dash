@@ -8,7 +8,6 @@ const getWeather = (weather) => {
 };
 
 export const getCurrentWeather= (lat,lon) => async (dispatch) => {
-
   fetch(`https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=${lon}&lat=${lat}`, {
 	"method": "GET",
 	"headers": {
@@ -18,7 +17,6 @@ export const getCurrentWeather= (lat,lon) => async (dispatch) => {
   })
   .then(async response => {
     let data = await response.json()
-    console.log(data.data);
     dispatch(getWeather(data.data[0]))
   })
   .catch(err => {
