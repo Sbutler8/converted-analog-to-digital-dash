@@ -19,8 +19,11 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowPro
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-
-    dispatch(sessionActions.login({email, password}))
+    if (email === 'demo@demo.com') {
+      dispatch(sessionActions.login({email:'demo@demo.com', password:'password'}))
+    } else {
+      dispatch(sessionActions.login({email, password}))
+    }
     setShowLoginModal(false)
     setShowCarModal(true)
   };

@@ -15,6 +15,7 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
     const users = useSelector(state => state.session.users);
 
     const getClickedUser = (user) => {
+        console.log('sel USER',user)
         setSelectedUser(user);
         setShowLoginModal(true);
     }
@@ -48,7 +49,7 @@ const ProfilePictures = ({setShowProfileModal, setShowLoginModal, setSelectedUse
                 <div>Don't Have An Account?</div>
                 <div>Sign-up Now</div>
             </div>
-            <button className="close-button-container" type="button" onClick={() => setShowProfileModal(false)}><i class="fas fa-times"></i></button>
+            <button className="close-button-container" type="button" onClick={() => setShowProfileModal(false)}><i className="fas fa-times"></i></button>
         </>
     )
 }
