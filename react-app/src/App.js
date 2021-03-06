@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -10,7 +10,6 @@ import ChooseDash from "./components/ChooseDash";
 import AddCarForm from "./components/AddCarForm";
 import GPS from "./components/GPS";
 import Codes from "./components/Codes";
-import DirectionsMap from "./components/DirectionsMap";
 
 function App() {
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './GPSPermission.css';
 
@@ -7,7 +6,6 @@ const GPSPermission = ({setShowGPSPermissionModal}) => {
     const history = useHistory();
 
     const [toggle, setToggle] = useState(false)
-    const user = useSelector(state => state.session.user)
 
     const handleSubmit = () => {
         setShowGPSPermissionModal(false);

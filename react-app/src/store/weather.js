@@ -8,7 +8,6 @@ const getWeather = (weather) => {
 };
 
 export const getCurrentWeather= (lat,lon) => async (dispatch) => {
-
   fetch(`https://weatherbit-v1-mashape.p.rapidapi.com/current?lon=${lon}&lat=${lat}`, {
 	"method": "GET",
 	"headers": {

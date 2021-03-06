@@ -40,7 +40,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowPro
 
   return (
     <>
-    <button className="left-button-container" type="button" onClick={() => {setShowLoginModal(false);setShowProfileModal(true)}}><i class="fas fa-arrow-left"></i></button>
+    <button className="left-button-container" type="button" onClick={() => {setShowLoginModal(false);setShowProfileModal(true)}}><i className="fas fa-arrow-left"></i></button>
     <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="login-form" onSubmit={onLogin}>
         <div>

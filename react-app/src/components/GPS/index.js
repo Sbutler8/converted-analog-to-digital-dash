@@ -1,22 +1,18 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import MapSVG from '../../Icons/MapSVG';
 import Map from '../Map';
 import DateTime from '../DateTime';
 import io from "socket.io-client"
 import './GPS.css';
-import { getCurrentWeather } from '../../store/weather';
 import DirectionsDetails from '../DirectionsDetails';
 import Weather from '../Weather';
-// import DirectionsMap from '../DirectionsMap';
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
 
 const GPS = () => {
-    const dispatch = useDispatch();
     const [speed, setSpeed] = useState(0)
     const [showDetails, setShowDetails] = useState(false);
 

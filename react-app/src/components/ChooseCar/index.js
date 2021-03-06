@@ -31,7 +31,7 @@ const ChooseCar = ({setShowCarModal, setShowAddCarModal}) => {
 
   return (
     <>
-      <button className="left-button-container" type="button" onClick={() => addCar()}><i class="fas fa-plus"></i></button>
+      <button className="left-button-container" type="button" onClick={() => addCar()}><i className="fas fa-plus"></i></button>
       <div className="car-header">Which car will you be driving?</div>
         {cars &&
           cars.map(car => {

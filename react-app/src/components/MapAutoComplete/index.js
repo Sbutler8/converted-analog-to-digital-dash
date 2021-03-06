@@ -8,7 +8,6 @@ import './MapAutoComplete.css';
 
 const MapAutoComplete = () => {
   const dispatch = useDispatch();
-  const [htmlId] = useId();
 
   const {
     ready,

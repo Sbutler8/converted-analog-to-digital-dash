@@ -8,8 +8,14 @@ const DateTime = ({component}) => {
     const [time, setTime] = useState("");
 
     useEffect(() => {
-        setInterval(getTime, 1000);
-      }, [time])
+        const timer = setTimeout(() => {
+            getTime()
+        }, 1000);
+        return () => clearTimeout(timer);
+      }, [getTime]);
+
+    // setInterval(() => getTime(), 1000);
+
 
     function getTime () {
         let d = new Date();
