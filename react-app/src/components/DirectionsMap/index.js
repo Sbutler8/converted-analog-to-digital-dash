@@ -42,9 +42,9 @@ const DirectionsMap = () => {
             if (tripInfo) {
                 return
             }
-            getDirections(startLoc, destinationLoc, getDirections, startLoc, success);
+            getDirections(startLoc, destinationLoc);
         }
-    }, [destinationLoc, tripInfo]);
+    }, [destinationLoc, tripInfo, startLoc]);
 
     const getDirections = (startLoc, destinationLoc, wayPoints = []) => {
         const waypts = [];
