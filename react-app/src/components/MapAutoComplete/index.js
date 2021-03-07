@@ -67,7 +67,7 @@ const MapAutoComplete = () => {
 
   return (
       <>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCypMjFK9dShvuZNCh7e7uMFf3z9bwOBCs&libraries=places&callback=initMap"></script>
+      {/* <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCypMjFK9dShvuZNCh7e7uMFf3z9bwOBCs&libraries=places&callback=initMap"></script> */}
 
       {/* <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCypMjFK9dShvuZNCh7e7uMFf3z9bwOBCs&libraries=places"></script> */}
         <div ref={registerRef}>
