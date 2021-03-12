@@ -1,0 +1,8 @@
+.screensize-warning-container {
+    font-family: system-ui;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
