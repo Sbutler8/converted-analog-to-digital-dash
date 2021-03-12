@@ -32,6 +32,9 @@ const Codes = () => {
 
     const diagnostic = useSelector(state => {
         if (state.codes.diagnostic) {
+            if (!state.codes.diagnostic.dtc_data) {
+                return state.codes.diagnostic
+            }
             return state.codes.diagnostic.dtc_data
         }
     });
@@ -80,6 +83,9 @@ const Codes = () => {
                 <tbody>
                     {diagnostic &&
                     <>
+                        <tr>
+                            <th className="table-no-data">{diagnostic.message}</th>
+                        </tr>
                         <tr>
                             <td className="table-data-row-system">{diagnostic.system}</td>
                             <td className="table-data-row-fault">{diagnostic.fault}</td>
