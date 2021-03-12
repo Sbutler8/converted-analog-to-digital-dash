@@ -12,6 +12,9 @@ import Oil from "../../Icons/dashboard/Oil";
 import ManualDropDownEmitters from "../ManualDropDownEmitters";
 import DateTime from "../DateTime";
 import Weather from "../Weather";
+import { Modal } from '../../context/Modal';
+import ScreenSizeWarning from "../ScreenSizeWarning";
+import NoHardwareWarning from "../NoHardwareWarning";
 
 let endPoint = process.env.REACT_APP_BASE_URL;
 var socket = io.connect(`${endPoint}`);
@@ -27,7 +30,8 @@ const Dash = () => {
   const [lightsHidden, setLightsHidden] = useState(true);
   const [oilHidden, setOilHidden] = useState(true);
   const [toggle, setToggle] = useState(false)
-  const [sliderValue, setSliderValue] = useState(0)
+  const [sliderValue, setSliderValue] = useState(0);
+  const [showScreenSizeWarning, setShowScreenSizeWarning] = useState(true);
 
   let [pathArc, setPathArc] = useState(path.arc(-80,-414, 113,0*(Math.PI/180), speed * .0485));
   // const [currentLocation, setCurrentLocation] = useState({})
@@ -50,6 +54,12 @@ const Dash = () => {
   // }, [])
 
   // setTimeout(dispatch(getCurrentWeather(currentLocation.lat, currentLocation.lng))); //fetch weather every 5 min
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowScreenSizeWarning(false);
+    }, 15000)
+  }, [])
 
   useEffect(() => {
     if (!toggle) {
@@ -83,6 +93,16 @@ const Dash = () => {
 
   return (
     <>
+    {showScreenSizeWarning &&
+    <Modal id="gps-modal"  name="screen-size">
+      <ScreenSizeWarning />
+    </Modal>
+    }
+    {/* {toggle &&
+    <Modal id="gps-modal"  name="screen-size">
+      <NoHardwareWarning />
+    </Modal>
+    } */}
     <script src="https://d3js.org/d3-path.v2.min.js" charSet="utf-8"></script>
     <DateTime component='dash'/>
     <div className="weather">
