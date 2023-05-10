@@ -10,7 +10,7 @@ ENV REACT_APP_BASE_URL=https://analog-to-digital-dash.herokuapp.com
 RUN npm install
 RUN npm run build
 
-FROM python:3.8
+FROM python:3.11.3
 
 # Setup Flask environment
 ENV FLASK_APP=app

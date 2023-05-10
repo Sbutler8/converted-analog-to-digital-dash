@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Marker from '../Marker/index';
-import { compose, withProps } from "recompose";
+import { compose, withProps } from 'recompose';
 import { setTripInfo } from '../../store/map';
 import './DirectionsMap.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,11 +13,10 @@ const DirectionsMap = () => {
     let [startLoc, setStartLoc] = useState(null);
 
     const [directions, setDirections] = useState(null);
-    const [wayPoints, setWayPoints] = useState(null);
-    const [legs, setLegs] = useState(null);
-    const [tripDistance, setTripDistance] = useState(null);
-    const [tripDuration, setTripDuration] = useState(null);
-    let [currentLocation, setCurrentLocation] = useState(null);
+    const [, setWayPoints] = useState(null);
+    const [tripDistance] = useState(null);
+    const [tripDuration] = useState(null);
+    let [, setCurrentLocation] = useState(null);
 
     const tripInfo = useSelector(state => state.map.tripInfo);
     const destinationLoc = useSelector(state => {
@@ -26,27 +25,8 @@ const DirectionsMap = () => {
         }
       })
 
-    const success = position => {
-        startLoc = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        setStartLoc(startLoc);
-      };
+      const getDirections = useCallback((startLoc, destinationLoc, wayPoints = []) => {
 
-    useEffect(() => {
-        setCurrentLocation(startLoc);
-
-        navigator.geolocation.getCurrentPosition(success);
-        if (destinationLoc) {
-            if (tripInfo) {
-                return
-            }
-            getDirections(startLoc, destinationLoc);
-        }
-    }, [destinationLoc, tripInfo, startLoc]);
-
-    const getDirections = (startLoc, destinationLoc, wayPoints = []) => {
         const waypts = [];
         if (wayPoints.length > 0) {
           waypts.push({
@@ -70,7 +50,7 @@ const DirectionsMap = () => {
             if (status === window.google.maps.DirectionsStatus.OK) {
               setDirections(result)
               dispatch(setTripInfo(result.routes[0].legs[0]))
-
+  
               setWayPoints(result.routes[0].overview_path.filter((elem, index) => {
                 return index % 50 === 0; //the higher the numer the higher the precision
                 }))
@@ -87,7 +67,29 @@ const DirectionsMap = () => {
             }
           }
         );
-    }
+    
+      }, [])
+ 
+      
+      const success = position => {
+          startLoc = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+          setStartLoc(startLoc);
+        };
+      useEffect(() => {
+        setCurrentLocation(startLoc);
+
+        navigator.geolocation.getCurrentPosition(success);
+        if (destinationLoc) {
+            if (tripInfo) {
+                return
+            }
+            getDirections(startLoc, destinationLoc);
+        }
+    }, [destinationLoc, tripInfo, startLoc, getDirections, success]);
+
 
     const getMapOptions = () => {
         return {
