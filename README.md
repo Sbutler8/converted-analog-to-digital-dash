@@ -51,7 +51,7 @@ Ideally, this custom app will be robust enough to take in any cars serial data a
 1. Clone the repo `git clone https://github.com/Sbutler8/converted-analog-to-digital-dash.git`
 2. Create root .env file based on example .env-example file `touch .env`
 3. Create frontend .env file based on example .env-frontend-example `cd react-app/ && touch .env`
-4. Install backend dependencies `cd converted-analog-to-digital-dash/react-app/ && pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt`
+4. Install backend dependencies `cd converted-analog-to-digital-dash/ && pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt`
 5. Install frontend dependencies `cd ../react-app && npm install`
 6. Start virtual environment in frontend `cd .. && pipenv shell`
 7. Apply the migration to the database `flask db upgrade`
