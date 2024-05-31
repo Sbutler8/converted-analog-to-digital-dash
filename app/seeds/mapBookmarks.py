@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash
 from app.models import db
-from app.models.user import MapBookmark
+from app.models.models import MapBookmark
 
 
 def seed_map_bookmarks():

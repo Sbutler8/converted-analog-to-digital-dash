@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from .db import db
-from .user import User
+from .models import User
 from app.config import Config
 import os
 

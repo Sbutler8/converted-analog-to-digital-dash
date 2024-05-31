@@ -1,12 +1,11 @@
 import serial
-import math
 
 class Arduino():
     """
     Models an Arduino connection
     """
 
-    def __init__(self, serial_port='/dev/ttyS4', baud_rate=9600,
+    def __init__(self, serial_port='/dev/tty.usbmodem14201', baud_rate=9600,
             read_timeout=1):
         """
         Initializes the serial connection to the Arduino board
@@ -36,12 +35,12 @@ class Arduino():
             self.conn.write(command)
             line_received = self.conn.readline().decode().strip()
             header, value = line_received.split(':') # e.g. D13:1
+            if header == ('D'+ str(pin_number)):
+                # If header matches
+                return int(value)
             return value
         except:
             return 0
-        # if header == ('D'+ str(pin_number)):
-        #     # If header matches
-        #     return int(value)
 
     def digital_write(self, pin_number, digital_value):
         """
@@ -62,11 +61,11 @@ class Arduino():
         self.conn.write(command)
         line_received = self.conn.readline().decode().strip()
         header, value = line_received.split(':') # e.g. A4:1
+        if header == ('A' + str(pin_number)):
+            # If header matches
+            return int(value)
         return value
 
-        # if header == ('A' + str(pin_number)):
-        #     # If header matches
-        #     return int(value)
 
     def analog_write(self, pin_number, analog_value):
         """

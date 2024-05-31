@@ -1,5 +1,5 @@
 from app.models import db
-from app.models.user import User, Car
+from app.models.models import User, Car
 
 def seed_users_cars():
 

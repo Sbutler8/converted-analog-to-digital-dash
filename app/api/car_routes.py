@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models.user import users_cars, User, Car, db
+from app.models.models import users_cars, User, Car, db
 from app.helpers import *
 from werkzeug.utils import secure_filename
 

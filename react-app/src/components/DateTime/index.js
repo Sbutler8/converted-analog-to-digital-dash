@@ -1,42 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import './DateTime.css';
+import React from "react";
+import "./DateTime.css";
 
-const DateTime = ({component}) => {
+const DateTime = ({ component }) => {
+  const date = new Date();
+  const weekDay = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"][
+    date.getDay()
+  ];
+  const month = date.toLocaleString("default", {
+    month: "long",
+  });
+  const day = date.getDate();
+  const time = date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
 
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    
-    useEffect(() => {
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        const timer = setTimeout(() => {
-            getTime()
-        }, 1000);
-        return () => clearTimeout(timer);
-        function getTime () {
-            let d = new Date();
-            let month = d.getMonth();
-            let day = d.getDay();
-            let s = d.getSeconds();
-            let m = d.getMinutes();
-            let h = d.getHours();
-            setDate(months[month] + ', ' + day);
-            setTime(("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2));
+  return (
+    <div
+      className={
+        component === "dash"
+          ? "dash-date-time-container"
+          : component === "map"
+          ? "map-date-time-container"
+          : null
+      }
+    >
+      <div
+        className={
+          component === "dash"
+            ? "dash-date"
+            : component === "map"
+            ? "map-date"
+            : null
         }
-      }, []);
-
-    // setInterval(() => getTime(), 1000);
-
-
-
-    return (
-        <div className={component==="dash" ? 'dash-date-time-container'
-        :component==="map" ? 'map-date-time-container':null}>
-            <div className={component==="dash" ? 'dash-date'
-                :component==="map" ? 'map-date':null}>{date}</div>
-            <div className={component==="dash" ? 'dash-time'
-                :component==="map" ? 'map-time':null}>{time}</div>
-        </div>
-    )
-}
+      >{`${weekDay} ${month}, ${day}`}</div>
+      <div
+        className={
+          component === "dash"
+            ? "dash-time"
+            : component === "map"
+            ? "map-time"
+            : null
+        }
+      >
+        {time}
+      </div>
+    </div>
+  );
+};
 
 export default DateTime;

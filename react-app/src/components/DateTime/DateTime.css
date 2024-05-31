@@ -1,52 +1,56 @@
-.dash-date, .dash-time, .map-date, .map-time  {
-    font-family: 'Reem Kufi';
-    color: white;
-    font-size: 25px;
-    text-shadow: 0 0 3px rgb(255, 255, 255);
+.dash-date,
+.dash-time,
+.map-date,
+.map-time {
+  font-family: "Reem Kufi";
+  color: white;
+  font-size: 25px;
+  text-shadow: 0 0 3px rgb(255, 255, 255);
 }
 
 .dash-date {
-    left: 310px;
-    top: 2px;
+  left: 310px;
+  top: 2px;
 }
 
 .dash-time {
-    left: 326px;
-    top: 28px;
+  left: 326px;
+  top: 28px;
 }
 
 .dash-date-time-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  z-index: 1;
 }
 
 .dash-date-time-container {
-    left: 321px;
+  left: 300px;
 }
 
 .map-date {
-    left: 342px;
-    top: 2px;
-    margin-right: 40px;
+  left: 342px;
+  top: 2px;
+  margin-right: 40px;
 }
 
 .map-date-time-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    margin-top: 20px;
-    z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  margin-top: 20px;
+  z-index: 1;
 }
 
 .map-date-time-container {
-    left: 300px;
-    }
+  left: 300px;
+}
 
 .map-time {
-    left: 359px;
-    top: 28px;
+  left: 359px;
+  top: 28px;
 }

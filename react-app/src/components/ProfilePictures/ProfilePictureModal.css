@@ -1,84 +1,78 @@
 .close-button-container {
-    display:contents;
+  display: contents;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
 }
 
 .demo-user-container {
-    position: relative;
+  position: relative;
 }
 
 .demo-user-label {
-    position: absolute;
-    text-align: center;
-    width: 94px;
-    font-weight: bold;
-    margin-top: 50px;
-    font-family: system-ui;
-    font-size: 18px;
-    text-shadow: 0 3px 3px #000;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 25px;
+  font-family: system-ui;
+  font-size: 18px;
+  text-shadow: 0 3px 3px #000;
+  color: white;
 }
 
 .fa-times {
-    position: absolute;
-    font-size: 20px;
-    top: 5px;
-    right: 10px;
-    color: white;
+  position: absolute;
+  font-size: 20px;
+  top: 5px;
+  right: 10px;
+  color: white;
 }
 
 .profilePic {
-    background-size: 89px auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 80px;
-    height:80px;
-    border-radius: 50%;
-    margin: 5px;
-    border: none;
+  background-size: 89px auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 5px;
+  border: none;
 }
 
-.profile-button-container:hover, .signupPic:hover {
-    color: #333333 ;
-    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    transition: all 0.3s ease 0s;
-    border-radius: 50%;
-    box-shadow:
-    inset 0 0 50px #fff,
-    inset 20px 0 80px #f0f,
-    inset -20px 0 80px #0ff,
-    inset 20px 0 300px #f0f,
-    inset -20px 0 300px #0ff,
-    0 0 50px #fff,
-    -10px 0 80px #f0f,
-    10px 0 80px #0ff;
-    }
-
+.profile-button-container:hover,
+.signupPic:hover {
+  color: #333333;
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.3s ease 0s;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f,
+    inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff,
+    0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+}
 
 #profile-pic-header {
-    font-family: system-ui;
-    color: white;
-    font-size: 30px;
-    text-shadow: 0 0 3px #fff;
+  font-family: system-ui;
+  color: white;
+  font-size: 30px;
+  text-shadow: 0 0 3px #fff;
 }
 
 #signup-link {
-    display: flex;
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 3px 3px #000;
-    bottom: 40px;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    font-family: system-ui;
-    font-size: 19px;
+  display: flex;
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 3px 3px #000;
+  bottom: 40px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: system-ui;
+  font-size: 19px;
 }

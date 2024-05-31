@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import './LoginFormModal.css'
+import "./LoginFormModal.css";
 
-
-const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowProfileModal}) => {
-
+const LoginForm = ({
+  selectedUser,
+  setShowLoginModal,
+  setShowCarModal,
+  setShowProfileModal,
+}) => {
   const dispatch = useDispatch();
 
   const [errors, setErrors] = useState([]);
@@ -13,35 +16,45 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowPro
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setEmail(selectedUser.email)
-  },[dispatch, selectedUser.email])
+    setEmail(selectedUser.email);
+  }, [dispatch, selectedUser.email]);
 
   const onLogin = async (e) => {
     e.preventDefault();
     setErrors([]);
-    if (email === 'demo@demo.com') {
-      dispatch(sessionActions.login({email:'demo@demo.com', password:'password'}))
+    if (email === "demo@demo.com") {
+      dispatch(
+        sessionActions.login({ email: "demo@demo.com", password: "password" })
+      );
     } else {
-      dispatch(sessionActions.login({email, password}))
+      dispatch(sessionActions.login({ email, password }));
     }
-    setShowLoginModal(false)
-    setShowCarModal(true)
+    setShowLoginModal(false);
+    setShowCarModal(true);
   };
 
   const getPassword = () => {
-    if (email === 'demo@demo.com') {
+    if (email === "demo@demo.com") {
       // setPassword('password');
-      return 'password';
+      return "10523132";
     } else {
       return password;
     }
-  }
-
+  };
 
   return (
     <>
-    <button className="left-button-container" type="button" onClick={() => {setShowLoginModal(false);setShowProfileModal(true)}}><i className="fas fa-arrow-left"></i></button>
-    <div id="login-header">Welcome back {selectedUser.username}!</div>
+      <button
+        className="left-button-container"
+        type="button"
+        onClick={() => {
+          setShowLoginModal(false);
+          setShowProfileModal(true);
+        }}
+      >
+        <i className="fas fa-arrow-left"></i>
+      </button>
+      <div id="login-header">Welcome back {selectedUser.username}!</div>
       <form className="login-form" onSubmit={onLogin}>
         <div>
           {errors.map((error) => (
@@ -50,6 +63,7 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowPro
         </div>
         <div>
           <input
+            autoComplete={email}
             name="email"
             type="text"
             placeholder="Email"
@@ -63,12 +77,17 @@ const LoginForm = ({selectedUser, setShowLoginModal, setShowCarModal, setShowPro
             type="password"
             placeholder="Password"
             value={getPassword()}
-            onChange={(e) => email === 'demo@demo.com' ? setPassword('password'):setPassword(e.target.value)}
+            onChange={(e) =>
+              email === "demo@demo.com"
+                ? setPassword("password")
+                : setPassword(e.target.value)
+            }
           />
         </div>
 
-          <button id="submit-button" type="submit">Login</button>
-
+        <button id="submit-button" type="submit">
+          Login
+        </button>
       </form>
     </>
   );

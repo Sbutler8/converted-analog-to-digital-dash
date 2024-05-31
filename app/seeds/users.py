@@ -4,7 +4,7 @@ from app.models import db, User
 
 def seed_users():
 
-    user1 = User(name='demo', email='demo@demo.com', password='password',  gps_permission=True, pic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8rcTb4fY0jzaIGGHgOXlEwNOTYBQq6Le6g&usqp=CAU')
+    user1 = User(name='demo', email='demo@demo.com', password='10523132',  gps_permission=True, pic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8rcTb4fY0jzaIGGHgOXlEwNOTYBQq6Le6g&usqp=CAU')
     user2 = User(name='Aliya', email='user3@user3.com', password='password', gps_permission=True, pic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-m-GbsE8FdJ2LkI9mp5lfUFbRBzgm8oShkQ&usqp=CAU')
     user3 = User(name='Elizabeth', email='user4@user4.com', password='password',  gps_permission=True, pic='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzO_zIsivTHffpD3o463lljxbkZMKsNIfkw&usqp=CAU')
     user4 = User(name='Tony', email='user5@user5.com', password='password', gps_permission=True, pic='https://sims-online.com/wp-content/uploads/2014/07/the-sims-4-avatar-3.jpg')

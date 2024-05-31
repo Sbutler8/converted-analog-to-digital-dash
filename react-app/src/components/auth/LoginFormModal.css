@@ -1,60 +1,60 @@
 .left-button-container {
-    display:contents;
+  display: contents;
 }
 
 .fa-arrow-left {
-    position: absolute;
-    font-size: 20px;
-    top: 10px;
-    left: 10px;
-    color: white;
+  position: absolute;
+  font-size: 20px;
+  top: 10px;
+  left: 10px;
+  color: white;
 }
 
 .login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 40px;
 }
 
 label {
-    font: 'Montserrat';
-    color: white;
+  font: "Montserrat";
+  color: white;
 }
 
 input {
-    width: 100%;
-    height: 40px;
-    color: #000;
-    border: 1px solid #bcbcbc;
-    border-radius: 50%;
-    outline: none;
-    margin-bottom: 20px;
-    padding: 15px;
+  width: 100%;
+  height: 40px;
+  color: #000;
+  border: 1px solid #bcbcbc;
+  border-radius: 50%;
+  outline: none;
+  margin-bottom: 20px;
+  padding: 15px;
 }
 
 input:hover {
-    box-shadow: 0px 0px 70px 1px #fff
+  box-shadow: 0px 0px 70px 1px #fff;
 }
 
 #login-header {
-    font-family: system-ui;
-    font-size: 24px;
-    color: white;
-    text-shadow: 0 0 3px #fff;
+  font-family: system-ui;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 0 3px #fff;
 }
 
 #submit-button {
-    text-align: center;
-    width: 70px;
-    border: none;
-    outline: none;
-    border-radius: 50px;
-    background: #222223;
-    color: #fff;
-    font-family: system-ui;
-    padding: 10px 0;
-    font-size: 13px;
-    margin: 5px;
+  text-align: center;
+  width: 70px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  background: #222223;
+  color: #fff;
+  font-family: system-ui;
+  padding: 4px 0;
+  font-size: 13px;
+  margin: 5px;
 }

@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash
-from app.models.user import db, OBD
+from app.models.models import db, OBD
 
 
 def seed_OBD():
